@@ -32,7 +32,7 @@ export function MissionVisionSection({
   },
   image = {
     src: "/placeholder.svg?key=mission",
-    alt: "Boffins Technologies Mission and Vision",
+    alt: "Boffins Technology Mission and Vision",
   },
   reverse = false,
   className,

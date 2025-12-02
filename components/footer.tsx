@@ -25,8 +25,8 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
-              <Image src="/images/logo.png" alt="Boffins Technologies" width={32} height={32} className="h-8 w-8" />
-              <span className="text-lg font-bold text-primary">Boffins Technologies</span>
+              <Image src="/images/logo.png" alt="Boffins Technology" width={32} height={32} className="h-8 w-8" />
+              <span className="text-lg font-bold text-primary">Boffins Technology</span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               A diversified technology holding company with specialized subsidiaries in education, products, hardware,
@@ -82,15 +82,15 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground text-sm">info@boffinstech.com</span>
+                <span className="text-muted-foreground text-sm">info@boffinstechnology.com.ng</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground text-sm">+1 (555) 123-4567</span>
+                <span className="text-muted-foreground text-sm">+234 (801) 566-53196</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground text-sm">Tech Hub, Innovation District</span>
+                <span className="text-muted-foreground text-sm">Plot 902 Ibrahim Isyaku St, Abuja, Nigeria</span>
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@ export function Footer() {
 
         <div className="mt-8 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-muted-foreground text-sm">© 2024 Boffins Technologies. All rights reserved.</p>
+            <p className="text-muted-foreground text-sm">© 2024 Boffins Technology. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
                 Privacy Policy

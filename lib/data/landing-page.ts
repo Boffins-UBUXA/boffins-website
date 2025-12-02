@@ -2,10 +2,10 @@ import { GraduationCap, Cpu, HardDrive, Megaphone, Code, Users, Award, TrendingU
 
 export const landingPageData = {
   hero: {
-    title: "Innovating Tomorrow's",
-    subtitle: "Technology Solutions",
+    title: "Digitizing Africa's ",
+    subtitle: "Enterprises",
     description:
-      "Boffins Technologies is a diversified technology holding company with specialized subsidiaries in education, products, hardware, media, and bespoke solutions. We transform ideas into reality.",
+      "Boffins Technology is a diversified technology holding company with specialized subsidiaries in education, products, hardware, media, and bespoke solutions. We transform ideas into reality.",
     primaryCTA: {
       text: "Explore Our Services",
       href: "/services",
@@ -16,7 +16,7 @@ export const landingPageData = {
     },
     heroImage: {
       src: "/modern-technology-workspace-with-multiple-screens-.jpg",
-      alt: "Boffins Technologies Innovation",
+      alt: "Boffins Technology Innovation",
     },
   },
 
@@ -79,7 +79,7 @@ export const landingPageData = {
   ],
 
   features: {
-    title: "Why Choose Boffins Technologies?",
+    title: "Why Choose Boffins Technology?",
     description:
       "Our strength lies in collaboration and innovation. Each division brings unique expertise while working together to deliver exceptional results.",
     features: [
@@ -91,7 +91,7 @@ export const landingPageData = {
     ],
     image: {
       src: "/diverse-team-of-technology-professionals-collabora.jpg",
-      alt: "Boffins Technologies Team",
+      alt: "Boffins Technology Team",
     },
     cta: {
       text: "Learn More About Us",

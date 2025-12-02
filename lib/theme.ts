@@ -1,5 +1,5 @@
 export const theme = {
-  // Brand Colors - Boffins Technologies
+  // Brand Colors - Boffins Technology
   colors: {
     brand: {
       primary: "oklch(0.55 0.15 200)", // Teal

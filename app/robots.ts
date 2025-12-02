@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://boffinstechnologies.com/sitemap.xml",
+    sitemap: "https://boffinstechnology.com.ng/sitemap.xml",
   }
 }

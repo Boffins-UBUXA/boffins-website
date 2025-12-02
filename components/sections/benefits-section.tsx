@@ -18,7 +18,7 @@ interface BenefitsSectionProps {
 
 export function BenefitsSection({
   benefits = [],
-  title = "Why Choose Boffins Technologies?",
+  title = "Why Choose Boffins Technology?",
   subtitle = "Our unique approach combines specialized expertise with collaborative innovation to deliver exceptional results.",
   className,
 }: BenefitsSectionProps) {

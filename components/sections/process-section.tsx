@@ -46,7 +46,7 @@ export function ProcessSection({
   ],
   image = {
     src: "/collaborative-technology-process-workflow.jpg",
-    alt: "Boffins Technologies Collaborative Process",
+    alt: "Boffins Technology Collaborative Process",
   },
   reverse = false,
   className,

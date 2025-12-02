@@ -24,9 +24,9 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({
-  title = "Innovating Tomorrow's",
-  subtitle = "Technology Solutions",
-  description = "Boffins Technologies is a diversified technology holding company with specialized subsidiaries in education, products, hardware, media, and bespoke solutions. We transform ideas into reality.",
+  title = "Digitizing Africa's",
+  subtitle = "Enterprises",
+  description = "Boffins Technology is a diversified technology holding company with specialized subsidiaries in education, products, hardware, media, and bespoke solutions. We transform ideas into reality.",
   primaryCTA = {
     text: "Explore Our Services",
     href: "/services",
@@ -37,7 +37,7 @@ export function HeroSection({
   },
   heroImage = {
     src: "/modern-technology-workspace-with-multiple-screens-.jpg",
-    alt: "Boffins Technologies Innovation",
+    alt: "Boffins Technology Innovation",
   },
   className,
 }: HeroSectionProps) {

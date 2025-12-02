@@ -23,8 +23,8 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <Image src="/images/logo.png" alt="Boffins Technologies" width={40} height={40} className="h-10 w-10" />
-            <span className="text-xl font-bold text-primary">Boffins Technologies</span>
+            <Image src="/images/logo.png" alt="Boffins Technology" width={40} height={40} className="h-10 w-10" />
+            <span className="text-xl font-bold text-primary">Boffins Technology</span>
           </Link>
 
           {/* Desktop Navigation */}

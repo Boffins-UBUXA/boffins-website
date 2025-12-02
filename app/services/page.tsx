@@ -28,7 +28,7 @@ export default function ServicesPage() {
 
       <BenefitsSection
         benefits={benefitsWithIcons}
-        title="Why Choose Boffins Technologies?"
+        title="Why Choose Boffins Technology?"
         subtitle="Our unique approach combines specialized expertise with collaborative innovation to deliver exceptional results."
       />
 

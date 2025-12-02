@@ -21,7 +21,7 @@ interface FeaturesSectionProps {
 }
 
 export function FeaturesSection({
-  title = "Why Choose Boffins Technologies?",
+  title = "Why Choose Boffins Technology?",
   description = "Our strength lies in collaboration and innovation. Each division brings unique expertise while working together to deliver exceptional results.",
   features = [
     "Diverse expertise across multiple technology domains",
@@ -32,7 +32,7 @@ export function FeaturesSection({
   ],
   image = {
     src: "/diverse-team-of-technology-professionals-collabora.jpg",
-    alt: "Boffins Technologies Team",
+    alt: "Boffins Technology Team",
   },
   cta = {
     text: "Learn More About Us",

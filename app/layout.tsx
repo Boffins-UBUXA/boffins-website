@@ -9,7 +9,10 @@ import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Boffins Technologies - Innovating Tomorrow's Technology Solutions",
+  title: "Boffins Technology - Digitizing Africa's Enterprises",
+  icons: {
+    icon: "/images/logo.png",
+  },
   description:
     "A diversified technology holding company with specialized subsidiaries in education, products, hardware, media, and bespoke solutions. Transform your business with cutting-edge technology.",
   keywords: [
@@ -22,30 +25,30 @@ export const metadata: Metadata = {
     "digital transformation",
     "Nigeria technology company",
   ],
-  authors: [{ name: "Boffins Technologies" }],
-  creator: "Boffins Technologies",
-  publisher: "Boffins Technologies",
+  authors: [{ name: "Boffins Technology" }],
+  creator: "Boffins Technology",
+  publisher: "Boffins Technology",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://boffinstechnologies.com"),
+  metadataBase: new URL("https://boffinstechnology.com.ng"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Boffins Technologies - Innovating Tomorrow's Technology Solutions",
+    title: "Boffins Technology - Digitizing Africa's Enterprises",
     description:
       "Transform your business with our comprehensive technology solutions across education, products, hardware, media, and bespoke development.",
-    url: "https://boffinstechnologies.com",
-    siteName: "Boffins Technologies",
+    url: "https://boffinstechnology.com.ng",
+    siteName: "Boffins Technology",
     images: [
       {
         url: "/images/logo.png",
         width: 1200,
         height: 630,
-        alt: "Boffins Technologies Logo",
+        alt: "Boffins Technology Logo",
       },
     ],
     locale: "en_US",
@@ -53,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Boffins Technologies - Innovating Tomorrow's Technology Solutions",
+    title: "Boffins Technology - Digitizing Africa's Enterprises",
     description:
       "Transform your business with our comprehensive technology solutions across education, products, hardware, media, and bespoke development.",
     images: ["/images/logo.png"],

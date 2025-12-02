@@ -3,7 +3,7 @@ import { Lightbulb, Handshake, Award, TrendingUp } from "lucide-react"
 export const aboutData = {
   hero: {
     title: "About",
-    subtitle: "Boffins Technologies",
+    subtitle: "Boffins Technology",
     description:
       "We are a diversified technology holding company with multiple specialized subsidiaries. Each division operates semi-independently but collaborates within the Boffins ecosystem to deliver comprehensive solutions that transform businesses and empower individuals.",
   },
@@ -80,7 +80,7 @@ export const aboutData = {
       year: "2020",
       title: "Company Founded",
       description:
-        "Boffins Technologies established as a technology holding company with a vision for diversified innovation.",
+        "Boffins Technology established as a technology holding company with a vision for diversified innovation.",
     },
     {
       year: "2021",
@@ -107,7 +107,7 @@ export const aboutData = {
   collaboration: {
     title: "Our Collaboration Model",
     description:
-      "The strength of Boffins Technologies lies in collaboration. Each division is autonomous but interdependent, sharing resources and expertise while maintaining accountability.",
+      "The strength of Boffins Technology lies in collaboration. Each division is autonomous but interdependent, sharing resources and expertise while maintaining accountability.",
     features: [
       "Shared Talent Pool - Developers and trainers rotate between divisions",
       "Internal Economy - Divisions pay each other for services, maintaining accountability",
@@ -116,7 +116,7 @@ export const aboutData = {
     ],
     image: {
       src: "/placeholder.svg?key=collaboration",
-      alt: "Boffins Technologies Collaboration Model",
+      alt: "Boffins Technology Collaboration Model",
     },
     cta: {
       text: "Explore Our Services",

@@ -13,19 +13,19 @@ export const contactData = {
     {
       icon: MapPin,
       title: "Visit Our Office",
-      details: ["123 Technology Drive", "Innovation District", "Lagos, Nigeria"],
+      details: ["Plot 902 Ibrahim Isyaku street Mabushi abuja", "Mabushi", "Abuja, Nigeria"],
       color: "from-blue-500 to-cyan-500",
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: ["+234 (0) 123 456 7890", "+234 (0) 987 654 3210"],
+      details: ["+234 (0) 815 665 3196"],
       color: "from-green-500 to-emerald-500",
     },
     {
       icon: Mail,
       title: "Email Us",
-      details: ["hello@boffinstechnologies.com", "support@boffinstechnologies.com"],
+      details: ["info@boffinstechnology.com.ng"],
       color: "from-purple-500 to-pink-500",
     },
     {
@@ -40,31 +40,31 @@ export const contactData = {
     {
       name: "Education & Training",
       description: "Inquiries about our tech education programs and training courses",
-      email: "education@boffinstechnologies.com",
+      email: "academy@boffinstechnology.com.ng",
       icon: Users,
     },
     {
       name: "Product Division",
       description: "Questions about Ubuxa, Vikmid, RevenueHub+ and other products",
-      email: "products@boffinstechnologies.com",
+      email: "info@boffinstechnology.com.ng",
       icon: Briefcase,
     },
     {
       name: "Hardware Division",
       description: "IoT devices, networking services, and hardware solutions",
-      email: "hardware@boffinstechnologies.com",
+      email: "info@boffinstechnology.com.ng",
       icon: MessageSquare,
     },
     {
       name: "Media Company",
       description: "Social media management and content creation services",
-      email: "media@boffinstechnologies.com",
+      email: "media@boffinstechnology.com.ng",
       icon: MessageSquare,
     },
     {
       name: "Bespoke Division",
       description: "Custom software development and technical consulting",
-      email: "bespoke@boffinstechnologies.com",
+      email: "info@boffinstechnology.com.ng",
       icon: Briefcase,
     },
   ],
@@ -72,11 +72,11 @@ export const contactData = {
   office: {
     title: "Visit Our Office",
     description:
-      "Located in the heart of Lagos' innovation district, our office is easily accessible and equipped with modern facilities for client meetings and consultations.",
+      "Plot 902 Ibrahim Isyaku street Mabushi abuja off regent secondary school.",
     address: {
-      name: "Boffins Technologies",
-      street: "123 Technology Drive",
-      city: "Innovation District, Lagos, Nigeria",
+      name: "Boffins Technology",
+      street: "Ibrahim Isyaku Street, Mabushi, Abuja, Nigeria",
+      city: "AMAC",
     },
   },
 }
