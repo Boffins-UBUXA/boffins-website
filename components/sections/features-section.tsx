@@ -31,7 +31,7 @@ export function FeaturesSection({
     "Scalable solutions that grow with your business",
   ],
   image = {
-    src: "/diverse-team-of-technology-professionals-collabora.jpg",
+    src: "/images/boffins-collaboration-model.png",
     alt: "Boffins Technology Team",
   },
   cta = {
@@ -73,7 +73,7 @@ export function FeaturesSection({
           </div>
           <div className={`relative ${imageOrder}`}>
             <Image
-              src={image.src || "/placeholder.svg"}
+              src={image.src}
               alt={image.alt}
               width={500}
               height={400}

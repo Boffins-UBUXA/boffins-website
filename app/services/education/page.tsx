@@ -10,7 +10,7 @@ import { ArrowRight, Clock, Users, Award, Star, BookOpen, Code, Smartphone, Pale
 export default function EducationPage() {
   const programs = [
     {
-      title: "UI/UX Design",
+      title: "Social Media Advertising",
       duration: "12 weeks",
       level: "Beginner to Advanced",
       description:
@@ -50,16 +50,6 @@ export default function EducationPage() {
       skills: ["React", "Node.js", "Databases", "DevOps", "Testing", "Deployment"],
       projects: 15,
       color: "from-purple-500 to-violet-500",
-    },
-    {
-      title: "Mobile App Development",
-      duration: "18 weeks",
-      level: "Intermediate",
-      description: "Create native and cross-platform mobile applications for iOS and Android platforms.",
-      icon: <Smartphone className="h-8 w-8" />,
-      skills: ["React Native", "Flutter", "iOS Development", "Android Development", "App Store Deployment"],
-      projects: 10,
-      color: "from-orange-500 to-amber-500",
     },
   ]
 
@@ -127,13 +117,13 @@ export default function EducationPage() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <Badge variant="secondary" className="w-fit">
-                  Education & Training Division
+                  Academy Division
                 </Badge>
                 <h1 className="text-4xl lg:text-6xl font-bold text-balance">
                   Launch Your <span className="text-primary">Tech Career</span>
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Transform your future with our comprehensive tech education programs. From UI/UX design to full-stack
+                  Transform your future with our comprehensive tech  programs.  content creation to full-stack
                   development, we provide the skills and support you need to succeed in the technology industry.
                 </p>
               </div>
@@ -243,7 +233,7 @@ export default function EducationPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-4">Why Choose Our Programs?</h2>
             <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
-              Our education programs are designed with your success in mind, providing comprehensive support and
+              Our  programs are designed with your success in mind, providing comprehensive support and
               real-world experience.
             </p>
           </div>

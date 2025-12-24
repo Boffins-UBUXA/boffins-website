@@ -37,7 +37,7 @@ export const aboutData = {
       icon: Award,
       title: "Excellence",
       description:
-        "We maintain the highest standards in everything we do, from education to product development and client service.",
+        "We maintain the highest standards in everything we do, from academy to product development and client service.",
     },
     {
       icon: TrendingUp,
@@ -84,7 +84,7 @@ export const aboutData = {
     },
     {
       year: "2021",
-      title: "Education Division Launch",
+      title: "Academy Division Launch",
       description: "Launched our comprehensive tech education programs, training the next generation of developers.",
     },
     {
@@ -115,7 +115,7 @@ export const aboutData = {
       "Scalability - Each division can expand as opportunities grow",
     ],
     image: {
-      src: "/placeholder.svg?key=collaboration",
+      src: "/images/boffins-collaboration-model.png",
       alt: "Boffins Technology Collaboration Model",
     },
     cta: {

@@ -26,7 +26,7 @@ interface HeroSectionProps {
 export function HeroSection({
   title = "Digitizing Africa's",
   subtitle = "Enterprises",
-  description = "Boffins Technology is a diversified technology holding company with specialized subsidiaries in education, products, hardware, media, and bespoke solutions. We transform ideas into reality.",
+  description = "Boffins Technology is a diversified technology holding company with specialized subsidiaries in academy, products, hardware, media, and bespoke solutions. We transform ideas into reality.",
   primaryCTA = {
     text: "Explore Our Services",
     href: "/services",

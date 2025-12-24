@@ -78,11 +78,11 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
                     className="w-full px-3 py-2 border border-input bg-background rounded-md text-sm"
                   >
                     <option value="">Select a service</option>
-                    <option value="education">Education & Training</option>
-                    <option value="products">Product Division</option>
-                    <option value="hardware">Hardware Division</option>
-                    <option value="media">Media Company</option>
                     <option value="bespoke">Bespoke Division</option>
+                    <option value="products">Product Division</option>
+                    <option value="media">Media Company</option>
+                    <option value="academy">Academy</option>
+                    <option value="hardware">Hardware Division</option>
                   </select>
                 </div>
                 <div className="space-y-2">

@@ -38,8 +38,8 @@ export const contactData = {
 
   divisions: [
     {
-      name: "Education & Training",
-      description: "Inquiries about our tech education programs and training courses",
+      name: "Academy",
+      description: "Inquiries about our tech  programs and training courses",
       email: "academy@boffinstechnology.com.ng",
       icon: Users,
     },

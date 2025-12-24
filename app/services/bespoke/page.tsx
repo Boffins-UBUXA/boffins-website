@@ -197,7 +197,7 @@ export default function BespokePage() {
             </div>
             <div className="relative">
               <Image
-                src="/custom-software-development-coding-team.jpg"
+                src="/images/boffins-bespoke-hero-image.png"
                 alt="Custom software development team"
                 width={500}
                 height={500}

@@ -14,11 +14,11 @@ export const metadata: Metadata = {
     icon: "/images/logo.png",
   },
   description:
-    "A diversified technology holding company with specialized subsidiaries in education, products, hardware, media, and bespoke solutions. Transform your business with cutting-edge technology.",
+    "A diversified technology holding company with specialized subsidiaries in academy, products, hardware, media, and bespoke solutions. Transform your business with cutting-edge technology.",
   keywords: [
     "technology solutions",
     "software development",
-    "tech education",
+    "tech academy",
     "IoT devices",
     "renewable energy management",
     "custom software",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Boffins Technology - Digitizing Africa's Enterprises",
     description:
-      "Transform your business with our comprehensive technology solutions across education, products, hardware, media, and bespoke development.",
+      "Transform your business with our comprehensive technology solutions across academy, products, hardware, media, and bespoke development.",
     url: "https://boffinstechnology.com.ng",
     siteName: "Boffins Technology",
     images: [
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Boffins Technology - Digitizing Africa's Enterprises",
     description:
-      "Transform your business with our comprehensive technology solutions across education, products, hardware, media, and bespoke development.",
+      "Transform your business with our comprehensive technology solutions across academy, products, hardware, media, and bespoke development.",
     images: ["/images/logo.png"],
   },
   robots: {

@@ -4,7 +4,7 @@ import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   const divisions = [
-    { name: "Education & Training", href: "/services/education" },
+    { name: "Academy", href: "/services/education" },
     { name: "Product Division", href: "/services/products" },
     { name: "Hardware Division", href: "/services/hardware" },
     { name: "Media Company", href: "/services/media" },
@@ -29,7 +29,7 @@ export function Footer() {
               <span className="text-lg font-bold text-primary">Boffins Technology</span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              A diversified technology holding company with specialized subsidiaries in education, products, hardware,
+              A diversified technology holding company with specialized subsidiaries in academy, products, hardware,
               media, and bespoke solutions.
             </p>
             <div className="flex space-x-4">
