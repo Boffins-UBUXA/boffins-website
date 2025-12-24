@@ -29,18 +29,12 @@ export const landingPageData = {
 
   divisions: [
     {
-      title: "Education & Training",
+      title: "Bespoke Division",
       description:
-        "Comprehensive tech education programs designed to transform careers and build industry-ready professionals.",
-      features: [
-        "UI/UX Design",
-        "Frontend Development",
-        "Backend Development",
-        "Full Stack Development",
-        "Mobile App Development",
-      ],
-      href: "/services/education",
-      icon: GraduationCap,
+        "Custom software solutions tailored to your unique business requirements and operational challenges.",
+      features: ["Coming to Canada - Immigration Website", "Bekwyn Law Firm Website", "Custom Enterprise Solutions"],
+      href: "/services/bespoke",
+      icon: Code,
     },
     {
       title: "Product Division",
@@ -55,13 +49,6 @@ export const landingPageData = {
       icon: Cpu,
     },
     {
-      title: "Hardware Division",
-      description: "Cutting-edge IoT devices and networking solutions for modern business infrastructure needs.",
-      features: ["IoT Device Development", "Networking Services", "Ubuxa-IoT-Pro Protection Device"],
-      href: "/services/hardware",
-      icon: HardDrive,
-    },
-    {
       title: "Media Company",
       description: "Strategic digital marketing and content creation services to amplify your brand's online presence.",
       features: ["Social Media Management", "Content Creation", "Brand Strategy", "Digital Campaigns"],
@@ -69,12 +56,25 @@ export const landingPageData = {
       icon: Megaphone,
     },
     {
-      title: "Bespoke Division",
+      title: "Academy",
       description:
-        "Custom software solutions tailored to your unique business requirements and operational challenges.",
-      features: ["Coming to Canada - Immigration Website", "Bekwyn Law Firm Website", "Custom Enterprise Solutions"],
-      href: "/services/bespoke",
-      icon: Code,
+        "Comprehensive tech education programs designed to transform careers and build industry-ready professionals.",
+      features: [
+        "UI/UX Design",
+        "Frontend Development",
+        "Backend Development",
+        "Full Stack Development",
+        "Mobile App Development",
+      ],
+      href: "/services/education",
+      icon: GraduationCap,
+    },
+    {
+      title: "Hardware Division",
+      description: "Cutting-edge IoT devices and networking solutions for modern business infrastructure needs.",
+      features: ["IoT Device Development", "Networking Services", "Ubuxa-IoT-Pro Protection Device"],
+      href: "/services/hardware",
+      icon: HardDrive,
     },
   ],
 
@@ -105,7 +105,7 @@ export const landingPageData = {
       "Let's discuss how our specialized divisions can work together to deliver the perfect solution for your unique challenges.",
     primaryCTA: {
       text: "Start Your Project",
-      href: "/contact",
+      href: "https://chat.whatsapp.com/FEOHmsZHBXTJEb5gsBSjlS",
     },
     secondaryCTA: {
       text: "View All Services",

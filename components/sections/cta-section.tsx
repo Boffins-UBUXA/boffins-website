@@ -22,7 +22,7 @@ export function CTASection({
   description = "Let's discuss how our specialized divisions can work together to deliver the perfect solution for your unique challenges.",
   primaryCTA = {
     text: "Start Your Project",
-    href: "/contact",
+    href: "https://chat.whatsapp.com/FEOHmsZHBXTJEb5gsBSjlS",
   },
   secondaryCTA = {
     text: "View All Services",

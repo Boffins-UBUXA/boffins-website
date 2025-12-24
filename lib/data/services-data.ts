@@ -135,7 +135,7 @@ export const servicesData = {
       "Let's discuss how our integrated technology ecosystem can help you achieve your goals. Get in touch with our experts today.",
     primaryCTA: {
       text: "Start Your Project",
-      href: "/contact",
+      href: "https://chat.whatsapp.com/FEOHmsZHBXTJEb5gsBSjlS",
     },
     secondaryCTA: {
       text: "Learn More About Us",

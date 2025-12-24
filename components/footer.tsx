@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
+import { FaTiktok, FaTwitter, FaLinkedin } from "react-icons/fa"
 
 export function Footer() {
   const divisions = [
@@ -33,15 +34,35 @@ export function Footer() {
               media, and bespoke solutions.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Facebook className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </Link>
+              {/* TikTok */}
+  <Link
+    href="https://www.tiktok.com/@boffinstechnology"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-muted-foreground hover:text-primary transition-colors"
+  >
+    <FaTiktok className="h-5 w-5" />
+  </Link>
+
+  {/* Twitter / X */}
+  <Link
+    href="https://twitter.com/boffinstech"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-muted-foreground hover:text-primary transition-colors"
+  >
+    <FaTwitter className="h-5 w-5" />
+  </Link>
+
+  {/* LinkedIn */}
+  <Link
+    href="https://www.linkedin.com/in/ubuxa-ubuxa-297427379/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-muted-foreground hover:text-primary transition-colors"
+  >
+    <FaLinkedin className="h-5 w-5" />
+  </Link>
             </div>
           </div>
 
@@ -98,15 +119,15 @@ export function Footer() {
 
         <div className="mt-8 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-muted-foreground text-sm">© 2024 Boffins Technology. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
+          <p className="text-muted-foreground text-sm"> © {new Date().getFullYear()} Boffins Technology. All rights reserved.</p>
+            {/* <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
                 Privacy Policy
               </Link>
               <Link href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
                 Terms of Service
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
