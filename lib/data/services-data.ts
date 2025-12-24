@@ -5,7 +5,7 @@ export const servicesData = {
     title: "Our",
     subtitle: "Services",
     description:
-      "Discover our comprehensive range of technology services across five specialized divisions. From education and training to custom software development, we have the expertise to transform your ideas into reality.",
+      "Discover our comprehensive range of technology services across five specialized divisions. From Academy to custom software development, we have the expertise to transform your ideas into reality.",
     primaryCTA: {
       text: "Get Started Today",
       href: "/contact",
@@ -18,9 +18,9 @@ export const servicesData = {
 
   divisions: [
     {
-      title: "Education & Training",
+      title: "Academy",
       description:
-        "Comprehensive tech education programs designed to build the next generation of developers and tech professionals.",
+        "Comprehensive tech programs designed to build the next generation of developers and tech professionals.",
       icon: "🎓",
       href: "/services/education",
       features: [

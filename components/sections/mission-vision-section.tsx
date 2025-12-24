@@ -31,7 +31,7 @@ export function MissionVisionSection({
       "To be the leading technology ecosystem that bridges the gap between innovation and practical application, creating sustainable value for all stakeholders.",
   },
   image = {
-    src: "/placeholder.svg?key=mission",
+    src: "/images/boffins-vision-mission.png",
     alt: "Boffins Technology Mission and Vision",
   },
   reverse = false,
@@ -73,7 +73,7 @@ export function MissionVisionSection({
               alt={image.alt}
               width={500}
               height={400}
-              className="rounded-lg shadow-xl"
+              className="rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 max-h-[400px] min-w-[500px] object-cover"
             />
           </div>
         </div>

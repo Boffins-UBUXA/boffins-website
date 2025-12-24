@@ -37,9 +37,9 @@ const samplePosts: BlogPost[] = [
     id: "3",
     title: "Success Stories: Transforming Careers Through Tech Education",
     excerpt: "Meet our graduates who landed dream jobs after completing our comprehensive training programs.",
-    author: "Education Team",
+    author: "Academy Team",
     date: "2024-01-05",
-    category: "Education",
+    category: "Academy",
   },
 ]
 
