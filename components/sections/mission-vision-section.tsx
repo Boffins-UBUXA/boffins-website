@@ -1,6 +1,12 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import { Target, Lightbulb } from "lucide-react"
-import { sectionStyles, responsive } from "@/lib/style-utils"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { ChevronDown, ChevronUp } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface MissionVisionSectionProps {
   mission?: {
@@ -37,43 +43,100 @@ export function MissionVisionSection({
   reverse = false,
   className,
 }: MissionVisionSectionProps) {
+  const [expandedMission, setExpandedMission] = useState(false)
+  const [expandedVision, setExpandedVision] = useState(false)
+
   const contentOrder = reverse ? "lg:order-2" : ""
   const imageOrder = reverse ? "lg:order-1" : ""
 
   return (
-    <section
-      className={sectionStyles({
-        padding: "lg",
-        className,
-      })}
-    >
-      <div className={responsive.container}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className={`space-y-8 ${contentOrder}`}>
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Target className="h-8 w-8 text-primary" />
-                  <h2 className="text-3xl font-bold">{mission.title}</h2>
+    <section className={cn("py-16 lg:py-20 px-4 sm:px-6 lg:px-8", className)}>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Content Section */}
+          <div className={cn("space-y-6", contentOrder)}>
+            {/* Mission Card - Fixed dimensions */}
+            <Card className="hover:shadow-lg transition-all duration-300">
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-3">
+                  <Target className="h-6 w-6 text-primary flex-shrink-0" />
+                  <h2 className="text-2xl font-bold leading-none">{mission.title}</h2>
                 </div>
-                <p className="text-lg text-muted-foreground text-pretty leading-relaxed">{mission.description}</p>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Lightbulb className="h-8 w-8 text-primary" />
-                  <h2 className="text-3xl font-bold">{vision.title}</h2>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p
+                  className={cn(
+                    "text-sm leading-relaxed text-muted-foreground transition-all duration-300",
+                    expandedMission ? "" : "line-clamp-3",
+                  )}
+                >
+                  {mission.description}
+                </p>
+                {/* More/Less toggle button */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setExpandedMission(!expandedMission)}
+                  className="text-primary hover:text-primary/80 h-auto p-0 gap-1"
+                >
+                  {expandedMission ? (
+                    <>
+                      Less <ChevronUp className="h-4 w-4" />
+                    </>
+                  ) : (
+                    <>
+                      More <ChevronDown className="h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Vision Card - Fixed dimensions */}
+            <Card className="hover:shadow-lg transition-all duration-300">
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-3">
+                  <Lightbulb className="h-6 w-6 text-primary flex-shrink-0" />
+                  <h2 className="text-2xl font-bold leading-none">{vision.title}</h2>
                 </div>
-                <p className="text-lg text-muted-foreground text-pretty leading-relaxed">{vision.description}</p>
-              </div>
-            </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p
+                  className={cn(
+                    "text-sm leading-relaxed text-muted-foreground transition-all duration-300",
+                    expandedVision ? "" : "line-clamp-3",
+                  )}
+                >
+                  {vision.description}
+                </p>
+                {/* More/Less toggle button */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setExpandedVision(!expandedVision)}
+                  className="text-primary hover:text-primary/80 h-auto p-0 gap-1"
+                >
+                  {expandedVision ? (
+                    <>
+                      Less <ChevronUp className="h-4 w-4" />
+                    </>
+                  ) : (
+                    <>
+                      More <ChevronDown className="h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
           </div>
-          <div className={`relative ${imageOrder}`}>
+
+          {/* Image Section */}
+          <div className={cn("relative aspect-video overflow-hidden rounded-lg shadow-lg", imageOrder)}>
             <Image
               src={image.src || "/placeholder.svg"}
               alt={image.alt}
-              width={500}
-              height={400}
-              className="rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 max-h-[400px] min-w-[500px] object-cover"
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>

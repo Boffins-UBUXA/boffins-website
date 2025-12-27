@@ -77,30 +77,41 @@ export const aboutData = {
 
   milestones: [
     {
-      year: "2020",
+      year: "2019",
       title: "Company Founded",
       description:
-        "Boffins Technology established as a technology holding company with a vision for diversified innovation.",
+        "Boffins Technology founded.",
+    },
+    {
+      year: "2020",
+      title: "Launch of two  products",
+      description:
+        "SquickyKlin Digital Laundry Agent and CorrectPower Electricity Power Vending & Token Generation.",
     },
     {
       year: "2021",
-      title: "Academy Division Launch",
-      description: "Launched our comprehensive tech education programs, training the next generation of developers.",
+      title: "Partnership with Skillz Systems",
+      description: "Pelivery of Market Construction & Sales Management System (AH Properties & Abuja Investment), Registry Management System (OGFZA), Bartum Energy CRM Project, SAO Energy CRM Project.",
     },
     {
       year: "2022",
-      title: "Product Portfolio Expansion",
-      description: "Developed Ubuxa, Vikmid, and RevenueHub+ - our flagship software products.",
+      title: "Research began for UBUXA Renewable Energy Project",
+      description: "Partnership with Skillz Systems to build Construction/Real Estate Management System for Tibilon.",
     },
     {
       year: "2023",
-      title: "Hardware Innovation",
-      description: "Introduced IoT solutions and the Ubuxa-IoT-Pro device for electronic protection.",
+      title: "Parnership",
+      description: "Partnership with Skillz Systems to execute Gas Sales & Management Solution.",
     },
     {
       year: "2024",
-      title: "Full Ecosystem Integration",
-      description: "Achieved seamless collaboration across all divisions with 500+ successful projects delivered.",
+      title: "Collaboration",
+      description: "Partnership with Skillz Systems to build CRM for Renewable Energy Companies (A4T & Salpha Energy).",
+    },
+    {
+      year: "2025",
+      title: "Innovated Products",
+      description: "Development of two SaaS platforms (Ubuxa for renewable & last-mile distribution, Vikmid creator monetization platform); launch of Media, Academy, Bespoke, and Hardware divisions.",
     },
   ],
 
