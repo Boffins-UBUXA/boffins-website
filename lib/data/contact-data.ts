@@ -1,4 +1,13 @@
-import { MapPin, Phone, Mail, Clock, MessageSquare, Users, Briefcase } from "lucide-react"
+// lib/contact-data.ts
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  MessageSquare,
+  Users,
+  Briefcase,
+} from "lucide-react"
 
 export const contactData = {
   hero: {
@@ -13,7 +22,11 @@ export const contactData = {
     {
       icon: MapPin,
       title: "Visit Our Office",
-      details: ["Plot 902 Ibrahim Isyaku street Mabushi abuja", "Mabushi", "Abuja, Nigeria"],
+      details: [
+        "Plot 902 Ibrahim Isyaku street Mabushi abuja",
+        "Mabushi",
+        "Abuja, Nigeria",
+      ],
       color: "from-blue-500 to-cyan-500",
     },
     {
@@ -31,7 +44,10 @@ export const contactData = {
     {
       icon: Clock,
       title: "Business Hours",
-      details: ["Monday - Friday: 9:00 AM - 6:00 PM", "Saturday: 10:00 AM - 4:00 PM"],
+      details: [
+        "Monday - Friday: 9:00 AM - 6:00 PM",
+        "Saturday: 10:00 AM - 4:00 PM",
+      ],
       color: "from-orange-500 to-red-500",
     },
   ],
@@ -39,7 +55,7 @@ export const contactData = {
   divisions: [
     {
       name: "Academy",
-      description: "Inquiries about our tech  programs and training courses",
+      description: "Inquiries about our tech programs and training courses",
       email: "academy@boffinstechnology.com.ng",
       icon: Users,
     },
@@ -73,10 +89,7 @@ export const contactData = {
     title: "Visit Our Office",
     description:
       "Plot 902 Ibrahim Isyaku street Mabushi abuja off regent secondary school.",
-    address: {
-      name: "Boffins Technology",
-      street: "Ibrahim Isyaku Street, Mabushi, Abuja, Nigeria",
-      city: "AMAC",
-    },
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.9547892166767!2d7.455959!3d9.071875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDQnMTguOCJOIDfCsDI3JzIxLjUiRQ!5e0!3m2!1sen!2sng!4v1234567890",
   },
 }
