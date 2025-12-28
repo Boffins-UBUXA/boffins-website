@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -26,6 +29,8 @@ export function ServiceGridSection({
   subtitle = "Each division operates with specialized expertise while collaborating within our integrated ecosystem to deliver comprehensive solutions.",
   className,
 }: ServiceGridSectionProps) {
+  const [expandedCard, setExpandedCard] = useState<number | null>(null)
+
   if (services.length === 0) return null
 
   return (
@@ -45,27 +50,35 @@ export function ServiceGridSection({
           {services.map((service, index) => (
             <Card
               key={index}
-              className="group hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-background to-muted/50"
+              className="group hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-background to-muted/50 flex flex-col h-full"
             >
               <CardHeader className="space-y-4">
                 <div
-                  className={`w-16 h-16 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center text-2xl`}
+                  className={`w-16 h-16 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center text-2xl flex-shrink-0`}
                 >
                   {service.icon}
                 </div>
                 <div>
-                  <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                  <CardDescription className="text-base">{service.description}</CardDescription>
+                  <CardTitle className="text-xl mb-2 line-clamp-2">{service.title}</CardTitle>
+                  <CardDescription className="text-base line-clamp-2">{service.description}</CardDescription>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-3">
-                  {service.features.map((feature, featureIndex) => (
+              <CardContent className="space-y-6 flex-1 flex flex-col">
+                <div className="space-y-3 flex-1">
+                  {service.features.slice(0, expandedCard === index ? undefined : 3).map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center space-x-3">
                       <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
-                      <span className="text-sm text-muted-foreground">{feature}</span>
+                      <span className="text-sm text-muted-foreground line-clamp-1">{feature}</span>
                     </div>
                   ))}
+                  {service.features.length > 3 && (
+                    <button
+                      onClick={() => setExpandedCard(expandedCard === index ? null : index)}
+                      className="text-sm text-primary hover:underline font-medium pt-2"
+                    >
+                      {expandedCard === index ? "Less" : `More (${service.features.length - 3})`}
+                    </button>
+                  )}
                 </div>
                 <Button
                   asChild
