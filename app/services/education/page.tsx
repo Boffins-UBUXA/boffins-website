@@ -1,3 +1,6 @@
+"use client"
+
+import type React from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -5,7 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Clock, Users, Award, Star, BookOpen, Code, Smartphone, Palette, Database } from "lucide-react"
+import { ArrowRight, Clock, Users, Award, Star, BookOpen, Code, Palette, Database } from "lucide-react"
+import { useState } from "react"
 
 export default function EducationPage() {
   const programs = [
@@ -123,7 +127,7 @@ export default function EducationPage() {
                   Launch Your <span className="text-primary">Tech Career</span>
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Transform your future with our comprehensive tech  programs.  content creation to full-stack
+                  Transform your future with our comprehensive tech programs. content creation to full-stack
                   development, we provide the skills and support you need to succeed in the technology industry.
                 </p>
               </div>
@@ -176,52 +180,7 @@ export default function EducationPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {programs.map((program, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <CardHeader className="space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div
-                      className={`w-16 h-16 rounded-full bg-gradient-to-r ${program.color} flex items-center justify-center text-white`}
-                    >
-                      {program.icon}
-                    </div>
-                    <div className="text-right">
-                      <Badge variant="outline">{program.level}</Badge>
-                    </div>
-                  </div>
-                  <div>
-                    <CardTitle className="text-xl mb-2">{program.title}</CardTitle>
-                    <CardDescription className="text-base">{program.description}</CardDescription>
-                  </div>
-                  <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                    <div className="flex items-center space-x-1">
-                      <Clock className="h-4 w-4" />
-                      <span>{program.duration}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <BookOpen className="h-4 w-4" />
-                      <span>{program.projects} Projects</span>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div>
-                    <h4 className="font-semibold mb-3">Skills You'll Learn:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {program.skills.map((skill, skillIndex) => (
-                        <Badge key={skillIndex} variant="secondary" className="text-xs">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  <Button asChild className="w-full">
-                    <Link href="/contact" className="flex items-center justify-center space-x-2">
-                      <span>Learn More</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+              <ProgramCard key={index} program={program} />
             ))}
           </div>
         </div>
@@ -233,13 +192,13 @@ export default function EducationPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-4">Why Choose Our Programs?</h2>
             <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
-              Our  programs are designed with your success in mind, providing comprehensive support and
-              real-world experience.
+              Our programs are designed with your success in mind, providing comprehensive support and real-world
+              experience.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
+            {features.map((feature: { icon: React.ReactNode; title: string; description: string }, index: number) => (
               <Card key={index} className="text-center p-6 hover:shadow-lg transition-all duration-300">
                 <CardContent className="space-y-4">
                   <div className="flex justify-center text-primary">{feature.icon}</div>
@@ -328,5 +287,77 @@ export default function EducationPage() {
 
       <Footer />
     </div>
+  )
+}
+
+function ProgramCard({ program }: { program: any }) {
+  const [expanded, setExpanded] = useState(false)
+
+  return (
+    <Card className="group hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+      <CardHeader className="space-y-4">
+        <div className="flex items-start justify-between">
+          <div
+            className={`w-16 h-16 rounded-full bg-gradient-to-r ${program.color} flex items-center justify-center text-white`}
+          >
+            {program.icon}
+          </div>
+          <div className="text-right">
+            <Badge variant="outline">{program.level}</Badge>
+          </div>
+        </div>
+        <div>
+          <CardTitle className="text-xl mb-2">{program.title}</CardTitle>
+          <CardDescription className="text-base">{program.description}</CardDescription>
+        </div>
+        <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+          <div className="flex items-center space-x-1">
+            <Clock className="h-4 w-4" />
+            <span>{program.duration}</span>
+          </div>
+          <div className="flex items-center space-x-1">
+            <BookOpen className="h-4 w-4" />
+            <span>{program.projects} Projects</span>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-6 flex-1 flex flex-col">
+        <div className="flex-1">
+          <h4 className="font-semibold mb-3">Skills You'll Learn:</h4>
+          <div className="flex flex-wrap gap-2">
+            {program.skills.slice(0, 3).map((skill: string, skillIndex: number) => (
+              <Badge key={skillIndex} variant="secondary" className="text-xs">
+                {skill}
+              </Badge>
+            ))}
+          </div>
+          {expanded && (
+            <div className="flex flex-wrap gap-2 mt-2">
+              {program.skills.slice(3).map((skill: string, skillIndex: number) => (
+                <Badge key={skillIndex + 3} variant="secondary" className="text-xs">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          )}
+          {program.skills.length > 3 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setExpanded(!expanded)}
+              className="text-primary p-0 h-auto mt-2"
+            >
+              {expanded ? "Show Less" : `Show More (${program.skills.length - 3}+)`}
+            </Button>
+          )}
+        </div>
+        <Button asChild className="w-full mt-auto">
+          <Link href="/contact" className="flex items-center justify-center space-x-2">
+            <span>Learn More</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
+      </CardContent>
+    </Card>
   )
 }

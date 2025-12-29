@@ -1,3 +1,5 @@
+"use client"
+
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -5,58 +7,59 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Code, Smartphone, Globe, Settings, CheckCircle, Star, ExternalLink } from "lucide-react"
+import { ArrowRight, Code, Smartphone, Globe, Settings, CheckCircle, Star } from "lucide-react"
+import { useState } from "react"
 
 export default function BespokePage() {
   const services = [
     {
-      title: "Custom Web Applications",
-      description: "Tailored web solutions built with modern technologies to meet your specific business requirements.",
+      title: "Beautiful Websites that Convert",
+      description: "Custom web experiences designed to engage visitors and drive meaningful conversions.",
       icon: <Globe className="h-8 w-8" />,
       features: [
-        "Full-stack development",
         "Responsive design",
-        "Database integration",
-        "API development",
-        "Security implementation",
         "Performance optimization",
+        "SEO implementation",
+        "User experience focused",
+        "Fast loading times",
+        "Mobile-first approach",
       ],
       color: "from-blue-500 to-cyan-500",
     },
     {
-      title: "Mobile App Development",
-      description: "Native and cross-platform mobile applications for iOS and Android with seamless user experiences.",
-      icon: <Smartphone className="h-8 w-8" />,
+      title: "Custom Web Applications that Solve Real Problems",
+      description:
+        "Tailored web solutions built with modern technologies to address your specific business challenges.",
+      icon: <Code className="h-8 w-8" />,
       features: [
-        "iOS and Android development",
-        "Cross-platform solutions",
-        "UI/UX design",
-        "App store deployment",
-        "Push notifications",
-        "Offline functionality",
+        "Full-stack development",
+        "Database integration",
+        "API development",
+        "Scalable architecture",
+        "Security implementation",
+        "Real-time features",
       ],
       color: "from-purple-500 to-pink-500",
     },
     {
-      title: "System Integration",
-      description:
-        "Seamlessly connect your existing systems and third-party services for improved workflow efficiency.",
-      icon: <Settings className="h-8 w-8" />,
+      title: "User Friendly Mobile Applications",
+      description: "Native and cross-platform mobile applications with seamless, intuitive user experiences.",
+      icon: <Smartphone className="h-8 w-8" />,
       features: [
-        "API integration",
-        "Legacy system modernization",
-        "Data migration",
-        "Workflow automation",
-        "Real-time synchronization",
-        "Custom connectors",
+        "iOS and Android development",
+        "Cross-platform solutions",
+        "Intuitive UI/UX design",
+        "App store deployment",
+        "Push notifications",
+        "Offline functionality",
       ],
       color: "from-green-500 to-emerald-500",
     },
     {
-      title: "Technical Consulting",
+      title: "Experienced Technical Consulting Services",
       description:
         "Expert guidance on technology strategy, architecture decisions, and digital transformation initiatives.",
-      icon: <Code className="h-8 w-8" />,
+      icon: <Settings className="h-8 w-8" />,
       features: [
         "Technology assessment",
         "Architecture planning",
@@ -71,32 +74,78 @@ export default function BespokePage() {
 
   const portfolioProjects = [
     {
-      name: "Coming to Canada",
+      name: "Ubuxa Website",
       description:
-        "Comprehensive website for a Canadian immigration company with client portal and document management.",
-      image: "/coming-to-canada-immigration-website.jpg",
-      technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
+        "Renewable energy management platform website with interactive dashboards and real-time analytics visualization.",
+      image: "/renewable-energy-website-dashboard.jpg",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts"],
       features: [
-        "Client portal with document upload",
-        "Immigration process tracking",
-        "Multilingual support",
-        "Secure document storage",
-        "Automated email notifications",
+        "Interactive energy analytics",
+        "Real-time monitoring",
+        "Performance metrics",
+        "Cost analysis tools",
+        "Mobile responsive design",
+      ],
+      link: "#",
+      category: "Energy Management",
+    },
+    {
+      name: "Tims Auto Website",
+      description: "Automotive service website with online booking system, service catalog, and customer testimonials.",
+      image: "/automotive-service-website-booking.jpg",
+      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      features: [
+        "Online booking system",
+        "Service catalog",
+        "Customer reviews",
+        "Payment integration",
+        "Service history tracking",
+      ],
+      link: "#",
+      category: "Automotive Services",
+    },
+    {
+      name: "Renewable Energy Website",
+      description: "Educational platform for renewable energy solutions with case studies and implementation guides.",
+      image: "/renewable-energy-education-platform.jpg",
+      technologies: ["Next.js", "Supabase", "Tailwind CSS", "MDX"],
+      features: [
+        "Educational content",
+        "Case studies section",
+        "Interactive guides",
+        "Resource library",
+        "Newsletter integration",
+      ],
+      link: "#",
+      category: "Energy Education",
+    },
+    {
+      name: "Immigration Website",
+      description:
+        "Comprehensive immigration services platform with visa tracking, document management, and consultation booking.",
+      image: "/immigration-services-website-portal.jpg",
+      technologies: ["Next.js", "Supabase", "Stripe", "Auth0"],
+      features: [
+        "Visa application tracking",
+        "Document management",
+        "Consultation booking",
+        "Payment processing",
+        "Multi-language support",
       ],
       link: "#",
       category: "Immigration Services",
     },
     {
-      name: "Bekwyn Law Firm",
-      description: "Professional law firm website with case management system and client communication tools.",
-      image: "/bekwyn-law-firm-legal-website.jpg",
+      name: "Bekwyn Law Website",
+      description: "Professional law firm website with case management system and secure client portal.",
+      image: "/law-firm-website-client-portal.jpg",
       technologies: ["React", "Node.js", "PostgreSQL", "AWS"],
       features: [
         "Case management system",
-        "Client communication portal",
-        "Document generation",
+        "Client portal",
+        "Document storage",
         "Appointment scheduling",
-        "Billing integration",
+        "Secure messaging",
       ],
       link: "#",
       category: "Legal Services",
@@ -105,20 +154,20 @@ export default function BespokePage() {
 
   const testimonials = [
     {
-      name: "Jennifer Walsh",
-      company: "Coming to Canada Immigration",
-      image: "/professional-woman-immigration-consultant.jpg",
+      name: "Tim Johnson",
+      company: "Tims Auto Services",
+      image: "/auto-service-owner.jpg",
       testimonial:
-        "The bespoke solution they built transformed our client management process. We can now handle 3x more cases with the same team size.",
+        "The website Boffins built transformed our business. Online booking increased our appointments by 40%, and customers love the seamless experience. Their team was professional and understood our industry perfectly.",
       rating: 5,
-      project: "Immigration Management System",
+      project: "Automotive Website",
     },
     {
       name: "David Bekwyn",
       company: "Bekwyn Law Firm",
-      image: "/professional-man-lawyer.jpg",
+      image: "/lawyer-professional.jpg",
       testimonial:
-        "Their technical expertise and understanding of our legal processes resulted in a system that perfectly fits our workflow. Exceptional work!",
+        "Their technical expertise combined with understanding of our legal processes was exceptional. The case management system perfectly fits our workflow. The secure client portal has improved client satisfaction significantly.",
       rating: 5,
       project: "Legal Case Management",
     },
@@ -182,12 +231,12 @@ export default function BespokePage() {
               </div>
               <div className="grid grid-cols-3 gap-8 pt-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">100+</div>
-                  <div className="text-sm text-muted-foreground">Projects Delivered</div>
+                  <div className="text-3xl font-bold text-primary">50+</div>
+                  <div className="text-sm text-muted-foreground">Clients</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary">98%</div>
-                  <div className="text-sm text-muted-foreground">Client Satisfaction</div>
+                  <div className="text-sm text-muted-foreground">Satisfaction</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary">24/7</div>
@@ -197,7 +246,7 @@ export default function BespokePage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/boffins-bespoke-hero-image.png"
+                src="/custom-software-development.png"
                 alt="Custom software development team"
                 width={500}
                 height={500}
@@ -221,35 +270,7 @@ export default function BespokePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300">
-                <CardHeader className="space-y-4">
-                  <div
-                    className={`w-16 h-16 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center text-white`}
-                  >
-                    {service.icon}
-                  </div>
-                  <div>
-                    <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                    <CardDescription className="text-base">{service.description}</CardDescription>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="space-y-3">
-                    {service.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center space-x-3">
-                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <Button asChild className="w-full">
-                    <Link href="/contact" className="flex items-center justify-center space-x-2">
-                      <span>Get Quote</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+              <ServiceCard key={index} service={service} />
             ))}
           </div>
         </div>
@@ -261,56 +282,14 @@ export default function BespokePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-4">Featured Projects</h2>
             <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
-              Explore some of our successful bespoke projects that have transformed businesses and improved operational
+              Explore our successful bespoke projects that have transformed businesses and improved operational
               efficiency.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioProjects.map((project, index) => (
-              <Card key={index} className="hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div className="relative h-64">
-                  <Image src={project.image || "/placeholder.svg"} alt={project.name} fill className="object-cover" />
-                  <div className="absolute top-4 left-4">
-                    <Badge variant="secondary">{project.category}</Badge>
-                  </div>
-                </div>
-                <CardHeader className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-xl">{project.name}</CardTitle>
-                    <Button size="sm" variant="outline" asChild>
-                      <Link href={project.link} className="flex items-center space-x-1">
-                        <ExternalLink className="h-3 w-3" />
-                        <span className="sr-only">View Project</span>
-                      </Link>
-                    </Button>
-                  </div>
-                  <CardDescription className="text-base">{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div>
-                    <h4 className="font-semibold mb-3">Technologies Used:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <Badge key={techIndex} variant="outline" className="text-xs">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-3">Key Features:</h4>
-                    <ul className="space-y-2">
-                      {project.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start space-x-2">
-                          <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-sm text-muted-foreground">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
+              <ProjectCard key={index} project={project} />
             ))}
           </div>
         </div>
@@ -419,5 +398,113 @@ export default function BespokePage() {
 
       <Footer />
     </div>
+  )
+}
+
+function ProjectCard({ project }: { project: any }) {
+  const [expanded, setExpanded] = useState(false)
+
+  return (
+    <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full">
+      <div className="relative h-40">
+        <Image src={project.image || "/placeholder.svg"} alt={project.name} fill className="object-cover" />
+        <div className="absolute top-4 left-4">
+          <Badge variant="secondary" className="text-xs">
+            {project.category}
+          </Badge>
+        </div>
+      </div>
+      <CardHeader className="space-y-2 pb-3">
+        <CardTitle className="text-lg line-clamp-2">{project.name}</CardTitle>
+        <CardDescription className="line-clamp-2 text-xs">{project.description}</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4 flex-1 flex flex-col">
+        <div>
+          <h4 className="font-semibold text-sm mb-2">Technologies:</h4>
+          <div className="flex flex-wrap gap-1">
+            {project.technologies.slice(0, 3).map((tech: string, techIndex: number) => (
+              <Badge key={techIndex} variant="outline" className="text-xs">
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        </div>
+        <div className="flex-1">
+          <h4 className="font-semibold text-sm mb-2">Features:</h4>
+          <ul className="space-y-1 max-h-20 overflow-hidden">
+            {project.features.slice(0, 2).map((feature: string, featureIndex: number) => (
+              <li key={featureIndex} className="flex items-start space-x-2">
+                <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-xs text-muted-foreground line-clamp-1">{feature}</span>
+              </li>
+            ))}
+          </ul>
+          {project.features.length > 2 && !expanded && (
+            <p className="text-xs text-muted-foreground mt-1">+{project.features.length - 2} more features</p>
+          )}
+        </div>
+        <Button variant="ghost" size="sm" onClick={() => setExpanded(!expanded)} className="text-primary p-0 h-auto">
+          {expanded ? "See Less" : "See More"}
+        </Button>
+      </CardContent>
+    </Card>
+  )
+}
+
+function ServiceCard({ service }: { service: any }) {
+  const [expanded, setExpanded] = useState(false)
+
+  return (
+    <Card className="group hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+      <CardHeader className="space-y-4">
+        <div
+          className={`w-16 h-16 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center text-white`}
+        >
+          {service.icon}
+        </div>
+        <div>
+          <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+          <CardDescription className="text-base">{service.description}</CardDescription>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-6 flex-1 flex flex-col">
+        <div className="flex-1">
+          <div className="space-y-3">
+            {service.features.slice(0, 2).map((feature: string, featureIndex: number) => (
+              <div key={featureIndex} className="flex items-center space-x-3">
+                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                <span className="text-sm text-muted-foreground">{feature}</span>
+              </div>
+            ))}
+          </div>
+          {expanded && (
+            <div className="space-y-3 mt-3">
+              {service.features.slice(2).map((feature: string, featureIndex: number) => (
+                <div key={featureIndex + 2} className="flex items-center space-x-3">
+                  <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                  <span className="text-sm text-muted-foreground">{feature}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          {service.features.length > 2 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setExpanded(!expanded)}
+              className="text-primary p-0 h-auto mt-2"
+            >
+              {expanded ? "See Less" : `See More (${service.features.length - 2}+)`}
+            </Button>
+          )}
+        </div>
+        <Button asChild className="w-full mt-auto">
+          <Link href="/contact" className="flex items-center justify-center space-x-2">
+            <span>Get Quote</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
+      </CardContent>
+    </Card>
   )
 }

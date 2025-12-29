@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,6 +11,15 @@ import Image from "next/image"
 import { ArrowRight, Zap, Users, TrendingUp, Shield, CheckCircle, Star, Battery, Video, DollarSign } from "lucide-react"
 
 export default function ProductsPage() {
+  const [expandedProducts, setExpandedProducts] = useState<{ [key: number]: boolean }>({})
+
+  const toggleProductExpand = (index: number) => {
+    setExpandedProducts((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }))
+  }
+
   const products = [
     {
       name: "Ubuxa",
@@ -176,77 +188,105 @@ export default function ProductsPage() {
           </div>
 
           <div className="space-y-20">
-            {products.map((product, index) => (
-              <div
-                key={index}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}
-              >
-                <div className={`space-y-8 ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
-                  <div className="space-y-4">
-                    <Badge variant="outline">{product.category}</Badge>
-                    <div className="flex items-center space-x-4">
-                      <div
-                        className={`w-16 h-16 rounded-full bg-gradient-to-r ${product.color} flex items-center justify-center text-white`}
-                      >
-                        {product.icon}
+            {products.map((product, index) => {
+              const isExpanded = expandedProducts[index] || false
+              const visibleFeatures = isExpanded ? product.features : product.features.slice(0, 3)
+              const visibleBenefits = isExpanded ? product.benefits : product.benefits.slice(0, 2)
+              const hasMoreFeatures = product.features.length > 3
+              const hasMoreBenefits = product.benefits.length > 2
+
+              return (
+                <div
+                  key={index}
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}
+                >
+                  <div className={`space-y-8 ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
+                    <div className="space-y-4">
+                      <Badge variant="outline">{product.category}</Badge>
+                      <div className="flex items-center space-x-4">
+                        <div
+                          className={`w-16 h-16 rounded-full bg-gradient-to-r ${product.color} flex items-center justify-center text-white`}
+                        >
+                          {product.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-3xl font-bold">{product.name}</h3>
+                          <p className="text-lg text-primary font-medium">{product.tagline}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-3xl font-bold">{product.name}</h3>
-                        <p className="text-lg text-primary font-medium">{product.tagline}</p>
+                      <p className="text-lg text-muted-foreground text-pretty">{product.description}</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-lg">Key Features:</h4>
+                        <ul className="space-y-2">
+                          {visibleFeatures.map((feature: string, featureIndex: number) => (
+                            <li key={featureIndex} className="flex items-start space-x-2">
+                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-1" />
+                              <span className="text-sm text-muted-foreground">{feature}</span>
+                            </li>
+                          ))}
+                          {hasMoreFeatures && (
+                            <li>
+                              <button
+                                onClick={() => toggleProductExpand(index)}
+                                className="text-primary hover:text-primary/80 text-sm font-medium transition-colors"
+                              >
+                                {isExpanded ? "See Less" : `See More (${product.features.length - 3}+)`}
+                              </button>
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-lg">Benefits:</h4>
+                        <ul className="space-y-2">
+                          {visibleBenefits.map((benefit: string, benefitIndex: number) => (
+                            <li key={benefitIndex} className="flex items-start space-x-2">
+                              <Zap className="h-4 w-4 text-primary flex-shrink-0 mt-1" />
+                              <span className="text-sm text-muted-foreground">{benefit}</span>
+                            </li>
+                          ))}
+                          {hasMoreBenefits && (
+                            <li>
+                              <button
+                                onClick={() => toggleProductExpand(index)}
+                                className="text-primary hover:text-primary/80 text-sm font-medium transition-colors"
+                              >
+                                {isExpanded ? "See Less" : `See More (${product.benefits.length - 2}+)`}
+                              </button>
+                            </li>
+                          )}
+                        </ul>
                       </div>
                     </div>
-                    <p className="text-lg text-muted-foreground text-pretty">{product.description}</p>
+
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button size="lg" asChild>
+                        <Link href="/contact" className="flex items-center space-x-2">
+                          <span>Get Demo</span>
+                          <ArrowRight className="h-4 w-4" />
+                        </Link>
+                      </Button>
+                      <Button size="lg" variant="outline" asChild>
+                        <Link href="/contact">Learn More</Link>
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-lg">Key Features:</h4>
-                      <ul className="space-y-2">
-                        {product.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start space-x-2">
-                            <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-1" />
-                            <span className="text-sm text-muted-foreground">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-lg">Benefits:</h4>
-                      <ul className="space-y-2">
-                        {product.benefits.map((benefit, benefitIndex) => (
-                          <li key={benefitIndex} className="flex items-start space-x-2">
-                            <Zap className="h-4 w-4 text-primary flex-shrink-0 mt-1" />
-                            <span className="text-sm text-muted-foreground">{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button size="lg" asChild>
-                      <Link href="/contact" className="flex items-center space-x-2">
-                        <span>Get Demo</span>
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <Button size="lg" variant="outline" asChild>
-                      <Link href="/contact">Learn More</Link>
-                    </Button>
+                  <div className={`relative ${index % 2 === 1 ? "lg:col-start-1" : ""}`}>
+                    <Image
+                      src={product.image || "/placeholder.svg"}
+                      alt={`${product.name} Dashboard`}
+                      width={600}
+                      height={400}
+                      className="rounded-lg shadow-xl"
+                    />
                   </div>
                 </div>
-
-                <div className={`relative ${index % 2 === 1 ? "lg:col-start-1" : ""}`}>
-                  <Image
-                    src={product.image || "/placeholder.svg"}
-                    alt={`${product.name} Dashboard`}
-                    width={600}
-                    height={400}
-                    className="rounded-lg shadow-xl"
-                  />
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>

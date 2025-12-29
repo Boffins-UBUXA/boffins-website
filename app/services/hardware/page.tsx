@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,6 +11,15 @@ import Image from "next/image"
 import { ArrowRight, Zap, CheckCircle, Star, Cpu, Router, Battery } from "lucide-react"
 
 export default function HardwarePage() {
+  const [expandedServices, setExpandedServices] = useState<{ [key: number]: boolean }>({})
+
+  const toggleServiceExpand = (index: number) => {
+    setExpandedServices((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }))
+  }
+
   const services = [
     {
       title: "IoT Device Development",
@@ -181,43 +193,57 @@ export default function HardwarePage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card
-                key={index}
-                className={`group hover:shadow-xl transition-all duration-300 ${service.featured ? "ring-2 ring-primary" : ""}`}
-              >
-                <CardHeader className="space-y-4">
-                  {service.featured && (
-                    <Badge className="w-fit bg-primary text-primary-foreground">Featured Product</Badge>
-                  )}
-                  <div
-                    className={`w-16 h-16 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center text-white`}
-                  >
-                    {service.icon}
-                  </div>
-                  <div>
-                    <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                    <CardDescription className="text-base">{service.description}</CardDescription>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="space-y-3">
-                    {service.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center space-x-3">
-                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <Button asChild className="w-full">
-                    <Link href="/contact" className="flex items-center justify-center space-x-2">
-                      <span>Learn More</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+            {services.map((service, index) => {
+              const isExpanded = expandedServices[index] || false
+              const visibleFeatures = isExpanded ? service.features : service.features.slice(0, 2)
+              const hasMoreFeatures = service.features.length > 2
+
+              return (
+                <Card
+                  key={index}
+                  className={`group hover:shadow-xl transition-all duration-300 h-full flex flex-col ${service.featured ? "ring-2 ring-primary" : ""}`}
+                >
+                  <CardHeader className="space-y-4">
+                    {service.featured && (
+                      <Badge className="w-fit bg-primary text-primary-foreground">Featured Product</Badge>
+                    )}
+                    <div
+                      className={`w-16 h-16 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center text-white`}
+                    >
+                      {service.icon}
+                    </div>
+                    <div>
+                      <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+                      <CardDescription className="text-base">{service.description}</CardDescription>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-6 flex-1 flex flex-col">
+                    <div className="space-y-3 flex-1">
+                      {visibleFeatures.map((feature: string, featureIndex: number) => (
+                        <div key={featureIndex} className="flex items-center space-x-3">
+                          <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                          <span className="text-sm text-muted-foreground">{feature}</span>
+                        </div>
+                      ))}
+                      {hasMoreFeatures && (
+                        <button
+                          onClick={() => toggleServiceExpand(index)}
+                          className="text-primary hover:text-primary/80 text-sm font-medium mt-2 transition-colors"
+                        >
+                          {isExpanded ? "See Less" : `See More (${service.features.length - 2}+)`}
+                        </button>
+                      )}
+                    </div>
+                    <Button asChild className="w-full">
+                      <Link href="/contact" className="flex items-center justify-center space-x-2">
+                        <span>Learn More</span>
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              )
+            })}
           </div>
         </div>
       </section>
