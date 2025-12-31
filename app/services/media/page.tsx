@@ -97,7 +97,7 @@ export default function MediaPage() {
       industry: "Technology",
       service: "Complete Brand Overhaul",
       results: "300% increase in social engagement",
-      image: "/tech-startup-brand-social-media-campaign.jpg",
+      image: "/iot-security-cyber-protection.jpg",
       metrics: {
         engagement: "+300%",
         followers: "+150%",
