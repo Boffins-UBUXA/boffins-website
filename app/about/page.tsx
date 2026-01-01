@@ -24,8 +24,9 @@ export default function AboutPage() {
         title={aboutData.hero.title}
         subtitle={aboutData.hero.subtitle}
         description={aboutData.hero.description}
-        primaryCTA={{ text: "Our Services", href: "/services" }}
-        secondaryCTA={{ text: "Contact Us", href: "/contact" }}
+        heroImage={aboutData.hero.heroImage}
+        primaryCTA={aboutData.hero.primaryCTA}
+        secondaryCTA={aboutData.hero.secondaryCTA}
       />
 
       <MissionVisionSection mission={aboutData.mission} vision={aboutData.vision} />

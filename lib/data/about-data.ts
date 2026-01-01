@@ -6,6 +6,12 @@ export const aboutData = {
     subtitle: "Boffins Technology",
     description:
       "We are a diversified technology holding company with multiple specialized subsidiaries. Each division operates semi-independently but collaborates within the Boffins ecosystem to deliver comprehensive solutions that transform businesses and empower individuals.",
+    heroImage: {
+      src: "/about-hero-image.jpg",
+      alt: "Boffins Technology About Us",
+    },
+    primaryCTA: { text: "Our Services", href: "/services" },
+    secondaryCTA: { text: "Contact Us", href: "/contact" },
   },
 
   mission: {
@@ -79,19 +85,18 @@ export const aboutData = {
     {
       year: "2019",
       title: "Company Founded",
-      description:
-        "Boffins Technology founded.",
+      description: "Boffins Technology founded.",
     },
     {
       year: "2020",
-      title: "Launch of two  products",
-      description:
-        "SquickyKlin Digital Laundry Agent and CorrectPower Electricity Power Vending & Token Generation.",
+      title: "Launch of two products",
+      description: "SquickyKlin Digital Laundry Agent and CorrectPower Electricity Power Vending & Token Generation.",
     },
     {
       year: "2021",
       title: "Partnership with Skillz Systems",
-      description: "Pelivery of Market Construction & Sales Management System (AH Properties & Abuja Investment), Registry Management System (OGFZA), Bartum Energy CRM Project, SAO Energy CRM Project.",
+      description:
+        "Pelivery of Market Construction & Sales Management System (AH Properties & Abuja Investment), Registry Management System (OGFZA), Bartum Energy CRM Project, SAO Energy CRM Project.",
     },
     {
       year: "2022",
@@ -111,7 +116,8 @@ export const aboutData = {
     {
       year: "2025",
       title: "Innovated Products",
-      description: "Development of two SaaS platforms (Ubuxa for renewable & last-mile distribution, Vikmid creator monetization platform); launch of Media, Academy, Bespoke, and Hardware divisions.",
+      description:
+        "Development of two SaaS platforms (Ubuxa for renewable & last-mile distribution, Vikmid creator monetization platform); launch of Media, Academy, Bespoke, and Hardware divisions.",
     },
   ],
 

@@ -14,6 +14,10 @@ export const servicesData = {
       text: "Learn About Us",
       href: "/about",
     },
+    heroImage: {
+      src: "/services-hero-image.jpg",
+      alt: "Boffins Technology Services",
+    },
   },
 
   divisions: [
