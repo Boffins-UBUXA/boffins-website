@@ -1,14 +1,16 @@
 "use client"
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Building, ChevronDown, ChevronUp } from "lucide-react"
+import Image from "next/image"
 import { sectionStyles, responsive } from "@/lib/style-utils"
 
 interface LeadershipRole {
   name: string
   role: string
   description: string
+  image?: {
+    src: string
+    alt: string
+  }
 }
 
 interface LeadershipSectionProps {
@@ -19,48 +21,29 @@ interface LeadershipSectionProps {
 }
 
 function LeadershipCard({ leader }: { leader: LeadershipRole }) {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const shouldTruncate = leader.description.length > 150
-
   return (
-    <Card className="hover:shadow-lg transition-all duration-300 flex flex-col h-full">
-      <CardHeader className="flex-shrink-0">
-        <div className="flex items-center space-x-3 min-w-0">
-          <Building className="h-6 w-6 text-primary flex-shrink-0" />
-          <CardTitle className="text-lg truncate">{leader.name}</CardTitle>
-        </div>
-        <CardDescription className="font-medium text-primary truncate">
-          {leader.role}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex-grow flex flex-col">
-        <div className="flex-grow">
-          <p
-            className={`text-muted-foreground text-pretty ${
-              !isExpanded && shouldTruncate ? "line-clamp-3" : ""
-            }`}
-          >
-            {leader.description}
-          </p>
-        </div>
-        {shouldTruncate && (
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-3 text-sm font-medium text-primary hover:underline flex items-center gap-1 self-start"
-          >
-            {isExpanded ? (
-              <>
-                Less <ChevronUp className="h-4 w-4" />
-              </>
-            ) : (
-              <>
-                More <ChevronDown className="h-4 w-4" />
-              </>
-            )}
-          </button>
+    <div className="flex flex-col h-full group">
+      <div className="relative w-full aspect-[1/1] mb-3 rounded-lg overflow-hidden bg-muted">
+        {leader.image ? (
+          <Image
+            src={leader.image.src || "/placeholder.svg"}
+            alt={leader.image.alt}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-muted to-muted-foreground flex items-center justify-center">
+            <span className="text-muted-foreground text-sm">No image</span>
+          </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+
+      <div className="flex-grow flex flex-col">
+        <h3 className="text-lg font-bold text-foreground mb-1">{leader.name}</h3>
+        <p className="text-xs font-semibold text-primary mb-2">{leader.role}</p>
+        <p className="text-sm text-muted-foreground text-pretty leading-relaxed flex-grow">{leader.description}</p>
+      </div>
+    </div>
   )
 }
 
@@ -73,23 +56,14 @@ export function LeadershipSection({
   if (leadership.length === 0) return null
 
   return (
-    <section
-      className={sectionStyles({
-        padding: "lg",
-        className,
-      })}
-    >
+    <section className={sectionStyles({ padding: "lg", className })}>
       <div className={responsive.container}>
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-balance mb-4 px-4">
-            {title}
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground text-pretty max-w-3xl mx-auto px-4">
-            {subtitle}
-          </p>
+        <div className="text-center mb-16 lg:mb-20">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-balance mb-4 px-4">{title}</h2>
+          <p className="text-base sm:text-lg text-muted-foreground text-pretty max-w-2xl mx-auto px-4">{subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {leadership.map((leader, index) => (
             <LeadershipCard key={index} leader={leader} />
           ))}
