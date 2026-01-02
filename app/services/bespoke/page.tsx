@@ -223,7 +223,9 @@ export default function BespokePage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
-                  <Link href="https://chat.whatsapp.com/FEOHmsZHBXTJEb5gsBSjlS">Start Your Project</Link>
+                  <Link href="https://wa.me/2348061286691?text=I%20want%20to%20know%20more%20about%20the%20project"
+                    target="_blank"
+                    rel="noopener noreferrer">Start Your Project</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link href="#services">View Services</Link>
@@ -381,7 +383,9 @@ export default function BespokePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="https://chat.whatsapp.com/FEOHmsZHBXTJEb5gsBSjlS">Start Your Project</Link>
+              <Link href="https://wa.me/2348061286691?text=I%20want%20to%20know%20more%20about%20the%20project"
+                    target="_blank"
+                    rel="noopener noreferrer">Start Your Project</Link>
               </Button>
               <Button
                 size="lg"
