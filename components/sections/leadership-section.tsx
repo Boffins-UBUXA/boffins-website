@@ -63,7 +63,7 @@ export function LeadershipSection({
           <p className="text-base sm:text-lg text-muted-foreground text-pretty max-w-2xl mx-auto px-4">{subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10">
           {leadership.map((leader, index) => (
             <LeadershipCard key={index} leader={leader} />
           ))}
