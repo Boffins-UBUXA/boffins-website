@@ -11,6 +11,13 @@ import Image from "next/image"
 import { ArrowRight, Clock, Users, Award, Star, BookOpen, Code, Palette, Database } from "lucide-react"
 import { useState } from "react"
 
+const WHATSAPP_NUMBER = "1234567890" // Replace with your WhatsApp business number
+const WHATSAPP_MESSAGE = encodeURIComponent("Hi! I'm interested in learning more about your tech programs.")
+
+function getWhatsAppLink() {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
+}
+
 export default function EducationPage() {
   const programs = [
     {
@@ -62,14 +69,14 @@ export default function EducationPage() {
       name: "Sarah Johnson",
       program: "Full Stack Development",
       role: "Senior Developer at TechCorp",
-      image: "/professional-woman-developer.png",
+      image: "/professional-woman-developer.jpg",
       testimonial:
         "The comprehensive curriculum and hands-on projects prepared me perfectly for my current role. The instructors were incredibly supportive throughout my journey.",
       salary: "$85,000",
     },
     {
       name: "Michael Chen",
-      program: "UI/UX Design",
+      program: "Frontend Development",
       role: "Lead Designer at StartupXYZ",
       image: "/professional-man-designer.jpg",
       testimonial:
@@ -78,11 +85,11 @@ export default function EducationPage() {
     },
     {
       name: "Emily Rodriguez",
-      program: "Mobile App Development",
+      program: "Backend Development",
       role: "Mobile Developer at AppStudio",
-      image: "/placeholder-rv2fm.png",
+      image: "/professional-woman-developer.jpg",
       testimonial:
-        "The mobile development program gave me the skills to build apps that are now used by thousands of people. The career support was exceptional.",
+        "The backend development program gave me the skills to build systems that are now used by thousands of people. The career support was exceptional.",
       salary: "$80,000",
     },
   ]
@@ -106,7 +113,7 @@ export default function EducationPage() {
     {
       icon: <Clock className="h-6 w-6" />,
       title: "Flexible Schedule",
-      description: "Choose from full-time, part-time, and weekend learning options",
+      description: "Self-paced learning and online cohort options to fit your lifestyle",
     },
   ]
 
@@ -127,13 +134,16 @@ export default function EducationPage() {
                   Launch Your <span className="text-primary">Tech Career</span>
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Transform your future with our comprehensive tech programs. content creation to full-stack
-                  development, we provide the skills and support you need to succeed in the technology industry.
+                  Transform your future with our comprehensive tech programs. From social media advertising to
+                  full-stack development, we provide the skills and support you need to succeed in the technology
+                  industry.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
-                  <Link href="/contact">Enroll Now</Link>
+                  <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
+                    Learn More
+                  </a>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link href="#programs">View Programs</Link>
@@ -197,17 +207,7 @@ export default function EducationPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature: { icon: React.ReactNode; title: string; description: string }, index: number) => (
-              <Card key={index} className="text-center p-6 hover:shadow-lg transition-all duration-300">
-                <CardContent className="space-y-4">
-                  <div className="flex justify-center text-primary">{feature.icon}</div>
-                  <h3 className="text-lg font-semibold">{feature.title}</h3>
-                  <p className="text-muted-foreground text-pretty text-sm">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <WhyChooseOurPrograms features={features} />
         </div>
       </section>
 
@@ -270,7 +270,9 @@ export default function EducationPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="/contact">Enroll Today</Link>
+                <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
+                  Learn More
+                </a>
               </Button>
               <Button
                 size="lg"
@@ -286,6 +288,26 @@ export default function EducationPage() {
       </section>
 
       <Footer />
+    </div>
+  )
+}
+
+function WhyChooseOurPrograms({
+  features,
+}: {
+  features: Array<{ icon: React.ReactNode; title: string; description: string }>
+}) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {features.map((feature: { icon: React.ReactNode; title: string; description: string }, index: number) => (
+        <Card key={index} className="text-center p-6 hover:shadow-lg transition-all duration-300">
+          <CardContent className="space-y-4">
+            <div className="flex justify-center text-primary">{feature.icon}</div>
+            <h3 className="text-lg font-semibold">{feature.title}</h3>
+            <p className="text-muted-foreground text-pretty text-sm">{feature.description}</p>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   )
 }
@@ -352,10 +374,15 @@ function ProgramCard({ program }: { program: any }) {
           )}
         </div>
         <Button asChild className="w-full mt-auto">
-          <Link href="/contact" className="flex items-center justify-center space-x-2">
+          <a
+            href={getWhatsAppLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center space-x-2"
+          >
             <span>Learn More</span>
             <ArrowRight className="h-4 w-4" />
-          </Link>
+          </a>
         </Button>
       </CardContent>
     </Card>
