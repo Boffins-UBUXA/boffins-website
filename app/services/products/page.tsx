@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Zap, Users, TrendingUp, Shield, CheckCircle, Star, Battery, Video, DollarSign } from "lucide-react"
+import { ArrowRight, Zap, Users, TrendingUp, Shield, CheckCircle, Star, Battery, Video } from "lucide-react"
 
 export default function ProductsPage() {
   const [expandedProducts, setExpandedProducts] = useState<{ [key: number]: boolean }>({})
@@ -44,6 +44,7 @@ export default function ProductsPage() {
       image: "/renewable-energy-dashboard-solar-panels-monitoring.jpg",
       color: "from-green-500 to-emerald-500",
       category: "Energy Management",
+      website: "https://www.ubuxa.ng/",
     },
     {
       name: "Vikmid",
@@ -68,30 +69,7 @@ export default function ProductsPage() {
       image: "/content-creator-dashboard-social-media-analytics.jpg",
       color: "from-purple-500 to-pink-500",
       category: "Creator Tools",
-    },
-    {
-      name: "RevenueHub+",
-      tagline: "Revenue Collection & Management Solution",
-      description:
-        "Powerful platform for businesses to streamline revenue collection, automate billing processes, and gain insights into financial performance.",
-      icon: <DollarSign className="h-8 w-8" />,
-      features: [
-        "Automated billing and invoicing",
-        "Multiple payment gateway integration",
-        "Revenue analytics and forecasting",
-        "Customer payment tracking",
-        "Subscription management",
-        "Financial reporting and insights",
-      ],
-      benefits: [
-        "Reduce payment delays by 40%",
-        "Automate financial processes",
-        "Improve cash flow management",
-        "Comprehensive financial insights",
-      ],
-      image: "/financial-dashboard-revenue-analytics-billing-syst.jpg",
-      color: "from-blue-500 to-cyan-500",
-      category: "Financial Management",
+      website: "https://www.vicmid.ng/",
     },
   ]
 
@@ -114,20 +92,11 @@ export default function ProductsPage() {
         "As a content creator managing multiple platforms, Vikmid has been a game-changer. My engagement rates have increased by 60% since using it.",
       rating: 5,
     },
-    {
-      name: "Michael Johnson",
-      company: "TechStart Ventures",
-      product: "RevenueHub+",
-      image: "/professional-businessman.png",
-      testimonial:
-        "RevenueHub+ streamlined our entire billing process. We've reduced payment delays significantly and our cash flow has never been better.",
-      rating: 5,
-    },
   ]
 
   const stats = [
-    { label: "Active Users", value: "10,000+", icon: <Users className="h-6 w-6" /> },
-    { label: "Revenue Processed", value: "$50M+", icon: <TrendingUp className="h-6 w-6" /> },
+    { label: "Active Users", value: "100+", icon: <Users className="h-6 w-6" /> },
+    { label: "Revenue Earned", value: "$5M+", icon: <TrendingUp className="h-6 w-6" /> },
     { label: "Uptime", value: "99.9%", icon: <Shield className="h-6 w-6" /> },
     { label: "Customer Satisfaction", value: "4.9/5", icon: <Star className="h-6 w-6" /> },
   ]
@@ -152,10 +121,10 @@ export default function ProductsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
-                <Link href="/contact">Get Started</Link>
+                <Link href="#products">Explore Products</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href="#products">Explore Products</Link>
+                <Link href="/contact">Get Started</Link>
               </Button>
             </div>
           </div>
@@ -264,8 +233,13 @@ export default function ProductsPage() {
 
                     <div className="flex flex-col sm:flex-row gap-4">
                       <Button size="lg" asChild>
-                        <Link href="/contact" className="flex items-center space-x-2">
-                          <span>Get Demo</span>
+                        <Link
+                          href={product.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center space-x-2"
+                        >
+                          <span>Get Started</span>
                           <ArrowRight className="h-4 w-4" />
                         </Link>
                       </Button>
@@ -301,7 +275,7 @@ export default function ProductsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="hover:shadow-lg transition-all duration-300">
                 <CardHeader className="space-y-4">
@@ -346,7 +320,13 @@ export default function ProductsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="/contact">Request Demo</Link>
+                <Link
+                  href="https://wa.me/?text=Hi,%20I'm%20interested%20in%20learning%20more%20about%20your%20products"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Let's Talk
+                </Link>
               </Button>
               <Button
                 size="lg"
