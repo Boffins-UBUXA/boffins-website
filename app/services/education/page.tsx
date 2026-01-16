@@ -11,24 +11,26 @@ import Image from "next/image"
 import { ArrowRight, Clock, Users, Award, Star, BookOpen, Code, Palette, Database } from "lucide-react"
 import { useState } from "react"
 
-const WHATSAPP_NUMBER = "1234567890" // Replace with your WhatsApp business number
-const WHATSAPP_MESSAGE = encodeURIComponent("Hi! I'm interested in learning more about your tech programs.")
+const WHATSAPP_NUMBER = "08083430800"
+const WHATSAPP_MESSAGE = encodeURIComponent(
+  "Hi! I'm interested in learning more about your tech programs at Boffins Academy.",
+)
 
 function getWhatsAppLink() {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
 }
 
-export default function EducationPage() {
+export default function AcademyPage() {
   const programs = [
     {
       title: "Social Media Advertising",
-      duration: "12 weeks",
-      level: "Beginner to Advanced",
+      duration: "8 weeks",
+      level: "Beginner to Intermediate",
       description:
-        "Master the art of user interface and user experience design with hands-on projects and industry best practices.",
+        "Master the strategies and tools needed to create effective social media advertising campaigns. Learn platform optimization, audience targeting, and performance analytics.",
       icon: <Palette className="h-8 w-8" />,
-      skills: ["Figma", "Adobe XD", "User Research", "Prototyping", "Design Systems", "Usability Testing"],
-      projects: 8,
+      skills: ["Facebook Ads", "Instagram Ads", "TikTok Ads", "Analytics", "A/B Testing", "Campaign Management"],
+      projects: 6,
       color: "from-pink-500 to-rose-500",
     },
     {
@@ -66,31 +68,31 @@ export default function EducationPage() {
 
   const successStories = [
     {
-      name: "Sarah Johnson",
+      name: "Chisom Okafor",
       program: "Full Stack Development",
-      role: "Senior Developer at TechCorp",
+      role: "Software Engineer at TechCorp Nigeria",
       image: "/professional-woman-developer.jpg",
       testimonial:
-        "The comprehensive curriculum and hands-on projects prepared me perfectly for my current role. The instructors were incredibly supportive throughout my journey.",
-      salary: "$85,000",
+        "Boffins Academy transformed my career journey. The hands-on projects and mentorship prepared me perfectly for industry challenges. I landed my dream job within 3 months of graduation!",
+      salary: "$1,500/month",
     },
     {
-      name: "Michael Chen",
+      name: "Adebayo Akinsanya",
       program: "Frontend Development",
-      role: "Lead Designer at StartupXYZ",
+      role: "UI/UX Developer at Digital Innovations",
       image: "/professional-man-designer.jpg",
       testimonial:
-        "I went from zero design experience to landing my dream job in just 3 months after graduation. The portfolio projects were industry-relevant and impressive.",
-      salary: "$75,000",
+        "The Frontend Development program exceeded my expectations. I went from zero coding knowledge to building production-ready applications. The instructors are incredibly supportive and knowledgeable.",
+      salary: "$1,200/month",
     },
     {
-      name: "Emily Rodriguez",
+      name: "Zainab Mohammed",
       program: "Backend Development",
-      role: "Mobile Developer at AppStudio",
+      role: "Backend Engineer at Fintech Solutions",
       image: "/professional-woman-developer.jpg",
       testimonial:
-        "The backend development program gave me the skills to build systems that are now used by thousands of people. The career support was exceptional.",
-      salary: "$80,000",
+        "The comprehensive backend curriculum and real-world projects gave me the confidence to tackle complex system design. I'm now leading backend initiatives at my company.",
+      salary: "$1,400/month",
     },
   ]
 
@@ -128,7 +130,7 @@ export default function EducationPage() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <Badge variant="secondary" className="w-fit">
-                  Academy Division
+                  Boffins Academy
                 </Badge>
                 <h1 className="text-4xl lg:text-6xl font-bold text-balance">
                   Launch Your <span className="text-primary">Tech Career</span>
@@ -196,11 +198,84 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Flexible Schedule Section */}
       <section className="py-20 bg-muted/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-4">Why Choose Our Programs?</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-4">Flexible Learning Options</h2>
+            <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
+              Learn at your own pace with our self-paced courses or join live cohorts for structured, interactive
+              learning experiences.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="p-8">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-2xl">Self-Paced Learning</CardTitle>
+                <CardDescription className="text-base">Learn on your schedule</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
+                    </div>
+                    <span className="text-muted-foreground">Access course materials anytime, anywhere</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
+                    </div>
+                    <span className="text-muted-foreground">Progress at your own pace</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
+                    </div>
+                    <span className="text-muted-foreground">Lifetime access to course resources</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="p-8">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-2xl">Online Cohorts</CardTitle>
+                <CardDescription className="text-base">Structured live learning</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
+                    </div>
+                    <span className="text-muted-foreground">Live instructor-led sessions</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
+                    </div>
+                    <span className="text-muted-foreground">Peer collaboration and networking</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
+                    </div>
+                    <span className="text-muted-foreground">Structured timeline and accountability</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-4">Why Choose Our Program?</h2>
             <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
               Our programs are designed with your success in mind, providing comprehensive support and real-world
               experience.
@@ -212,7 +287,7 @@ export default function EducationPage() {
       </section>
 
       {/* Success Stories */}
-      <section className="py-20">
+      <section className="py-20 bg-muted/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-4">Success Stories</h2>
@@ -226,7 +301,7 @@ export default function EducationPage() {
               <Card key={index} className="hover:shadow-lg transition-all duration-300">
                 <CardHeader className="text-center space-y-4">
                   <Image
-                    src={story.image || "/placeholder.svg"}
+                    src={story.image || "/placeholder.svg?height=80&width=80&query=professional"}
                     alt={story.name}
                     width={80}
                     height={80}

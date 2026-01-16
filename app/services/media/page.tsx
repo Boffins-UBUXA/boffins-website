@@ -11,15 +11,32 @@ import Image from "next/image"
 import {
   ArrowRight,
   TrendingUp,
-  Users,
   Camera,
   Megaphone,
   CheckCircle,
   Star,
   Instagram,
-  Twitter,
   Facebook,
+  Linkedin,
 } from "lucide-react"
+
+const XIcon = () => (
+  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.514l-5.106-6.67-5.858 6.67H2.42l7.726-8.835L1.254 2.25h6.554l4.6 6.084 5.308-6.084zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+)
+
+const TikTokIcon = () => (
+  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.321 5.562a5.122 5.122 0 0 1-.823-.077c.645-1.2 1.427-2.905 1.427-5.26h-3.454c0 .571-.049 1.131-.136 1.673a5.508 5.508 0 0 1-5.369 4.667v3.461a2.88 2.88 0 0 0 .847-.127v3.21a5.884 5.884 0 0 1-5.884-5.884 5.884 5.884 0 0 1 5.884-5.884c1.046 0 2.038.158 2.988.46V2.562a9.494 9.494 0 0 0-2.988-.476 9.338 9.338 0 0 0-9.338 9.338 9.338 9.338 0 0 0 9.338 9.338 9.325 9.325 0 0 0 9.325-9.325v-5.396a6.867 6.867 0 0 0 3.989 1.289v-3.454c-1.273 0-2.41-.37-3.4-.963z" />
+  </svg>
+)
+
+const YouTubeIcon = () => (
+  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+  </svg>
+)
 
 export default function MediaPage() {
   const [expandedServices, setExpandedServices] = useState<{ [key: number]: boolean }>({})
@@ -93,66 +110,66 @@ export default function MediaPage() {
 
   const portfolioItems = [
     {
-      client: "TechStartup Inc",
-      industry: "Technology",
-      service: "Complete Brand Overhaul",
-      results: "300% increase in social engagement",
-      image: "/iot-security-cyber-protection.jpg",
+      client: "Ubuxa",
+      industry: "Fintech",
+      service: "Complete Brand Overhaul & Social Strategy",
+      results: "500% increase in social engagement",
+      image: "/fintech-app-ubuxa.jpg",
       metrics: {
-        engagement: "+300%",
-        followers: "+150%",
-        leads: "+200%",
+        engagement: "+500%",
+        followers: "+350%",
+        leads: "+450%",
       },
     },
     {
-      client: "Local Restaurant Chain",
-      industry: "Food & Beverage",
-      service: "Social Media Management",
-      results: "50% increase in foot traffic",
-      image: "/restaurant-social-media-food-photography.jpg",
+      client: "Tims Auto",
+      industry: "Automotive",
+      service: "Social Media Management & Content Creation",
+      results: "300% increase in showroom traffic",
+      image: "/automotive-dealership-cars.jpg",
       metrics: {
-        footTraffic: "+50%",
-        onlineOrders: "+75%",
-        brandAwareness: "+120%",
+        footTraffic: "+300%",
+        onlineInquiries: "+280%",
+        brandAwareness: "+420%",
       },
     },
     {
-      client: "Fashion Boutique",
-      industry: "Retail",
-      service: "Content Creation & Strategy",
-      results: "400% growth in online sales",
-      image: "/fashion-boutique-content-creation-photography.jpg",
+      client: "Bekwyn Law",
+      industry: "Legal Services",
+      service: "Brand Strategy & Content Marketing",
+      results: "250% growth in client inquiries",
+      image: "/law-office-professional-legal.jpg",
       metrics: {
-        onlineSales: "+400%",
-        websiteTraffic: "+250%",
-        socialFollowers: "+180%",
+        inquiries: "+250%",
+        websiteTraffic: "+180%",
+        socialEngagement: "+320%",
       },
     },
   ]
 
   const testimonials = [
     {
-      name: "Amanda Foster",
-      company: "StyleHub Boutique",
-      image: "/professional-woman-fashion-business.jpg",
+      name: "CEO, Ubuxa",
+      company: "Ubuxa",
+      image: "/professional-ceo-tech.jpg",
       testimonial:
-        "Their content creation transformed our brand. Our Instagram engagement increased by 400% and sales followed suit. Absolutely incredible work!",
+        "Their social media strategy transformed our brand presence. Within months, we saw massive growth in user acquisition and engagement. Truly exceptional work!",
       rating: 5,
     },
     {
-      name: "Marcus Johnson",
-      company: "TechFlow Solutions",
-      image: "/professional-man-tech-ceo.jpg",
+      name: "Manager, Tims Auto",
+      company: "Tims Auto",
+      image: "/professional-business-manager.jpg",
       testimonial:
-        "The brand strategy they developed positioned us perfectly in the market. We've seen a 200% increase in qualified leads since launch.",
+        "The content creation team delivered incredible visuals and marketing materials. Our showroom traffic increased significantly. Highly recommended!",
       rating: 5,
     },
     {
-      name: "Sofia Martinez",
-      company: "Bella Vista Restaurant",
-      image: "/professional-woman-restaurant-owner.jpg",
+      name: "Partner, Bekwyn Law",
+      company: "Bekwyn Law",
+      image: "/professional-lawyer-attorney.jpg",
       testimonial:
-        "Their social media management brought customers through our doors. Food photography and content strategy were game-changers for our business.",
+        "Their brand strategy positioned us as thought leaders in our industry. Client inquiries have never been higher. Outstanding service!",
       rating: 5,
     },
   ]
@@ -160,10 +177,10 @@ export default function MediaPage() {
   const platforms = [
     { name: "Instagram", icon: <Instagram className="h-6 w-6" />, color: "text-pink-500" },
     { name: "Facebook", icon: <Facebook className="h-6 w-6" />, color: "text-blue-600" },
-    { name: "Twitter", icon: <Twitter className="h-6 w-6" />, color: "text-blue-400" },
-    { name: "LinkedIn", icon: <Users className="h-6 w-6" />, color: "text-blue-700" },
-    { name: "TikTok", icon: <Camera className="h-6 w-6" />, color: "text-black" },
-    { name: "YouTube", icon: <Camera className="h-6 w-6" />, color: "text-red-600" },
+    { name: "X", icon: <XIcon />, color: "text-black" },
+    { name: "LinkedIn", icon: <Linkedin className="h-6 w-6" />, color: "text-blue-700" },
+    { name: "TikTok", icon: <TikTokIcon />, color: "text-black" },
+    { name: "YouTube", icon: <YouTubeIcon />, color: "text-red-600" },
   ]
 
   return (
@@ -189,7 +206,13 @@ export default function MediaPage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
-                  <Link href="/contact">Start Your Campaign</Link>
+                  <Link
+                    href="https://wa.me/?text=Hi,%20I'm%20interested%20in%20learning%20more%20about%20your%20products"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Start Your Campaign
+                  </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link href="#services">View Services</Link>
@@ -197,22 +220,22 @@ export default function MediaPage() {
               </div>
               <div className="grid grid-cols-3 gap-8 pt-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">50+</div>
+                  <div className="text-3xl font-bold text-primary">500+</div>
                   <div className="text-sm text-muted-foreground">Brands Managed</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">2M+</div>
+                  <div className="text-3xl font-bold text-primary">50M+</div>
                   <div className="text-sm text-muted-foreground">Content Views</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">250%</div>
+                  <div className="text-3xl font-bold text-primary">450%</div>
                   <div className="text-sm text-muted-foreground">Avg. Growth</div>
                 </div>
               </div>
             </div>
             <div className="relative">
               <Image
-                src="/social-media-content-creation-photography-studio.jpg"
+                src="/social-media-content-creation-studio.jpg"
                 alt="Content creation and social media management"
                 width={500}
                 height={500}
@@ -271,7 +294,7 @@ export default function MediaPage() {
                       )}
                     </div>
                     <Button asChild className="w-full">
-                      <Link href="/contact" className="flex items-center justify-center space-x-2">
+                      <Link href="#" className="flex items-center justify-center space-x-2">
                         <span>Get Started</span>
                         <ArrowRight className="h-4 w-4" />
                       </Link>
@@ -312,7 +335,7 @@ export default function MediaPage() {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-4">Success Stories</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-4">Companies We've Helped</h2>
             <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
               See how we've helped businesses across different industries achieve remarkable growth through strategic
               media management.
@@ -406,15 +429,13 @@ export default function MediaPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="/contact">Start Your Campaign</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-                asChild
-              >
-                <Link href="/services">View All Services</Link>
+                <Link
+                  href="https://wa.me/?text=Hi,%20I'm%20interested%20in%20learning%20more%20about%20your%20products"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Start Your Campaign
+                </Link>
               </Button>
             </div>
           </div>

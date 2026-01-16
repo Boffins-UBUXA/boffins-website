@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -8,7 +10,32 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Zap, CheckCircle, Star, Cpu, Router, Battery } from "lucide-react"
+import { ArrowRight, Zap, CheckCircle, Cpu, Router, Battery } from "lucide-react"
+
+const services = [
+  {
+    title: "IoT Device Management",
+    description: "Effortlessly manage your IoT devices with our intuitive platform.",
+    icon: <Router className="h-8 w-8" />,
+    features: ["Device provisioning", "Real-time monitoring", "Remote management", "Data analytics"],
+    color: "from-primary to-primary/80",
+    featured: true,
+  },
+  {
+    title: "Industrial Connectivity",
+    description: "Ensure seamless connectivity for your industrial applications.",
+    icon: <Cpu className="h-8 w-8" />,
+    features: ["High-speed data transfer", "Robust network infrastructure", "Scalable solutions"],
+    color: "from-secondary to-secondary/80",
+  },
+  {
+    title: "Power Protection",
+    description: "Protect your critical equipment from power anomalies.",
+    icon: <Battery className="h-8 w-8" />,
+    features: ["Surge protection", "Voltage regulation", "Battery backup"],
+    color: "from-accent to-accent/80",
+  },
+]
 
 export default function HardwarePage() {
   const [expandedServices, setExpandedServices] = useState<{ [key: number]: boolean }>({})
@@ -19,53 +46,6 @@ export default function HardwarePage() {
       [index]: !prev[index],
     }))
   }
-
-  const services = [
-    {
-      title: "IoT Device Development",
-      description: "Custom IoT solutions designed to meet your specific business requirements and industry standards.",
-      icon: <Cpu className="h-8 w-8" />,
-      features: [
-        "Custom sensor integration",
-        "Real-time data collection",
-        "Cloud connectivity",
-        "Mobile app integration",
-        "Scalable architecture",
-        "Security protocols",
-      ],
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      title: "Networking Services",
-      description: "Comprehensive networking solutions to ensure reliable and secure connectivity for your business.",
-      icon: <Router className="h-8 w-8" />,
-      features: [
-        "Network design and setup",
-        "Security configuration",
-        "Performance optimization",
-        "24/7 monitoring",
-        "Maintenance and support",
-        "Scalability planning",
-      ],
-      color: "from-green-500 to-emerald-500",
-    },
-    {
-      title: "Ubuxa-IoT-Pro Device",
-      description:
-        "Our proprietary IoT device for protecting electronic equipment like inverters and air conditioners.",
-      icon: <Battery className="h-8 w-8" />,
-      features: [
-        "Voltage surge protection",
-        "Temperature monitoring",
-        "Predictive maintenance",
-        "Remote diagnostics",
-        "Energy efficiency optimization",
-        "Real-time alerts",
-      ],
-      color: "from-orange-500 to-red-500",
-      featured: true,
-    },
-  ]
 
   const applications = [
     {
@@ -85,33 +65,6 @@ export default function HardwarePage() {
       description: "Building automation systems for HVAC, lighting, and security management.",
       image: "/smart-building-automation-hvac-lighting.jpg",
       benefits: ["Energy savings up to 30%", "Automated climate control", "Enhanced security"],
-    },
-  ]
-
-  const testimonials = [
-    {
-      name: "Robert Chen",
-      company: "TechManufacturing Corp",
-      image: "/professional-man-manufacturing.jpg",
-      testimonial:
-        "The Ubuxa-IoT-Pro devices have saved us over $50,000 in equipment repairs. The predictive maintenance alerts are incredibly accurate.",
-      rating: 5,
-    },
-    {
-      name: "Lisa Rodriguez",
-      company: "GreenEnergy Solutions",
-      image: "/professional-woman-energy.jpg",
-      testimonial:
-        "Their IoT monitoring system has improved our solar farm efficiency by 25%. The real-time data is invaluable for optimization.",
-      rating: 5,
-    },
-    {
-      name: "James Wilson",
-      company: "SmartBuildings Inc",
-      image: "/professional-man-building-tech.jpg",
-      testimonial:
-        "The networking infrastructure they designed has been rock-solid. Zero downtime in 18 months of operation.",
-      rating: 5,
     },
   ]
 
@@ -147,17 +100,15 @@ export default function HardwarePage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
-                  <Link href="/contact">Get Quote</Link>
+                  <Link href="https://wa.me/?text=Hi,%20I'm%20interested%20in%20learning%20more%20about%20your%20products">
+                    Let's Talk
+                  </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link href="#services">View Solutions</Link>
                 </Button>
               </div>
-              <div className="grid grid-cols-3 gap-8 pt-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">1000+</div>
-                  <div className="text-sm text-muted-foreground">Devices Deployed</div>
-                </div>
+              <div className="grid grid-cols-2 gap-8 pt-8">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary">99.8%</div>
                   <div className="text-sm text-muted-foreground">Uptime</div>
@@ -193,57 +144,14 @@ export default function HardwarePage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => {
-              const isExpanded = expandedServices[index] || false
-              const visibleFeatures = isExpanded ? service.features : service.features.slice(0, 2)
-              const hasMoreFeatures = service.features.length > 2
-
-              return (
-                <Card
-                  key={index}
-                  className={`group hover:shadow-xl transition-all duration-300 h-full flex flex-col ${service.featured ? "ring-2 ring-primary" : ""}`}
-                >
-                  <CardHeader className="space-y-4">
-                    {service.featured && (
-                      <Badge className="w-fit bg-primary text-primary-foreground">Featured Product</Badge>
-                    )}
-                    <div
-                      className={`w-16 h-16 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center text-white`}
-                    >
-                      {service.icon}
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                      <CardDescription className="text-base">{service.description}</CardDescription>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-6 flex-1 flex flex-col">
-                    <div className="space-y-3 flex-1">
-                      {visibleFeatures.map((feature: string, featureIndex: number) => (
-                        <div key={featureIndex} className="flex items-center space-x-3">
-                          <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">{feature}</span>
-                        </div>
-                      ))}
-                      {hasMoreFeatures && (
-                        <button
-                          onClick={() => toggleServiceExpand(index)}
-                          className="text-primary hover:text-primary/80 text-sm font-medium mt-2 transition-colors"
-                        >
-                          {isExpanded ? "See Less" : `See More (${service.features.length - 2}+)`}
-                        </button>
-                      )}
-                    </div>
-                    <Button asChild className="w-full">
-                      <Link href="/contact" className="flex items-center justify-center space-x-2">
-                        <span>Learn More</span>
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              )
-            })}
+            {services.map((service, index) => (
+              <HardwareSolutionCard
+                key={index}
+                service={service}
+                isExpanded={expandedServices[index] || false}
+                onToggle={() => toggleServiceExpand(index)}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -259,8 +167,11 @@ export default function HardwarePage() {
                   Ubuxa-IoT-Pro <span className="text-primary">Protection Device</span>
                 </h2>
                 <p className="text-lg text-muted-foreground text-pretty">
-                  Our flagship IoT device specifically designed to protect valuable electronic equipment like inverters
-                  and air conditioners from power surges, temperature fluctuations, and other environmental hazards.
+                  The Ubuxa-IoT-Pro is a state-of-the-art intelligent protection device designed to safeguard critical
+                  electronic equipment such as inverters, air conditioning units, and industrial machinery. By
+                  monitoring voltage fluctuations, temperature variations, and power anomalies in real-time, the device
+                  provides predictive maintenance alerts and automated protection measures to prevent costly equipment
+                  failures.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -273,17 +184,16 @@ export default function HardwarePage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
-                  <Link href="/contact">Request Demo</Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/contact">Get Pricing</Link>
+                  <Link href="https://wa.me/?text=Hi,%20I'm%20interested%20in%20learning%20more%20about%20your%20products">
+                    Let's Talk
+                  </Link>
                 </Button>
               </div>
             </div>
             <div className="relative">
               <Image
-                src="/ubuxa-iot-pro-device-electronic-protection.jpg"
-                alt="Ubuxa-IoT-Pro Protection Device"
+                src="/motherboard-iot-circuit-board-technology.jpg"
+                alt="Ubuxa-IoT-Pro Motherboard and Circuit Board"
                 width={500}
                 height={400}
                 className="rounded-lg shadow-xl"
@@ -335,48 +245,6 @@ export default function HardwarePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-4">Client Success Stories</h2>
-            <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
-              See how our hardware solutions have protected equipment and improved operations for businesses worldwide.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
-                <CardHeader className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <Image
-                      src={testimonial.image || "/placeholder.svg"}
-                      alt={testimonial.name}
-                      width={60}
-                      height={60}
-                      className="rounded-full"
-                    />
-                    <div>
-                      <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                      <CardDescription>{testimonial.company}</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground text-pretty italic">"{testimonial.testimonial}"</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-primary/80">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -385,20 +253,14 @@ export default function HardwarePage() {
               Protect Your Equipment Today
             </h2>
             <p className="text-xl text-primary-foreground/90 text-pretty">
-              Don't wait for equipment failure to cost you thousands. Get started with our IoT protection solutions and
-              ensure your business continuity.
+              Invest in the future of your equipment with our advanced IoT protection technology. Prevent failures
+              before they happen and maximize your operational efficiency.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="/contact">Get Started</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-                asChild
-              >
-                <Link href="/services">View All Services</Link>
+                <Link href="https://wa.me/?text=Hi,%20I'm%20interested%20in%20learning%20more%20about%20your%20products">
+                  Let's Talk
+                </Link>
               </Button>
             </div>
           </div>
@@ -407,5 +269,70 @@ export default function HardwarePage() {
 
       <Footer />
     </div>
+  )
+}
+
+interface Service {
+  title: string
+  description: string
+  icon: React.ReactNode
+  features: string[]
+  color: string
+  featured?: boolean
+}
+
+interface HardwareSolutionCardProps {
+  service: Service
+  isExpanded: boolean
+  onToggle: () => void
+}
+
+function HardwareSolutionCard({ service, isExpanded, onToggle }: HardwareSolutionCardProps) {
+  const visibleFeatures = isExpanded ? service.features : service.features.slice(0, 2)
+  const hasMoreFeatures = service.features.length > 2
+
+  return (
+    <Card
+      className={`group hover:shadow-xl transition-all duration-300 h-full flex flex-col ${
+        service.featured ? "ring-2 ring-primary" : ""
+      }`}
+    >
+      <CardHeader className="space-y-4">
+        {service.featured && <Badge className="w-fit bg-primary text-primary-foreground">Featured Product</Badge>}
+        <div
+          className={`w-16 h-16 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center text-white`}
+        >
+          {service.icon}
+        </div>
+        <div>
+          <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+          <CardDescription className="text-base">{service.description}</CardDescription>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-6 flex-1 flex flex-col">
+        <div className="space-y-3 flex-1">
+          {visibleFeatures.map((feature: string, featureIndex: number) => (
+            <div key={featureIndex} className="flex items-center space-x-3">
+              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+              <span className="text-sm text-muted-foreground">{feature}</span>
+            </div>
+          ))}
+          {hasMoreFeatures && (
+            <button
+              onClick={onToggle}
+              className="text-primary hover:text-primary/80 text-sm font-medium mt-2 transition-colors"
+            >
+              {isExpanded ? "See Less" : `See More (${service.features.length - 2}+)`}
+            </button>
+          )}
+        </div>
+        <Button asChild className="w-full">
+          <Link href="/contact" className="flex items-center justify-center space-x-2">
+            <span>Learn More</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
+      </CardContent>
+    </Card>
   )
 }
