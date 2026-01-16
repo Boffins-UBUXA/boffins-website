@@ -146,6 +146,18 @@ export default function MediaPage() {
         socialEngagement: "+320%",
       },
     },
+    {
+      client: "Boffins Academy",
+      industry: "Education",
+      service: "Social Media Strategy & Content Marketing",
+      results: "380% increase in student enrollments",
+      image: "/education-academy-classroom.jpg",
+      metrics: {
+        enrollments: "+380%",
+        socialReach: "+420%",
+        engagement: "+310%",
+      },
+    },
   ]
 
   const testimonials = [
@@ -171,6 +183,14 @@ export default function MediaPage() {
       image: "/professional-lawyer-attorney.jpg",
       testimonial:
         "Their brand strategy positioned us as thought leaders in our industry. Client inquiries have never been higher. The team's understanding of legal services combined with their marketing expertise is unmatched. We couldn't be happier with the results.",
+      rating: 5,
+    },
+    {
+      name: "Director, Boffins Academy",
+      company: "Boffins Academy",
+      image: "/education-director-professional.jpg",
+      testimonial:
+        "The team's approach to educational marketing is exceptional. They understood our unique positioning and helped us reach the right students. Our enrollment numbers speak for themselves. The strategic content and social media management have truly transformed our institution's reach and reputation.",
       rating: 5,
     },
   ]
