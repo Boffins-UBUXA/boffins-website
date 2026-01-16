@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Code, Smartphone, Globe, Settings, CheckCircle, Star } from "lucide-react"
+import { ArrowRight, Code, Smartphone, Globe, Settings, CheckCircle, Star, X } from "lucide-react"
 import { useState } from "react"
 
 export default function BespokePage() {
@@ -204,7 +204,6 @@ export default function BespokePage() {
     <div className="min-h-screen">
       <Header />
 
-      {/* Hero Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -223,9 +222,13 @@ export default function BespokePage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
-                  <Link href="https://wa.me/2348061286691?text=I%20want%20to%20know%20more%20about%20the%20project"
+                  <Link
+                    href="https://wa.me/2348061286691?text=I%20want%20to%20know%20more%20about%20the%20project"
                     target="_blank"
-                    rel="noopener noreferrer">Start Your Project</Link>
+                    rel="noopener noreferrer"
+                  >
+                    Start Your Project
+                  </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link href="#services">View Services</Link>
@@ -289,7 +292,7 @@ export default function BespokePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {portfolioProjects.map((project, index) => (
               <ProjectCard key={index} project={project} />
             ))}
@@ -297,7 +300,6 @@ export default function BespokePage() {
         </div>
       </section>
 
-      {/* Process Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -337,34 +339,9 @@ export default function BespokePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
-                <CardHeader className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <Image
-                      src={testimonial.image || "/placeholder.svg"}
-                      alt={testimonial.name}
-                      width={60}
-                      height={60}
-                      className="rounded-full"
-                    />
-                    <div>
-                      <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                      <CardDescription>{testimonial.company}</CardDescription>
-                    </div>
-                  </div>
-                  <Badge variant="outline">{testimonial.project}</Badge>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground text-pretty italic">"{testimonial.testimonial}"</p>
-                </CardContent>
-              </Card>
+              <TestimonialCard key={index} testimonial={testimonial} />
             ))}
           </div>
         </div>
@@ -383,9 +360,13 @@ export default function BespokePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-              <Link href="https://wa.me/2348061286691?text=I%20want%20to%20know%20more%20about%20the%20project"
-                    target="_blank"
-                    rel="noopener noreferrer">Start Your Project</Link>
+                <Link
+                  href="https://wa.me/2348061286691?text=I%20want%20to%20know%20more%20about%20the%20project"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Start Your Project
+                </Link>
               </Button>
               <Button
                 size="lg"
@@ -406,52 +387,230 @@ export default function BespokePage() {
 }
 
 function ProjectCard({ project }: { project: any }) {
-  const [expanded, setExpanded] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
   return (
-    <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full">
-      <div className="relative h-40">
-        <Image src={project.image || "/placeholder.svg"} alt={project.name} fill className="object-cover" />
-        <div className="absolute top-4 left-4">
-          <Badge variant="secondary" className="text-xs">
-            {project.category}
-          </Badge>
-        </div>
-      </div>
-      <CardHeader className="space-y-2 pb-3">
-        <CardTitle className="text-lg line-clamp-2">{project.name}</CardTitle>
-        <CardDescription className="line-clamp-2 text-xs">{project.description}</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4 flex-1 flex flex-col">
-        <div>
-          <h4 className="font-semibold text-sm mb-2">Technologies:</h4>
-          <div className="flex flex-wrap gap-1">
-            {project.technologies.slice(0, 3).map((tech: string, techIndex: number) => (
-              <Badge key={techIndex} variant="outline" className="text-xs">
-                {tech}
-              </Badge>
-            ))}
+    <>
+      <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full">
+        {/* Fixed height image */}
+        <div className="relative w-full h-40 sm:h-48 flex-shrink-0">
+          <Image src={project.image || "/placeholder.svg"} alt={project.name} fill className="object-cover" />
+          <div className="absolute top-4 left-4">
+            <Badge variant="secondary" className="text-xs">
+              {project.category}
+            </Badge>
           </div>
         </div>
-        <div className="flex-1">
-          <h4 className="font-semibold text-sm mb-2">Features:</h4>
-          <ul className="space-y-1 max-h-20 overflow-hidden">
-            {project.features.slice(0, 2).map((feature: string, featureIndex: number) => (
-              <li key={featureIndex} className="flex items-start space-x-2">
-                <CheckCircle className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-xs text-muted-foreground line-clamp-1">{feature}</span>
-              </li>
-            ))}
-          </ul>
-          {project.features.length > 2 && !expanded && (
-            <p className="text-xs text-muted-foreground mt-1">+{project.features.length - 2} more features</p>
-          )}
+
+        {/* Fixed height content area */}
+        <CardHeader className="space-y-2 pb-3 flex-shrink-0 min-h-[5rem]">
+          <CardTitle className="text-base sm:text-lg line-clamp-2 leading-tight">{project.name}</CardTitle>
+          <CardDescription className="line-clamp-2 text-xs sm:text-sm">{project.description}</CardDescription>
+        </CardHeader>
+
+        <CardContent className="space-y-3 flex-1 flex flex-col min-h-[8rem]">
+          {/* Technologies */}
+          <div className="flex-shrink-0">
+            <h4 className="font-semibold text-xs sm:text-sm mb-1.5">Technologies:</h4>
+            <div className="flex flex-wrap gap-1">
+              {project.technologies.slice(0, 3).map((tech: string, techIndex: number) => (
+                <Badge key={techIndex} variant="outline" className="text-xs">
+                  {tech}
+                </Badge>
+              ))}
+            </div>
+          </div>
+
+          {/* Features with truncation */}
+          <div className="flex-1 flex flex-col">
+            <h4 className="font-semibold text-xs sm:text-sm mb-1.5">Features:</h4>
+            <ul className="space-y-1 overflow-hidden flex-1">
+              {project.features.slice(0, 2).map((feature: string, featureIndex: number) => (
+                <li key={featureIndex} className="flex items-start gap-1.5 text-xs sm:text-sm">
+                  <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-muted-foreground line-clamp-1">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            {project.features.length > 2 && (
+              <p className="text-xs text-muted-foreground mt-1">+{project.features.length - 2} more features</p>
+            )}
+          </div>
+
+          {/* Fixed button at bottom */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setModalOpen(true)}
+            className="w-full text-primary border-primary hover:bg-primary/10 mt-auto"
+          >
+            View Details
+          </Button>
+        </CardContent>
+      </Card>
+
+      {modalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-card rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 flex items-center justify-between p-6 bg-card border-b">
+              <h2 className="text-2xl font-bold">{project.name}</h2>
+              <button onClick={() => setModalOpen(false)} className="text-muted-foreground hover:text-foreground">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Full image in modal */}
+              <div className="relative w-full h-64 rounded-lg overflow-hidden">
+                <Image src={project.image || "/placeholder.svg"} alt={project.name} fill className="object-cover" />
+              </div>
+
+              {/* Full description */}
+              <div>
+                <h3 className="font-semibold text-lg mb-2">About Project</h3>
+                <p className="text-muted-foreground text-pretty">{project.description}</p>
+              </div>
+
+              {/* All technologies */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3">Technologies</h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech: string, techIndex: number) => (
+                    <Badge key={techIndex} variant="secondary" className="text-sm">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              {/* All features */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3">Key Features</h3>
+                <ul className="space-y-2">
+                  {project.features.map((feature: string, featureIndex: number) => (
+                    <li key={featureIndex} className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-muted-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Close button */}
+              <Button onClick={() => setModalOpen(false)} className="w-full mt-4">
+                Close
+              </Button>
+            </div>
+          </div>
         </div>
-        <Button variant="ghost" size="sm" onClick={() => setExpanded(!expanded)} className="text-primary p-0 h-auto">
-          {expanded ? "See Less" : "See More"}
-        </Button>
-      </CardContent>
-    </Card>
+      )}
+    </>
+  )
+}
+
+function TestimonialCard({ testimonial }: { testimonial: any }) {
+  const [modalOpen, setModalOpen] = useState(false)
+  const testimonialPreview =
+    testimonial.testimonial.length > 120 ? testimonial.testimonial.substring(0, 120) + "..." : testimonial.testimonial
+
+  return (
+    <>
+      <Card className="hover:shadow-lg transition-all duration-300 flex flex-col h-full min-h-80">
+        <CardHeader className="space-y-4 flex-shrink-0">
+          <div className="flex items-center gap-4">
+            <Image
+              src={testimonial.image || "/placeholder.svg"}
+              alt={testimonial.name}
+              width={50}
+              height={50}
+              className="rounded-full w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 object-cover"
+            />
+            <div className="min-w-0 flex-1">
+              <CardTitle className="text-base sm:text-lg line-clamp-1">{testimonial.name}</CardTitle>
+              <CardDescription className="text-xs sm:text-sm line-clamp-1">{testimonial.company}</CardDescription>
+            </div>
+          </div>
+          <Badge variant="outline" className="text-xs w-fit">
+            {testimonial.project}
+          </Badge>
+        </CardHeader>
+
+        <CardContent className="space-y-4 flex-1 flex flex-col">
+          {/* Star rating */}
+          <div className="flex gap-1 flex-shrink-0">
+            {[...Array(testimonial.rating)].map((_, i) => (
+              <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+            ))}
+          </div>
+
+          {/* Truncated testimonial text - fixed height */}
+          <div className="flex-1">
+            <p className="text-muted-foreground text-sm sm:text-base text-pretty italic line-clamp-4">
+              "{testimonialPreview}"
+            </p>
+          </div>
+
+          {/* View more button */}
+          {testimonial.testimonial.length > 120 && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setModalOpen(true)}
+              className="text-primary border-primary hover:bg-primary/10"
+            >
+              Read Full Review
+            </Button>
+          )}
+        </CardContent>
+      </Card>
+
+      {modalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-card rounded-xl max-w-md w-full">
+            <div className="sticky top-0 flex items-center justify-between p-6 bg-card border-b">
+              <h2 className="text-xl font-bold">Review</h2>
+              <button onClick={() => setModalOpen(false)} className="text-muted-foreground hover:text-foreground">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Client info */}
+              <div className="flex items-center gap-4">
+                <Image
+                  src={testimonial.image || "/placeholder.svg"}
+                  alt={testimonial.name}
+                  width={60}
+                  height={60}
+                  className="rounded-full w-16 h-16 object-cover"
+                />
+                <div>
+                  <p className="font-semibold text-lg">{testimonial.name}</p>
+                  <p className="text-muted-foreground text-sm">{testimonial.company}</p>
+                  <Badge variant="outline" className="text-xs mt-1">
+                    {testimonial.project}
+                  </Badge>
+                </div>
+              </div>
+
+              {/* Star rating */}
+              <div className="flex gap-1">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+
+              {/* Full testimonial */}
+              <p className="text-muted-foreground text-pretty italic leading-relaxed">"{testimonial.testimonial}"</p>
+
+              <Button onClick={() => setModalOpen(false)} className="w-full">
+                Close
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
