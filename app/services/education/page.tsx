@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Clock, Users, Award, Star, BookOpen, Code, Palette, Database } from "lucide-react"
+import { ArrowRight, Clock, Users, Award, Star, BookOpen, Code, Palette, Database, X } from "lucide-react"
 import { useState } from "react"
 
 const WHATSAPP_NUMBER = "08083430800"
@@ -118,6 +118,8 @@ export default function AcademyPage() {
       description: "Self-paced learning and online cohort options to fit your lifestyle",
     },
   ]
+
+  const [selectedStory, setSelectedStory] = useState<(typeof successStories)[0] | null>(null)
 
   return (
     <div className="min-h-screen">
@@ -298,7 +300,7 @@ export default function AcademyPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {successStories.map((story, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
+              <Card key={index} className="min-h-80 hover:shadow-lg transition-all duration-300 flex flex-col">
                 <CardHeader className="text-center space-y-4">
                   <Image
                     src={story.image || "/placeholder.svg?height=80&width=80&query=professional"}
@@ -308,22 +310,34 @@ export default function AcademyPage() {
                     className="rounded-full mx-auto"
                   />
                   <div>
-                    <CardTitle className="text-lg">{story.name}</CardTitle>
-                    <CardDescription>{story.role}</CardDescription>
-                    <Badge variant="outline" className="mt-2">
+                    <CardTitle className="text-lg line-clamp-1">{story.name}</CardTitle>
+                    <CardDescription className="text-xs line-clamp-1">{story.role}</CardDescription>
+                    <Badge variant="outline" className="mt-2 text-xs">
                       {story.program}
                     </Badge>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 flex-1 flex flex-col">
                   <div className="flex justify-center">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-muted-foreground text-pretty text-sm italic">"{story.testimonial}"</p>
-                  <div className="text-center">
-                    <span className="text-lg font-bold text-primary">Starting Salary: {story.salary}</span>
+                  <p className="text-muted-foreground text-pretty text-xs line-clamp-4 italic flex-1">
+                    "{story.testimonial}"
+                  </p>
+                  <div className="text-center pt-2">
+                    <span className="text-sm font-bold text-primary block mb-2">{story.salary}</span>
+                    {story.testimonial.length > 120 && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setSelectedStory(story)}
+                        className="w-full text-xs"
+                      >
+                        Read Full Story
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -331,6 +345,54 @@ export default function AcademyPage() {
           </div>
         </div>
       </section>
+
+      {/* Testimonial Modal */}
+      {selectedStory && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <CardHeader className="sticky top-0 bg-background border-b flex flex-row items-start justify-between">
+              <div className="text-center flex-1">
+                <Image
+                  src={selectedStory.image || "/placeholder.svg?height=80&width=80&query=professional"}
+                  alt={selectedStory.name}
+                  width={80}
+                  height={80}
+                  className="rounded-full mx-auto mb-4"
+                />
+                <CardTitle>{selectedStory.name}</CardTitle>
+                <CardDescription>{selectedStory.role}</CardDescription>
+                <Badge variant="outline" className="mt-2">
+                  {selectedStory.program}
+                </Badge>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedStory(null)}
+                className="absolute top-4 right-4"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </CardHeader>
+            <CardContent className="space-y-6 py-6">
+              <div className="flex justify-center">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <p className="text-muted-foreground text-pretty italic text-lg">"{selectedStory.testimonial}"</p>
+              <div className="text-center pt-4 border-t">
+                <span className="text-lg font-bold text-primary">Starting Salary: {selectedStory.salary}</span>
+              </div>
+            </CardContent>
+            <div className="sticky bottom-0 bg-background border-t p-4">
+              <Button className="w-full" onClick={() => setSelectedStory(null)}>
+                Close
+              </Button>
+            </div>
+          </Card>
+        </div>
+      )}
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-primary/80">

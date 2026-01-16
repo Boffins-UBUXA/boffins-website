@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Zap, Users, TrendingUp, Shield, CheckCircle, Star, Battery, Video } from "lucide-react"
+import { ArrowRight, Zap, Users, TrendingUp, Shield, CheckCircle, Star, Battery, Video, X } from "lucide-react"
 
 export default function ProductsPage() {
   const [expandedProducts, setExpandedProducts] = useState<{ [key: number]: boolean }>({})
@@ -80,7 +80,7 @@ export default function ProductsPage() {
       product: "Ubuxa",
       image: "/professional-man-energy-company.jpg",
       testimonial:
-        "Ubuxa has revolutionized how we manage our solar installations. The predictive maintenance feature alone has saved us thousands in repair costs.",
+        "Ubuxa has revolutionized how we manage our solar installations. The predictive maintenance feature alone has saved us thousands in repair costs. We've seen a 35% improvement in system efficiency and our maintenance team now responds to issues before they become problems.",
       rating: 5,
     },
     {
@@ -89,7 +89,7 @@ export default function ProductsPage() {
       product: "Vikmid",
       image: "/professional-woman-content-creator.jpg",
       testimonial:
-        "As a content creator managing multiple platforms, Vikmid has been a game-changer. My engagement rates have increased by 60% since using it.",
+        "As a content creator managing multiple platforms, Vikmid has been a game-changer. My engagement rates have increased by 60% since using it. The analytics dashboard provides insights that help me optimize content strategy, and the scheduling feature saves hours every week.",
       rating: 5,
     },
   ]
@@ -277,32 +277,7 @@ export default function ProductsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
-                <CardHeader className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <Image
-                      src={testimonial.image || "/placeholder.svg"}
-                      alt={testimonial.name}
-                      width={60}
-                      height={60}
-                      className="rounded-full"
-                    />
-                    <div>
-                      <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                      <CardDescription>{testimonial.company}</CardDescription>
-                    </div>
-                  </div>
-                  <Badge variant="outline">{testimonial.product}</Badge>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground text-pretty italic">"{testimonial.testimonial}"</p>
-                </CardContent>
-              </Card>
+              <TestimonialCard key={index} testimonial={testimonial} />
             ))}
           </div>
         </div>
@@ -343,5 +318,112 @@ export default function ProductsPage() {
 
       <Footer />
     </div>
+  )
+}
+
+function TestimonialCard({ testimonial }: { testimonial: any }) {
+  const [modalOpen, setModalOpen] = useState(false)
+  const testimonialPreview =
+    testimonial.testimonial.length > 120 ? testimonial.testimonial.substring(0, 120) + "..." : testimonial.testimonial
+
+  return (
+    <>
+      <Card className="hover:shadow-lg transition-all duration-300 flex flex-col h-full min-h-80">
+        <CardHeader className="space-y-4 flex-shrink-0">
+          <div className="flex items-center gap-4">
+            <Image
+              src={testimonial.image || "/placeholder.svg"}
+              alt={testimonial.name}
+              width={50}
+              height={50}
+              className="rounded-full w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 object-cover"
+            />
+            <div className="min-w-0 flex-1">
+              <CardTitle className="text-base sm:text-lg line-clamp-1">{testimonial.name}</CardTitle>
+              <CardDescription className="text-xs sm:text-sm line-clamp-1">{testimonial.company}</CardDescription>
+            </div>
+          </div>
+          <Badge variant="outline" className="text-xs w-fit">
+            {testimonial.product}
+          </Badge>
+        </CardHeader>
+
+        <CardContent className="space-y-4 flex-1 flex flex-col">
+          {/* Star rating */}
+          <div className="flex gap-1 flex-shrink-0">
+            {[...Array(testimonial.rating)].map((_, i) => (
+              <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+            ))}
+          </div>
+
+          {/* Truncated testimonial text */}
+          <div className="flex-1">
+            <p className="text-muted-foreground text-sm sm:text-base text-pretty italic line-clamp-4">
+              "{testimonialPreview}"
+            </p>
+          </div>
+
+          {/* View more button */}
+          {testimonial.testimonial.length > 120 && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setModalOpen(true)}
+              className="text-primary border-primary hover:bg-primary/10"
+            >
+              Read Full Review
+            </Button>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Modal */}
+      {modalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-card rounded-xl max-w-md w-full">
+            <div className="sticky top-0 flex items-center justify-between p-6 bg-card border-b">
+              <h2 className="text-xl font-bold">Review</h2>
+              <button onClick={() => setModalOpen(false)} className="text-muted-foreground hover:text-foreground">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Client info */}
+              <div className="flex items-center gap-4">
+                <Image
+                  src={testimonial.image || "/placeholder.svg"}
+                  alt={testimonial.name}
+                  width={60}
+                  height={60}
+                  className="rounded-full w-16 h-16 object-cover"
+                />
+                <div>
+                  <p className="font-semibold text-lg">{testimonial.name}</p>
+                  <p className="text-muted-foreground text-sm">{testimonial.company}</p>
+                  <Badge variant="outline" className="text-xs mt-1">
+                    {testimonial.product}
+                  </Badge>
+                </div>
+              </div>
+
+              {/* Star rating */}
+              <div className="flex gap-1">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+
+              {/* Full testimonial */}
+              <p className="text-muted-foreground text-pretty italic leading-relaxed">"{testimonial.testimonial}"</p>
+
+              <Button onClick={() => setModalOpen(false)} className="w-full">
+                Close
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
