@@ -90,7 +90,7 @@ export const landingPageData = {
       "Scalable solutions that grow with your business",
     ],
     image: {
-      src: "/diverse-team-of-technology-professionals-collabora.jpg",
+      src: "/diverse-team-of-technology-professionals-collaborat.jpg",
       alt: "Boffins Technology Team",
     },
     cta: {

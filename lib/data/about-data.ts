@@ -59,7 +59,7 @@ export const aboutData = {
       role: "Overall Vision & Strategy",
       description: "Responsible for setting the strategic direction and ensuring alignment across all divisions.",
       image: {
-        src: "/executive-ceo-businessman-professional.jpg",
+        src: "/executive-ceo-businessman-professional.png",
         alt: "CEO - Group Lead",
       },
     },
@@ -68,7 +68,7 @@ export const aboutData = {
       role: "Cross-Division Collaboration",
       description: "Ensures smooth operations and facilitates collaboration between our specialized divisions.",
       image: {
-        src: "/operations-officer-professional-executive.jpg",
+        src: "/operations-officer-professional-executive.jpeg",
         alt: "COO - Operations Officer",
       },
     },
@@ -77,7 +77,7 @@ export const aboutData = {
       role: "Financial Management",
       description: "Manages finances, group reporting, and ensures sustainable growth across the ecosystem.",
       image: {
-        src: "/cfo-finance-officer-professional.jpg",
+        src: "/cfo-finance-officer-professional.jpeg",
         alt: "CFO - Chief Financial Officer",
       },
     },
@@ -86,7 +86,7 @@ export const aboutData = {
       role: "Human Resources",
       description: "Manages staffing, HR policies, and maintains our collaborative culture.",
       image: {
-        src: "/hr-manager-human-resources-professional.jpg",
+        src: "",
         alt: "Head of HR - Human Resources",
       },
     },
@@ -95,7 +95,7 @@ export const aboutData = {
       role: "Legal & Compliance",
       description: "Oversees contracts, compliance, and intellectual property protection.",
       image: {
-        src: "/legal-officer-compliance-professional-executive.jpg",
+        src: "",
         alt: "Legal & Compliance Officer",
       },
     },
