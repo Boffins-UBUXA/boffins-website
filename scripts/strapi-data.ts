@@ -1,4 +1,4 @@
-export const strapiData = {
+module.exports.strapiData = {
     // Collection Type: Service Divisions
     serviceDivisions: [
         {
