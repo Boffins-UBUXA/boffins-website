@@ -1,7 +1,30 @@
+const fs = require('fs');
+const path = require('path');
 const { strapiData } = require('./strapi-data');
 
+// Load .env manually
+try {
+    const envPath = path.resolve(__dirname, '../.env');
+    if (fs.existsSync(envPath)) {
+        const envConfig = fs.readFileSync(envPath, 'utf8');
+        envConfig.split('\n').forEach((line: string) => {
+            const match = line.match(/^([^=]+)=(.*)$/);
+            if (match) {
+                const key = match[1].trim();
+                const value = match[2].trim().replace(/^['"](.*)['"]$/, '$1');
+                process.env[key] = value;
+            }
+        });
+    }
+} catch (e) {
+    console.log('⚠️ Could not load .env file');
+}
+
 const STRAPI_URL = process.env.STRAPI_URL || 'http://localhost:1337';
-const API_TOKEN = process.env.STRAPI_API_TOKEN; // Optional if using public permissions or just dev mode for content types
+const API_TOKEN = process.env.STRAPI_API_TOKEN;
+
+console.log(`🔌 Connecting to Strapi at: ${STRAPI_URL}`);
+console.log(`🔑 API Token status: ${API_TOKEN && API_TOKEN.length > 20 ? 'Present (Hidden)' : 'Missing or invalid'}`);
 
 // Helper for API requests
 async function strapiRequest(endpoint: string, method: string = 'GET', body?: any) {
