@@ -86,7 +86,7 @@ export const aboutData = {
       role: "Human Resources",
       description: "Manages staffing, HR policies, and maintains our collaborative culture.",
       image: {
-        src: "",
+        src: "/hor-human-resource.jpeg",
         alt: "Head of HR - Human Resources",
       },
     },
