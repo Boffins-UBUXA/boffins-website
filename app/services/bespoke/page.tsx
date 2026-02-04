@@ -77,7 +77,7 @@ export default function BespokePage() {
       name: "Ubuxa Website",
       description:
         "Renewable energy management platform website with interactive dashboards and real-time analytics visualization.",
-      image: "/multi-tenant-page.jpg",
+      image: "/multi-tenant-pasges.png",
       technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts"],
       features: [
         "Interactive energy analytics",
