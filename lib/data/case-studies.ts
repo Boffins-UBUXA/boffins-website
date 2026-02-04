@@ -27,7 +27,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Ubuxa",
     subtitle: "Pay-As-You-Go (PAYG) Energy & Asset Financing Platform",
     intro: "Ubuxa is a PAYG platform built for energy and asset-based businesses operating in local markets. It enables companies to finance, manage, and collect payments for distributed assets while aligning operations and software costs with local currency realities.",
-    image: "/images/case-studies/ubuxa.jpg",
+    image: "/multi-tenant-page.jpg",
     category: "SaaS Platform",
     client: "Ubuxa",
     ctaUrl: "https://ubuxa.ng",

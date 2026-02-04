@@ -77,7 +77,7 @@ export default function BespokePage() {
       name: "Ubuxa Website",
       description:
         "Renewable energy management platform website with interactive dashboards and real-time analytics visualization.",
-      image: "/renewable-energy-website-dashboard.jpg",
+      image: "/multi-tenant-page.jpg",
       technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts"],
       features: [
         "Interactive energy analytics",
@@ -292,7 +292,7 @@ export default function BespokePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
             {portfolioProjects.map((project, index) => (
               <ProjectCard key={index} project={project} />
             ))}
