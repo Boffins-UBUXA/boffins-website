@@ -107,7 +107,7 @@ export default function BespokePage() {
     {
       name: "Renewable Energy Website",
       description: "Educational platform for renewable energy solutions with case studies and implementation guides.",
-      image: "/renewable-energy-education-platform.jpg",
+      image: "/renewable-energy.png",
       technologies: ["Next.js", "Supabase", "Tailwind CSS", "MDX"],
       features: [
         "Educational content",
@@ -251,7 +251,7 @@ export default function BespokePage() {
             </div>
             <div className="relative">
               <Image
-                src="/custom-software-development.png"
+                src="/boffins-bespoke-hero-image.png"
                 alt="Custom software development team"
                 width={500}
                 height={500}
