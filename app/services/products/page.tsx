@@ -41,7 +41,7 @@ export default function ProductsPage() {
         "Minimize downtime",
         "Environmental impact tracking",
       ],
-      image: "/renewable-energy-dashboard-solar-panels-monitoring.jpg",
+      image: "/renewable.png",
       color: "from-green-500 to-emerald-500",
       category: "Energy Management",
       website: "https://www.ubuxa.ng/",

@@ -100,7 +100,7 @@ IoT security requires a multi-layered approach involving device hardening, netwo
     title: "The Rise of No-Code Platforms: Democratizing Software Development",
     excerpt:
       "Exploring how no-code and low-code platforms are changing the software development landscape and empowering non-technical users.",
-    image: "/no-code-platforms-software-development.jpg",
+    image: "/no-code-platforms-software-developments.png",
     author: "Emma Thompson",
     date: "December 8, 2024",
     readTime: "5 min read",

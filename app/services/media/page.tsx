@@ -139,7 +139,7 @@ export default function MediaPage() {
       industry: "Legal Services",
       service: "Brand Strategy & Content Marketing",
       results: "250% growth in client inquiries",
-      image: "/law-office-professional-legal.jpg",
+      image: "/bekwyn-law.jpg",
       metrics: {
         inquiries: "+250%",
         websiteTraffic: "+180%",

@@ -107,7 +107,7 @@ export default function BespokePage() {
     {
       name: "Renewable Energy Website",
       description: "Educational platform for renewable energy solutions with case studies and implementation guides.",
-      image: "/renewable-energy.png",
+      image: "/renewable.png",
       technologies: ["Next.js", "Supabase", "Tailwind CSS", "MDX"],
       features: [
         "Educational content",
@@ -138,7 +138,7 @@ export default function BespokePage() {
     {
       name: "Bekwyn Law Website",
       description: "Professional law firm website with case management system and secure client portal.",
-      image: "/law-firm-website-client-portal.jpg",
+      image: "/bekwyn-law.jpg",
       technologies: ["React", "Node.js", "PostgreSQL", "AWS"],
       features: [
         "Case management system",
@@ -154,7 +154,7 @@ export default function BespokePage() {
 
   const testimonials = [
     {
-      name: "Tim Johnson",
+      name: "Thomas Okonkwo",
       company: "Tims Auto Services",
       image: "/auto-service-owner.jpg",
       testimonial:
@@ -292,7 +292,7 @@ export default function BespokePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {portfolioProjects.map((project, index) => (
               <ProjectCard key={index} project={project} />
             ))}
