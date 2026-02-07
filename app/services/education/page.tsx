@@ -170,7 +170,7 @@ export default function AcademyPage() {
             </div>
             <div className="relative">
               <Image
-                src="/students-learning-programming-coding-bootcamp.jpg"
+                src="/students-learning-programming-coding-bootcamp.jpeg"
                 alt="Students learning technology"
                 width={500}
                 height={500}

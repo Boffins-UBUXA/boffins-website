@@ -151,7 +151,7 @@ export default function MediaPage() {
       industry: "Education",
       service: "Social Media Strategy & Content Marketing",
       results: "380% increase in student enrollments",
-      image: "/education-academy-classroom.jpg",
+      image: "/education-academy-classroom.jpeg",
       metrics: {
         enrollments: "+380%",
         socialReach: "+420%",
