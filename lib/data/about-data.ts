@@ -55,8 +55,8 @@ export const aboutData = {
 
   leadership: [
     {
-      name: "CEO (Group Lead)",
-      role: "Overall Vision & Strategy",
+      name: "Kingsley C. Achumie",
+      role: "Co-founder & CEO",
       description: "Responsible for setting the strategic direction and ensuring alignment across all divisions.",
       image: {
         src: "/executive-ceo-businessman-professional.png",
@@ -64,8 +64,8 @@ export const aboutData = {
       },
     },
     {
-      name: "COO (Operations)",
-      role: "Cross-Division Collaboration",
+      name: "Chukwuemeka Nwodo",
+      role: "Co-founder & Chief Operation Officer",
       description: "Ensures smooth operations and facilitates collaboration between our specialized divisions.",
       image: {
         src: "/operations-officer-professional-executive.jpeg",
@@ -73,8 +73,8 @@ export const aboutData = {
       },
     },
     {
-      name: "CFO (Finance/Accounting)",
-      role: "Financial Management",
+      name: "Nwoko Collins",
+      role: "Co-founder & CTO",
       description: "Manages finances, group reporting, and ensures sustainable growth across the ecosystem.",
       image: {
         src: "/cfo-finance-officer-professional.jpeg",
@@ -82,8 +82,8 @@ export const aboutData = {
       },
     },
     {
-      name: "Head of HR/Admin",
-      role: "Human Resources",
+      name: "Faith Danjuma",
+      role: "Co-founder & Head of Marketing/Human Resources",
       description: "Manages staffing, HR policies, and maintains our collaborative culture.",
       image: {
         src: "/hor-human-resource.jpeg",
