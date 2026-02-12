@@ -15,7 +15,7 @@ export const landingPageData = {
       href: "/contact",
     },
     heroImage: {
-      src: "/modern-technology-workspace-with-multiple-screens-.jpg",
+      src: "/modern-technology-workspace-with-multiple-screens.jpg",
       alt: "Boffins Technology Innovation",
     },
   },

@@ -164,7 +164,7 @@ export default function MediaPage() {
     {
       name: "CEO, Ubuxa",
       company: "Ubuxa",
-      image: "/professional-ceo-tech.jpg",
+      image: "/executive-ceo-businessman-professional.png",
       testimonial:
         "Their social media strategy transformed our brand presence. Within months, we saw massive growth in user acquisition and engagement. The team was incredibly responsive and understood our fintech market perfectly. Truly exceptional work and a partnership we value deeply!",
       rating: 5,
@@ -188,7 +188,7 @@ export default function MediaPage() {
     {
       name: "Director, Boffins Academy",
       company: "Boffins Academy",
-      image: "/education-director-professional.jpg",
+      image: "/hor-human-resource.jpeg",
       testimonial:
         "The team's approach to educational marketing is exceptional. They understood our unique positioning and helped us reach the right students. Our enrollment numbers speak for themselves. The strategic content and social media management have truly transformed our institution's reach and reputation.",
       rating: 5,

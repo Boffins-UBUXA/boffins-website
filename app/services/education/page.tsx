@@ -89,7 +89,7 @@ export default function AcademyPage() {
       name: "Zainab Mohammed",
       program: "Backend Development",
       role: "Backend Engineer at Fintech Solutions",
-      image: "/professional-woman-developer.jpg",
+      image: "/professional-woman-developers.jpg",
       testimonial:
         "The comprehensive backend curriculum and real-world projects gave me the confidence to tackle complex system design. I'm now leading backend initiatives at my company.",
       salary: "$1,400/month",
@@ -307,7 +307,7 @@ export default function AcademyPage() {
                     alt={story.name}
                     width={80}
                     height={80}
-                    className="rounded-full mx-auto"
+                    className="w-20 h-20 object-cover rounded-full mx-auto"
                   />
                   <div>
                     <CardTitle className="text-lg line-clamp-1">{story.name}</CardTitle>
