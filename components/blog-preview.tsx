@@ -5,6 +5,8 @@ import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Calendar, User, ArrowRight } from "lucide-react"
+import { getBlogPosts } from "@/lib/strapi"
+import type { HomepageBlogPost } from "@/lib/api/homepage"
 
 interface BlogPost {
   id: string
@@ -14,6 +16,7 @@ interface BlogPost {
   date: string
   category: string
   image?: string
+  slug?: string
 }
 
 const samplePosts: BlogPost[] = [
@@ -42,6 +45,67 @@ const samplePosts: BlogPost[] = [
     category: "Academy",
   },
 ]
+
+interface BlogPreviewProps {
+  initialPosts?: HomepageBlogPost[]
+}
+
+export default function BlogPreview({ initialPosts = [] }: BlogPreviewProps) {
+  const [posts, setPosts] = useState<BlogPost[]>(initialPosts.length ? initialPosts : samplePosts)
+
+  useEffect(() => {
+    if (initialPosts.length) return
+
+    const fetchPosts = async () => {
+      try {
+        const response = await getBlogPosts(1, 3) // Get latest 3 posts
+        const fetchedPosts = response.data.slice(0, 3).map((post: any) => ({
+          id: post.id,
+          title: post.title,
+          excerpt: post.excerpt,
+          author: post.author,
+          date: post.publishDate ? new Date(post.publishDate).toLocaleDateString() : '',
+          category: post.category,
+          image: post.image,
+          slug: post.slug,
+        }))
+        if (fetchedPosts.length > 0) {
+          setPosts(fetchedPosts)
+        }
+      } catch (error) {
+        console.error('Failed to fetch blog posts for preview:', error)
+        // Keep sample posts as fallback
+      }
+    }
+
+    fetchPosts()
+  }, [])
+
+  return (
+    <section className="py-16 bg-muted/50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-balance mb-4">Latest from Our Blog</h2>
+          <p className="text-muted-foreground text-pretty max-w-2xl mx-auto">
+            Stay updated with the latest insights, innovations, and success stories from across our divisions.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {posts.map((post) => (
+            <BlogCard key={post.id} post={post} />
+          ))}
+        </div>
+
+        <div className="text-center">
+          <Button asChild size="lg">
+            <Link href="/blog">View All Posts</Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 function BlogCard({ post }: { post: BlogPost }) {
   const [titleExpanded, setTitleExpanded] = useState(false)
@@ -161,7 +225,7 @@ function BlogCard({ post }: { post: BlogPost }) {
             {post.category}
           </span>
           <Button variant="ghost" size="sm" asChild>
-            <Link href={`/blog/${post.id}`} className="flex items-center space-x-1 flex-shrink-0">
+            <Link href={`/blog/${post.slug || post.id}`} className="flex items-center space-x-1 flex-shrink-0">
               <span>Read More</span>
               <ArrowRight className="h-3 w-3" />
             </Link>
@@ -189,32 +253,5 @@ function BlogCard({ post }: { post: BlogPost }) {
         }
       `}</style>
     </Card>
-  )
-}
-
-export function BlogPreview() {
-  return (
-    <section className="py-16 bg-muted/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-balance mb-4">Latest from Our Blog</h2>
-          <p className="text-muted-foreground text-pretty max-w-2xl mx-auto">
-            Stay updated with the latest insights, innovations, and success stories from across our divisions.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {samplePosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
-
-        <div className="text-center">
-          <Button asChild size="lg">
-            <Link href="/blog">View All Posts</Link>
-          </Button>
-        </div>
-      </div>
-    </section>
   )
 }

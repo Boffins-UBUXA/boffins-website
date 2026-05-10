@@ -4,10 +4,17 @@ import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { sectionStyles, responsive } from "@/lib/style-utils"
-import type { LucideIcon } from "lucide-react"
+import { Award, CheckCircle, TrendingUp, Users, type LucideIcon } from "lucide-react"
+
+const iconMap = {
+  Award,
+  CheckCircle,
+  TrendingUp,
+  Users,
+}
 
 interface StatItem {
-  icon: React.ReactElement<LucideIcon>
+  icon?: React.ReactElement<LucideIcon> | keyof typeof iconMap | string
   value: string
   label: string
 }
@@ -31,10 +38,13 @@ function StatCard({ stat }: { stat: StatItem }) {
     }
   }, [])
 
+  const Icon = typeof stat.icon === "string" ? iconMap[stat.icon as keyof typeof iconMap] : null
+  const icon = Icon ? <Icon className="h-8 w-8" /> : stat.icon || <CheckCircle className="h-8 w-8" />
+
   return (
     <Card className="text-center p-6 hover:shadow-lg transition-all duration-300">
       <CardContent className="space-y-4">
-        <div className="flex justify-center text-primary">{stat.icon}</div>
+        <div className="flex justify-center text-primary">{icon}</div>
         <div className="space-y-1">
           <div className="text-3xl font-bold text-foreground">{stat.value}</div>
           

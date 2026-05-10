@@ -4,11 +4,17 @@ import { useState } from "react"
 import type React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { sectionStyles, responsive } from "@/lib/style-utils"
-import type { LucideIcon } from "lucide-react"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import { Award, ChevronDown, ChevronUp, Handshake, Lightbulb, TrendingUp, type LucideIcon } from "lucide-react"
+
+const iconMap = {
+  Award,
+  Handshake,
+  Lightbulb,
+  TrendingUp,
+}
 
 interface Value {
-  icon: React.ReactElement<LucideIcon>
+  icon?: React.ReactElement<LucideIcon> | keyof typeof iconMap | string
   title: string
   description: string
 }
@@ -23,11 +29,13 @@ interface ValuesSectionProps {
 function ValueCard({ value }: { value: Value }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const shouldTruncate = value.description.length > 120
+  const Icon = typeof value.icon === "string" ? iconMap[value.icon as keyof typeof iconMap] : null
+  const icon = Icon ? <Icon className="h-8 w-8" /> : value.icon || <Lightbulb className="h-8 w-8" />
 
   return (
     <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
       <CardContent className="space-y-4 flex flex-col flex-grow p-0">
-        <div className="flex justify-center text-primary flex-shrink-0">{value.icon}</div>
+        <div className="flex justify-center text-primary flex-shrink-0">{icon}</div>
         <h3 className="text-xl font-semibold truncate px-2">{value.title}</h3>
         <div className="flex-grow flex flex-col">
           <p

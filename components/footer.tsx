@@ -1,136 +1,125 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, Phone, MapPin } from "lucide-react"
-import { FaTiktok, FaTwitter, FaLinkedin } from "react-icons/fa"
+import { Mail, MapPin, Phone } from "lucide-react"
+import { FaLinkedin, FaTiktok, FaTwitter } from "react-icons/fa"
+
+import {
+  staticSiteSettings,
+  type ContactItem,
+  type SiteSettingsData,
+  type SocialLink,
+} from "@/lib/site-settings"
 
 export function Footer() {
-  const divisions = [
-    { name: "Academy", href: "/services/education" },
-    { name: "Product Division", href: "/services/products" },
-    { name: "Hardware Division", href: "/services/hardware" },
-    { name: "Media Company", href: "/services/media" },
-    { name: "Bespoke Division", href: "/services/bespoke" },
-  ]
+  const [settings, setSettings] = useState<SiteSettingsData>(staticSiteSettings)
 
-  const quickLinks = [
-    { name: "About Us", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
-    { name: "Blog", href: "/blog" },
-  ]
+  useEffect(() => {
+    let cancelled = false
+
+    fetch("/api/site-settings")
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        if (!cancelled && data) setSettings(data)
+      })
+      .catch(() => {})
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   return (
     <footer className="bg-muted border-t">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
-              <Image src="/images/logo.png" alt="Boffins Technology" width={32} height={32} className="h-8 w-8" />
-              <span className="text-lg font-bold text-primary">Boffins Technology</span>
+              <Image src={settings.logoSrc} alt={settings.logoAlt} width={32} height={32} className="h-8 w-8" />
+              <span className="text-lg font-bold text-primary">{settings.brandName}</span>
             </Link>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              A diversified technology holding company with specialized subsidiaries in academy, products, hardware,
-              media, and bespoke solutions.
-            </p>
+            <p className="text-muted-foreground text-sm leading-relaxed">{settings.footerDescription}</p>
             <div className="flex space-x-4">
-              {/* TikTok */}
-  <Link
-    href="https://www.tiktok.com/@boffinstechnology"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-muted-foreground hover:text-primary transition-colors"
-  >
-    <FaTiktok className="h-5 w-5" />
-  </Link>
-
-  {/* Twitter / X */}
-  <Link
-    href="https://twitter.com/boffinstech"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-muted-foreground hover:text-primary transition-colors"
-  >
-    <FaTwitter className="h-5 w-5" />
-  </Link>
-
-  {/* LinkedIn */}
-  <Link
-    href="https://www.linkedin.com/in/ubuxa-ubuxa-297427379/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-muted-foreground hover:text-primary transition-colors"
-  >
-    <FaLinkedin className="h-5 w-5" />
-  </Link>
+              {settings.socialLinks.map((link) => (
+                <SocialLinkIcon key={`${link.platform}-${link.href}`} link={link} />
+              ))}
             </div>
           </div>
 
-          {/* Our Divisions */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Our Divisions</h3>
-            <ul className="space-y-2">
-              {divisions.map((division) => (
-                <li key={division.name}>
-                  <Link
-                    href={division.href}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
-                    {division.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <FooterLinkGroup title={settings.footerDivisionsTitle} links={settings.footerDivisions} />
+          <FooterLinkGroup title={settings.footerQuickLinksTitle} links={settings.footerQuickLinks} />
 
-          {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Quick Links</h3>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Contact Us</h3>
+            <h3 className="text-lg font-semibold text-foreground">{settings.footerContactTitle}</h3>
             <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Mail className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground text-sm">info@boffinstechnology.com.ng</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground text-sm">+234 (801) 566-53196</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground text-sm">Plot 902 Ibrahim Isyaku St, Abuja, Nigeria</span>
-              </div>
+              {settings.footerContactItems.map((item) => (
+                <ContactInfoItem key={`${item.type}-${item.label}`} item={item} />
+              ))}
             </div>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-muted-foreground text-sm"> © {new Date().getFullYear()} Boffins Technology. All rights reserved.</p>
-            {/* <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                Terms of Service
-              </Link>
-            </div> */}
+            <p className="text-muted-foreground text-sm">
+              {settings.copyrightText.replace("{year}", String(new Date().getFullYear()))}
+            </p>
           </div>
         </div>
       </div>
     </footer>
+  )
+}
+
+function FooterLinkGroup({ title, links }: { title: string; links: Array<{ name: string; href: string }> }) {
+  return (
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+      <ul className="space-y-2">
+        {links.map((link) => (
+          <li key={`${link.name}-${link.href}`}>
+            <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              {link.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function SocialLinkIcon({ link }: { link: SocialLink }) {
+  const Icon = link.platform === "tiktok" ? FaTiktok : link.platform === "linkedin" ? FaLinkedin : FaTwitter
+
+  return (
+    <Link
+      href={link.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-muted-foreground hover:text-primary transition-colors"
+      aria-label={link.name}
+    >
+      <Icon className="h-5 w-5" />
+    </Link>
+  )
+}
+
+function ContactInfoItem({ item }: { item: ContactItem }) {
+  const Icon = item.type === "email" ? Mail : item.type === "phone" ? Phone : MapPin
+  const content = <span className="text-muted-foreground text-sm">{item.label}</span>
+
+  return (
+    <div className="flex items-center space-x-3">
+      <Icon className="h-4 w-4 text-primary" />
+      {item.href ? (
+        <Link href={item.href} className="hover:text-primary transition-colors">
+          {content}
+        </Link>
+      ) : (
+        content
+      )}
+    </div>
   )
 }

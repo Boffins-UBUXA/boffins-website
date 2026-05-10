@@ -11,7 +11,8 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Calendar, User, ArrowRight, Search, TrendingUp, BookOpen, Loader2, FileText } from "lucide-react"
 import { ChevronDown, ChevronUp } from "lucide-react"
-import { blogPosts, type BlogPost } from "@/lib/data/blog-data"
+import type { BlogPost } from "@/lib/data/blog-data"
+import type { BlogPageData } from "@/lib/api/blog"
 
 // Types
 interface ToastState {
@@ -22,7 +23,7 @@ interface ToastState {
 }
 
 // Toast Component
-function Toast({ toast, onClose }: { toast: ToastState; onClose: () => void }) {
+function Toast({ toast, onClose, closeLabel }: { toast: ToastState; onClose: () => void; closeLabel: string }) {
   if (!toast.show) return null
 
   return (
@@ -34,7 +35,7 @@ function Toast({ toast, onClose }: { toast: ToastState; onClose: () => void }) {
         <CardContent>
           <p className="text-sm text-muted-foreground">{toast.description}</p>
           <Button size="sm" variant="outline" className="mt-2 bg-transparent" onClick={onClose}>
-            Close
+            {closeLabel}
           </Button>
         </CardContent>
       </Card>
@@ -43,7 +44,7 @@ function Toast({ toast, onClose }: { toast: ToastState; onClose: () => void }) {
 }
 
 // Featured Article Card Component
-function FeaturedArticleCard({ post }: { post: BlogPost | null }) {
+function FeaturedArticleCard({ post, data }: { post: BlogPost | null; data: BlogPageData }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const shouldTruncate = post?.excerpt && post.excerpt.length > 150
 
@@ -52,8 +53,8 @@ function FeaturedArticleCard({ post }: { post: BlogPost | null }) {
       <Card className="overflow-hidden h-[400px]">
         <div className="h-full flex flex-col items-center justify-center p-8 text-center">
           <FileText className="h-16 w-16 text-muted-foreground mb-4" />
-          <h3 className="text-xl font-semibold mb-2">No Featured Article</h3>
-          <p className="text-muted-foreground">Check back soon for our latest featured content</p>
+          <h3 className="text-xl font-semibold mb-2">{data.featuredEmptyTitle}</h3>
+          <p className="text-muted-foreground">{data.featuredEmptyDescription}</p>
         </div>
       </Card>
     )
@@ -105,7 +106,7 @@ function FeaturedArticleCard({ post }: { post: BlogPost | null }) {
             </div>
             <Button asChild size="sm">
               <Link href={`/blog/${post.slug}`} className="flex items-center space-x-2">
-                <span>Read Full Article</span>
+                <span>{data.featuredCtaLabel}</span>
                 <ArrowRight className="h-3 w-3" />
               </Link>
             </Button>
@@ -121,9 +122,10 @@ function FeaturedArticleCard({ post }: { post: BlogPost | null }) {
 import { BlogPostCard } from "@/components/blog-card"
 
 // Main Blog Page Content Component
-export default function BlogPageContent() {
+export default function BlogPageContent({ data }: { data: BlogPageData }) {
+  const blogPosts = data.posts
   const [searchQuery, setSearchQuery] = useState("")
-  const [selectedDivision, setSelectedDivision] = useState("All")
+  const [selectedDivision, setSelectedDivision] = useState(data.allDivisionsLabel)
   const [displayedPosts, setDisplayedPosts] = useState(6)
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState("")
@@ -131,12 +133,11 @@ export default function BlogPageContent() {
   const [toast, setToast] = useState<ToastState>({ show: false, title: "", description: "" })
 
   const divisions = [
-    { name: "All", count: blogPosts.length },
-    { name: "Bespoke", count: blogPosts.filter((p) => p.category === "Bespoke").length },
-    { name: "Product", count: blogPosts.filter((p) => p.category === "Product").length },
-    { name: "Media", count: blogPosts.filter((p) => p.category === "Media").length },
-    { name: "Academy", count: blogPosts.filter((p) => p.category === "Academy").length },
-    { name: "Hardware", count: blogPosts.filter((p) => p.category === "Hardware").length },
+    { name: data.allDivisionsLabel, count: blogPosts.length },
+    ...Array.from(new Set(blogPosts.map((post) => post.category).filter(Boolean))).map((category) => ({
+      name: category,
+      count: blogPosts.filter((post) => post.category === category).length,
+    })),
   ]
 
   const filteredPosts = blogPosts.filter((post) => {
@@ -146,7 +147,7 @@ export default function BlogPageContent() {
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.content.toLowerCase().includes(searchQuery.toLowerCase())
 
-    const matchesDivision = selectedDivision === "All" || post.category === selectedDivision
+    const matchesDivision = selectedDivision === data.allDivisionsLabel || post.category === selectedDivision
 
     return matchesSearch && matchesDivision
   })
@@ -168,8 +169,8 @@ export default function BlogPageContent() {
     if (!email || !email.includes("@")) {
       setToast({
         show: true,
-        title: "Invalid Email",
-        description: "Please enter a valid email address",
+        title: data.invalidEmailTitle,
+        description: data.invalidEmailDescription,
         variant: "destructive",
       })
       return
@@ -180,8 +181,8 @@ export default function BlogPageContent() {
 
     setToast({
       show: true,
-      title: "Successfully Subscribed!",
-      description: "You'll receive our latest updates in your inbox.",
+      title: data.subscribeSuccessTitle,
+      description: data.subscribeSuccessDescription,
     })
 
     setEmail("")
@@ -192,7 +193,7 @@ export default function BlogPageContent() {
 
   return (
     <div className="min-h-screen">
-      <Toast toast={toast} onClose={() => setToast({ ...toast, show: false })} />
+      <Toast toast={toast} onClose={() => setToast({ ...toast, show: false })} closeLabel={data.toastCloseLabel} />
 
       {/* Hero Section */}
       <Header />
@@ -201,25 +202,25 @@ export default function BlogPageContent() {
           <div className="text-center max-w-4xl mx-auto space-y-8">
             <Badge variant="secondary" className="w-fit mx-auto">
               <BookOpen className="h-3 w-3 mr-1" />
-              Tech Insights
+              {data.heroBadge}
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-bold text-balance">
-              Stay Ahead with <span className="text-primary">Tech Insights</span>
+              {data.heroTitle} <span className="text-primary">{data.heroHighlightedTitle}</span>
             </h1>
             <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-              Discover the latest trends, best practices, and innovations in technology from across our divisions.
+              {data.heroDescription}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search articles..."
+                  placeholder={data.searchPlaceholder}
                   className="pl-10"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <Button onClick={handleSearch}>Search</Button>
+              <Button onClick={handleSearch}>{data.searchButtonLabel}</Button>
             </div>
           </div>
         </div>
@@ -229,10 +230,10 @@ export default function BlogPageContent() {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
-            <h2 className="text-3xl font-bold mb-4">Featured Article</h2>
-            <p className="text-muted-foreground">Our latest and most popular content</p>
+            <h2 className="text-3xl font-bold mb-4">{data.featuredTitle}</h2>
+            <p className="text-muted-foreground">{data.featuredDescription}</p>
           </div>
-          <FeaturedArticleCard post={sampleFeaturedPost} />
+          <FeaturedArticleCard post={sampleFeaturedPost} data={data} />
         </div>
       </section>
 
@@ -243,10 +244,11 @@ export default function BlogPageContent() {
             {/* Main Content */}
             <div className="lg:col-span-3">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4">Latest Articles</h2>
+                <h2 className="text-3xl font-bold mb-4">{data.latestTitle}</h2>
                 <p className="text-muted-foreground">
-                  {searchQuery && `Showing results for "${searchQuery}"`}
-                  {selectedDivision !== "All" && ` in ${selectedDivision}`}
+                  {searchQuery && data.searchResultsLabelTemplate.replace("{query}", searchQuery)}
+                  {selectedDivision !== data.allDivisionsLabel &&
+                    ` ${data.divisionResultsLabelTemplate.replace("{division}", selectedDivision)}`}
                 </p>
               </div>
 
@@ -254,19 +256,19 @@ export default function BlogPageContent() {
                 <Card className="p-12">
                   <div className="text-center">
                     <FileText className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">No Articles Found</h3>
+                    <h3 className="text-xl font-semibold mb-2">{data.noArticlesTitle}</h3>
                     <p className="text-muted-foreground mb-4">
-                      {searchQuery ? "Try adjusting your search terms or filters" : "Check back soon for new content"}
+                      {searchQuery ? data.noArticlesSearchDescription : data.noArticlesDefaultDescription}
                     </p>
-                    {(searchQuery || selectedDivision !== "All") && (
+                    {(searchQuery || selectedDivision !== data.allDivisionsLabel) && (
                       <Button
                         variant="outline"
                         onClick={() => {
                           setSearchQuery("")
-                          setSelectedDivision("All")
+                          setSelectedDivision(data.allDivisionsLabel)
                         }}
                       >
-                        Clear Filters
+                        {data.clearFiltersLabel}
                       </Button>
                     )}
                   </div>
@@ -290,10 +292,10 @@ export default function BlogPageContent() {
                         {isLoading ? (
                           <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Loading...
+                            {data.loadingLabel}
                           </>
                         ) : (
-                          "Load More Articles"
+                          data.loadMoreLabel
                         )}
                       </Button>
                     </div>
@@ -309,7 +311,7 @@ export default function BlogPageContent() {
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <TrendingUp className="h-5 w-5" />
-                    <span>Divisions</span>
+                    <span>{data.divisionsTitle}</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
@@ -333,14 +335,14 @@ export default function BlogPageContent() {
               {/* Newsletter Signup */}
               <Card className="bg-gradient-to-br from-primary/5 to-secondary/5">
                 <CardHeader>
-                  <CardTitle>Stay Updated</CardTitle>
+                  <CardTitle>{data.newsletterTitle}</CardTitle>
                   <CardDescription>
-                    Subscribe to our newsletter for the latest tech insights and updates.
+                    {data.newsletterDescription}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <Input
-                    placeholder="Enter your email"
+                    placeholder={data.newsletterPlaceholder}
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -349,10 +351,10 @@ export default function BlogPageContent() {
                     {isSubscribing ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Subscribing...
+                        {data.newsletterSubmittingLabel}
                       </>
                     ) : (
-                      "Subscribe"
+                      data.newsletterSubmitLabel
                     )}
                   </Button>
                 </CardContent>

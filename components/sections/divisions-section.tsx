@@ -1,14 +1,22 @@
 import type React from "react"
 import { DivisionCard } from "@/components/division-card"
 import { sectionStyles, responsive } from "@/lib/style-utils"
-import type { LucideIcon } from "lucide-react"
+import { Code, Cpu, GraduationCap, HardDrive, Megaphone, type LucideIcon } from "lucide-react"
+
+const iconMap = {
+  Code,
+  Cpu,
+  GraduationCap,
+  HardDrive,
+  Megaphone,
+}
 
 interface Division {
   title: string
   description: string
   features: string[]
   href: string
-  icon: React.ReactElement<LucideIcon>
+  icon?: React.ReactElement<LucideIcon> | keyof typeof iconMap | string
 }
 
 interface DivisionsSectionProps {
@@ -40,9 +48,12 @@ export function DivisionsSection({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {divisions.map((division, index) => (
-            <DivisionCard key={index} {...division} />
-          ))}
+          {divisions.map((division, index) => {
+            const Icon = typeof division.icon === "string" ? iconMap[division.icon as keyof typeof iconMap] : null
+            const icon = Icon ? <Icon className="h-6 w-6" /> : division.icon || <Cpu className="h-6 w-6" />
+
+            return <DivisionCard key={index} {...division} icon={icon} />
+          })}
         </div>
       </div>
     </section>

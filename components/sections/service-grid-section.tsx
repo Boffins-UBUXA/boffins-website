@@ -20,6 +20,9 @@ interface ServiceGridSectionProps {
   services?: ServiceItem[]
   title?: string
   subtitle?: string
+  cardCtaLabel?: string
+  moreLabel?: string
+  lessLabel?: string
   className?: string
 }
 
@@ -27,6 +30,9 @@ export function ServiceGridSection({
   services = [],
   title = "Our Service Divisions",
   subtitle = "Each division operates with specialized expertise while collaborating within our integrated ecosystem to deliver comprehensive solutions.",
+  cardCtaLabel = "Learn More",
+  moreLabel = "More",
+  lessLabel = "Less",
   className,
 }: ServiceGridSectionProps) {
   const [expandedCard, setExpandedCard] = useState<number | null>(null)
@@ -76,7 +82,7 @@ export function ServiceGridSection({
                       onClick={() => setExpandedCard(expandedCard === index ? null : index)}
                       className="text-sm text-primary hover:underline font-medium pt-2"
                     >
-                      {expandedCard === index ? "Less" : `More (${service.features.length - 3})`}
+                      {expandedCard === index ? lessLabel : `${moreLabel} (${service.features.length - 3})`}
                     </button>
                   )}
                 </div>
@@ -85,7 +91,7 @@ export function ServiceGridSection({
                   className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                 >
                   <Link href={service.href} className="flex items-center justify-center space-x-2">
-                    <span>Learn More</span>
+                    <span>{cardCtaLabel}</span>
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>

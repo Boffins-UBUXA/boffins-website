@@ -6,7 +6,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Send, Loader2, CheckCircle, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react"
+import {
+  Briefcase,
+  CheckCircle,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Loader2,
+  Mail,
+  MessageSquare,
+  Send,
+  Twitter,
+  Users,
+  Youtube,
+} from "lucide-react"
 import { sectionStyles, responsive } from "@/lib/style-utils"
 
 interface SocialMedia {
@@ -21,12 +34,52 @@ interface Division {
   name: string
   description: string
   email: string
-  icon: React.ReactElement
+  icon?: React.ReactElement | string
   socialMedia?: SocialMedia
+}
+
+interface ServiceOption {
+  label: string
+  value: string
+}
+
+interface ContactFormCopy {
+  title: string
+  description: string
+  firstNameLabel: string
+  firstNamePlaceholder: string
+  lastNameLabel: string
+  lastNamePlaceholder: string
+  emailLabel: string
+  emailPlaceholder: string
+  phoneLabel: string
+  phonePlaceholder: string
+  companyLabel: string
+  companyPlaceholder: string
+  serviceLabel: string
+  servicePlaceholder: string
+  serviceOptions: ServiceOption[]
+  messageLabel: string
+  messagePlaceholder: string
+  submitLabel: string
+  submittingLabel: string
+  toastCloseLabel: string
+  validationErrorTitle: string
+  validationErrorDescription: string
+  successTitle: string
+  successDescription: string
+  errorTitle: string
+  errorDescription: string
+  mailRecipient: string
+  mailSubjectPrefix: string
 }
 
 interface ContactFormSectionProps {
   divisions?: Division[]
+  form: ContactFormCopy
+  divisionsTitle: string
+  divisionsDescription: string
+  socialAriaLabelTemplate: string
   className?: string
 }
 
@@ -47,8 +100,21 @@ interface ToastState {
   variant: "success" | "error"
 }
 
-// Toast Component
-function Toast({ toast, onClose }: { toast: ToastState; onClose: () => void }) {
+const divisionIconMap = {
+  Briefcase,
+  MessageSquare,
+  Users,
+}
+
+function Toast({
+  toast,
+  onClose,
+  closeLabel,
+}: {
+  toast: ToastState
+  onClose: () => void
+  closeLabel: string
+}) {
   if (!toast.show) return null
 
   return (
@@ -63,7 +129,7 @@ function Toast({ toast, onClose }: { toast: ToastState; onClose: () => void }) {
         <CardContent>
           <p className="text-sm text-muted-foreground">{toast.description}</p>
           <Button size="sm" variant="outline" className="mt-3" onClick={onClose}>
-            Close
+            {closeLabel}
           </Button>
         </CardContent>
       </Card>
@@ -71,8 +137,13 @@ function Toast({ toast, onClose }: { toast: ToastState; onClose: () => void }) {
   )
 }
 
-// Social Media Icons Component
-function SocialMediaLinks({ socialMedia }: { socialMedia?: SocialMedia }) {
+function SocialMediaLinks({
+  socialMedia,
+  ariaLabelTemplate,
+}: {
+  socialMedia?: SocialMedia
+  ariaLabelTemplate: string
+}) {
   if (!socialMedia) return null
 
   const socialLinks = [
@@ -81,7 +152,7 @@ function SocialMediaLinks({ socialMedia }: { socialMedia?: SocialMedia }) {
     { platform: "instagram", icon: Instagram, url: socialMedia.instagram },
     { platform: "linkedin", icon: Linkedin, url: socialMedia.linkedin },
     { platform: "youtube", icon: Youtube, url: socialMedia.youtube },
-  ].filter(link => link.url)
+  ].filter((link) => link.url)
 
   if (socialLinks.length === 0) return null
 
@@ -94,7 +165,7 @@ function SocialMediaLinks({ socialMedia }: { socialMedia?: SocialMedia }) {
           target="_blank"
           rel="noopener noreferrer"
           className="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary hover:text-white flex items-center justify-center transition-all duration-300"
-          aria-label={`Visit our ${platform} page`}
+          aria-label={ariaLabelTemplate.replace("{platform}", platform)}
         >
           <Icon className="h-4 w-4" />
         </a>
@@ -103,7 +174,14 @@ function SocialMediaLinks({ socialMedia }: { socialMedia?: SocialMedia }) {
   )
 }
 
-export function ContactFormSection({ divisions = [], className }: ContactFormSectionProps) {
+export function ContactFormSection({
+  divisions = [],
+  form,
+  divisionsTitle,
+  divisionsDescription,
+  socialAriaLabelTemplate,
+  className,
+}: ContactFormSectionProps) {
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -122,7 +200,7 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [e.target.id || e.target.name]: e.target.value,
     }))
@@ -131,12 +209,11 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Validate required fields
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
       setToast({
         show: true,
-        title: "Missing Required Fields",
-        description: "Please fill in all required fields (marked with *)",
+        title: form.validationErrorTitle,
+        description: form.validationErrorDescription,
         variant: "error",
       })
       return
@@ -145,21 +222,21 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
     setIsSubmitting(true)
 
     try {
-      // Send email to info@boffinstechnology.com.ng
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          to: "info@boffinstechnology.com.ng",
-          subject: `Contact Form Submission from ${formData.firstName} ${formData.lastName}`,
+          to: form.mailRecipient,
+          subject: `${form.mailSubjectPrefix} ${formData.firstName} ${formData.lastName}`,
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
           phone: formData.phone,
           company: formData.company,
           service: formData.service,
+          serviceLabel: form.serviceOptions.find((option) => option.value === formData.service)?.label || "",
           message: formData.message,
         }),
       })
@@ -168,15 +245,13 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
         throw new Error("Failed to send message")
       }
 
-      // Success
       setToast({
         show: true,
-        title: "Message Sent Successfully!",
-        description: "Thank you for contacting us! Our team will respond to your inquiry within 10 minutes to 24 hours.",
+        title: form.successTitle,
+        description: form.successDescription,
         variant: "success",
       })
 
-      // Reset form
       setFormData({
         firstName: "",
         lastName: "",
@@ -189,8 +264,8 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
     } catch (error) {
       setToast({
         show: true,
-        title: "Failed to Send Message",
-        description: "We couldn't send your message. Please try again or contact us directly at info@boffinstechnology.com.ng",
+        title: form.errorTitle,
+        description: form.errorDescription,
         variant: "error",
       })
     } finally {
@@ -206,26 +281,25 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
         className,
       })}
     >
-      <Toast toast={toast} onClose={() => setToast({ ...toast, show: false })} />
+      <Toast toast={toast} onClose={() => setToast({ ...toast, show: false })} closeLabel={form.toastCloseLabel} />
 
       <div className={responsive.container}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
           <Card className="hover:shadow-xl transition-all duration-300">
             <CardHeader>
-              <CardTitle className="text-2xl">Send Us a Message</CardTitle>
-              <CardDescription>Fill out the form below and we'll get back to you within 24 hours.</CardDescription>
+              <CardTitle className="text-2xl">{form.title}</CardTitle>
+              <CardDescription>{form.description}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="firstName" className="text-sm font-medium">
-                      First Name *
+                      {form.firstNameLabel}
                     </label>
                     <Input
                       id="firstName"
-                      placeholder="John"
+                      placeholder={form.firstNamePlaceholder}
                       value={formData.firstName}
                       onChange={handleChange}
                       required
@@ -233,56 +307,60 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="lastName" className="text-sm font-medium">
-                      Last Name *
+                      {form.lastNameLabel}
                     </label>
                     <Input
                       id="lastName"
-                      placeholder="Doe"
+                      placeholder={form.lastNamePlaceholder}
                       value={formData.lastName}
                       onChange={handleChange}
                       required
                     />
                   </div>
                 </div>
+
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium">
-                    Email Address *
+                    {form.emailLabel}
                   </label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder={form.emailPlaceholder}
                     value={formData.email}
                     onChange={handleChange}
                     required
                   />
                 </div>
+
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-medium">
-                    Phone Number
+                    {form.phoneLabel}
                   </label>
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="+234 (0) 123 456 7890"
+                    placeholder={form.phonePlaceholder}
                     value={formData.phone}
                     onChange={handleChange}
                   />
                 </div>
+
                 <div className="space-y-2">
                   <label htmlFor="company" className="text-sm font-medium">
-                    Company
+                    {form.companyLabel}
                   </label>
                   <Input
                     id="company"
-                    placeholder="Your Company Name"
+                    placeholder={form.companyPlaceholder}
                     value={formData.company}
                     onChange={handleChange}
                   />
                 </div>
+
                 <div className="space-y-2">
                   <label htmlFor="service" className="text-sm font-medium">
-                    Service of Interest
+                    {form.serviceLabel}
                   </label>
                   <select
                     id="service"
@@ -291,43 +369,39 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
                     value={formData.service}
                     onChange={handleChange}
                   >
-                    <option value="">Select a service</option>
-                    <option value="bespoke">Bespoke Division</option>
-                    <option value="products">Product Division</option>
-                    <option value="media">Media Company</option>
-                    <option value="academy">Academy</option>
-                    <option value="hardware">Hardware Division</option>
+                    <option value="">{form.servicePlaceholder}</option>
+                    {form.serviceOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
+
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium">
-                    Message *
+                    {form.messageLabel}
                   </label>
                   <Textarea
                     id="message"
-                    placeholder="Tell us about your project or inquiry..."
+                    placeholder={form.messagePlaceholder}
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
                     required
                   />
                 </div>
-                <Button
-                  type="button"
-                  onClick={handleSubmit}
-                  className="w-full"
-                  size="lg"
-                  disabled={isSubmitting}
-                >
+
+                <Button type="button" onClick={handleSubmit} className="w-full" size="lg" disabled={isSubmitting}>
                   {isSubmitting ? (
                     <>
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      Sending...
+                      {form.submittingLabel}
                     </>
                   ) : (
                     <>
                       <Send className="h-4 w-4 mr-2" />
-                      Send Message
+                      {form.submitLabel}
                     </>
                   )}
                 </Button>
@@ -335,40 +409,45 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
             </CardContent>
           </Card>
 
-          {/* Division Contacts */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-2xl font-bold mb-4">Contact Our Divisions</h2>
-              <p className="text-muted-foreground mb-8">
-                Get in touch with the specific division that best matches your needs for faster, more targeted
-                assistance.
-              </p>
+              <h2 className="text-2xl font-bold mb-4">{divisionsTitle}</h2>
+              <p className="text-muted-foreground mb-8">{divisionsDescription}</p>
             </div>
 
             <div className="space-y-4">
-              {divisions.map((division, index) => (
-                <Card key={index} className="hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary flex-shrink-0">
-                        {division.icon}
+              {divisions.map((division, index) => {
+                const Icon =
+                  typeof division.icon === "string" ? divisionIconMap[division.icon as keyof typeof divisionIconMap] : null
+                const icon = Icon ? <Icon className="h-5 w-5" /> : division.icon || <MessageSquare className="h-5 w-5" />
+
+                return (
+                  <Card key={index} className="hover:shadow-md transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary flex-shrink-0">
+                          {icon}
+                        </div>
+                        <div className="flex-1 space-y-2">
+                          <h3 className="font-semibold">{division.name}</h3>
+                          <p className="text-sm text-muted-foreground">{division.description}</p>
+                          <a
+                            href={`mailto:${division.email}`}
+                            className="text-sm text-primary hover:underline inline-flex items-center space-x-1"
+                          >
+                            <Mail className="h-3 w-3" />
+                            <span>{division.email}</span>
+                          </a>
+                          <SocialMediaLinks
+                            socialMedia={division.socialMedia}
+                            ariaLabelTemplate={socialAriaLabelTemplate}
+                          />
+                        </div>
                       </div>
-                      <div className="flex-1 space-y-2">
-                        <h3 className="font-semibold">{division.name}</h3>
-                        <p className="text-sm text-muted-foreground">{division.description}</p>
-                        <a
-                          href={`mailto:${division.email}`}
-                          className="text-sm text-primary hover:underline inline-flex items-center space-x-1"
-                        >
-                          <Mail className="h-3 w-3" />
-                          <span>{division.email}</span>
-                        </a>
-                        <SocialMediaLinks socialMedia={division.socialMedia} />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardContent>
+                  </Card>
+                )
+              })}
             </div>
           </div>
         </div>

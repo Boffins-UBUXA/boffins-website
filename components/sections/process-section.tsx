@@ -22,6 +22,9 @@ interface ProcessSectionProps {
     alt: string
   }
   reverse?: boolean
+  moreLabel?: string
+  lessLabel?: string
+  viewAllLabel?: string
   className?: string
 }
 
@@ -55,6 +58,9 @@ export function ProcessSection({
     alt: "Boffins Technology Collaborative Process",
   },
   reverse = false,
+  moreLabel = "More",
+  lessLabel = "Less",
+  viewAllLabel = "View All {count} Steps",
   className,
 }: ProcessSectionProps) {
   const [expandedStep, setExpandedStep] = useState<number | null>(null)
@@ -102,11 +108,11 @@ export function ProcessSection({
                         >
                           {expandedStep === index ? (
                             <>
-                              Less <ChevronUp className="h-4 w-4" />
+                              {lessLabel} <ChevronUp className="h-4 w-4" />
                             </>
                           ) : (
                             <>
-                              More <ChevronDown className="h-4 w-4" />
+                              {moreLabel} <ChevronDown className="h-4 w-4" />
                             </>
                           )}
                         </button>
@@ -117,7 +123,7 @@ export function ProcessSection({
               </div>
               {hasMoreSteps && !showAllSteps && (
                 <Button onClick={() => setShowAllSteps(true)} variant="outline" className="w-full">
-                  View All {steps.length} Steps
+                  {viewAllLabel.replace("{count}", String(steps.length))}
                 </Button>
               )}
             </div>

@@ -5,36 +5,71 @@ import { ServiceGridSection } from "@/components/sections/service-grid-section"
 import { BenefitsSection } from "@/components/sections/benefits-section"
 import { ProcessSection } from "@/components/sections/process-section"
 import { CTASection } from "@/components/sections/cta-section"
+import { getServicesPageData, type ServicesPageData } from "@/lib/api/services"
 import { servicesData } from "@/lib/data/services-data"
 
-export default function ServicesPage() {
-  // Transform icon functions to React elements for benefits
-  const benefitsWithIcons = servicesData.benefits.map((benefit) => ({
-    ...benefit,
-    icon: <benefit.icon className="h-8 w-8" />,
-  }))
+export default async function ServicesPage() {
+  let servicesPageData: ServicesPageData;
+
+  try {
+    servicesPageData = await getServicesPageData();
+  } catch (error) {
+    console.error('Failed to fetch services data:', error);
+    servicesPageData = {
+      ...servicesData,
+      divisionsTitle: "Our Service Divisions",
+      divisionsSubtitle:
+        "Each division operates with specialized expertise while collaborating within our integrated ecosystem to deliver comprehensive solutions.",
+      divisionCardCtaLabel: "Learn More",
+      divisionMoreLabel: "More",
+      divisionLessLabel: "Less",
+      benefits: servicesData.benefits.map((benefit, index) => ({
+        icon: ["Users", "Zap", "Shield", "Lightbulb"][index] || "Lightbulb",
+        title: benefit.title,
+        description: benefit.description,
+      })),
+      benefitsTitle: "Why Choose Boffins Technology?",
+      benefitsSubtitle:
+        "Our unique approach combines specialized expertise with collaborative innovation to deliver exceptional results.",
+      benefitSeeMoreLabel: "See More",
+      benefitSeeLessLabel: "See Less",
+      processMoreLabel: "More",
+      processLessLabel: "Less",
+      processViewAllLabel: "View All {count} Steps",
+    };
+  }
 
   return (
     <div className="min-h-screen">
       <Header />
 
-      <HeroSection {...servicesData.hero} />
+      <HeroSection {...servicesPageData.hero} />
 
       <ServiceGridSection
-        services={servicesData.divisions}
-        title="Our Service Divisions"
-        subtitle="Each division operates with specialized expertise while collaborating within our integrated ecosystem to deliver comprehensive solutions."
+        services={servicesPageData.divisions}
+        title={servicesPageData.divisionsTitle}
+        subtitle={servicesPageData.divisionsSubtitle}
+        cardCtaLabel={servicesPageData.divisionCardCtaLabel}
+        moreLabel={servicesPageData.divisionMoreLabel}
+        lessLabel={servicesPageData.divisionLessLabel}
       />
 
       <BenefitsSection
-        benefits={benefitsWithIcons}
-        title="Why Choose Boffins Technology?"
-        subtitle="Our unique approach combines specialized expertise with collaborative innovation to deliver exceptional results."
+        benefits={servicesPageData.benefits}
+        title={servicesPageData.benefitsTitle}
+        subtitle={servicesPageData.benefitsSubtitle}
+        seeMoreLabel={servicesPageData.benefitSeeMoreLabel}
+        seeLessLabel={servicesPageData.benefitSeeLessLabel}
       />
 
-      <ProcessSection {...servicesData.process} />
+      <ProcessSection
+        {...servicesPageData.process}
+        moreLabel={servicesPageData.processMoreLabel}
+        lessLabel={servicesPageData.processLessLabel}
+        viewAllLabel={servicesPageData.processViewAllLabel}
+      />
 
-      <CTASection {...servicesData.cta} background="gradient" />
+      <CTASection {...servicesPageData.cta} background="gradient" />
 
       <Footer />
     </div>

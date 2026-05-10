@@ -8,9 +8,10 @@ import { Footer } from "@/components/footer"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Calendar, User, Clock, ChevronLeft } from "lucide-react"
-import { getBlogPostBySlug, getRelatedPosts } from "@/lib/data/blog-data"
+import { getBlogPostBySlug as getStaticBlogPostBySlug, getRelatedPosts } from "@/lib/data/blog-data"
 import { BlogPostCard } from "@/components/blog-card"
 import type { Metadata } from "next"
+import { getBlogPostPageData, getStaticBlogPageData } from "@/lib/api/blog"
 
 interface PageProps {
     params: {
@@ -19,7 +20,13 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const post = getBlogPostBySlug(params.slug)
+    let post;
+
+    try {
+        post = (await getBlogPostPageData(params.slug)).post;
+    } catch (error) {
+        post = getStaticBlogPostBySlug(params.slug);
+    }
 
     if (!post) {
         return {
@@ -33,14 +40,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 }
 
-export default function BlogPostPage({ params }: PageProps) {
-    const post = getBlogPostBySlug(params.slug)
+export default async function BlogPostPage({ params }: PageProps) {
+    let post;
+    let copy;
+    let relatedPosts;
+
+    try {
+        const data = await getBlogPostPageData(params.slug);
+        post = data.post;
+        copy = data.copy;
+        relatedPosts = data.relatedPosts;
+    } catch (error) {
+        console.error('Failed to fetch blog post:', error);
+        post = getStaticBlogPostBySlug(params.slug);
+        copy = getStaticBlogPageData();
+        relatedPosts = getRelatedPosts(params.slug);
+    }
 
     if (!post) {
         notFound()
     }
-
-    const relatedPosts = getRelatedPosts(params.slug)
 
     return (
         <div className="min-h-screen flex flex-col">
@@ -55,7 +74,7 @@ export default function BlogPostPage({ params }: PageProps) {
                                 <Button variant="ghost" size="sm" asChild className="hover:bg-transparent pl-0 -ml-4">
                                     <Link href="/blog" className="flex items-center text-muted-foreground hover:text-primary transition-colors">
                                         <ChevronLeft className="h-4 w-4 mr-1" />
-                                        Back to Blog
+                                        {copy.detailBackLabel}
                                     </Link>
                                 </Button>
                                 <div className="flex-grow" />
@@ -115,7 +134,7 @@ export default function BlogPostPage({ params }: PageProps) {
                         <div className="max-w-3xl mx-auto mt-16 pt-8 border-t">
                             <div className="flex justify-between items-center">
                                 <p className="text-muted-foreground italic">
-                                    Published in <span className="text-foreground font-medium">{post.category}</span>
+                                    {copy.publishedInLabel} <span className="text-foreground font-medium">{post.category}</span>
                                 </p>
                                 {/* Add social share buttons here if needed */}
                             </div>
@@ -128,9 +147,9 @@ export default function BlogPostPage({ params }: PageProps) {
                     <section className="py-20 bg-muted/50 border-t">
                         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-12">
-                                <h2 className="text-3xl font-bold mb-4">Related Articles</h2>
+                                <h2 className="text-3xl font-bold mb-4">{copy.relatedTitle}</h2>
                                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                                    More insights and stories from our team that you might find interesting.
+                                    {copy.relatedDescription}
                                 </p>
                             </div>
 

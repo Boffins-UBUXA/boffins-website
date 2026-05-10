@@ -1,5 +1,3 @@
-import { GraduationCap, Cpu, HardDrive, Megaphone, Code, Users, Award, TrendingUp, CheckCircle } from "lucide-react"
-
 export const landingPageData = {
   hero: {
     title: "Digitizing Africa's ",
@@ -21,10 +19,10 @@ export const landingPageData = {
   },
 
   stats: [
-    { icon: Users, value: "500+", label: "Students Trained" },
-    { icon: Award, value: "50+", label: "Projects Delivered" },
-    { icon: TrendingUp, value: "95%", label: "Success Rate" },
-    { icon: CheckCircle, value: "24/7", label: "Support Available" },
+    { icon: "Users", value: "500+", label: "Students Trained" },
+    { icon: "Award", value: "50+", label: "Projects Delivered" },
+    { icon: "TrendingUp", value: "95%", label: "Success Rate" },
+    { icon: "CheckCircle", value: "24/7", label: "Support Available" },
   ],
 
   divisions: [
@@ -34,7 +32,7 @@ export const landingPageData = {
         "Custom software solutions tailored to your unique business requirements and operational challenges.",
       features: ["Coming to Canada - Immigration Website", "Bekwyn Law Firm Website", "Custom Enterprise Solutions"],
       href: "/services/bespoke",
-      icon: Code,
+      icon: "Code",
     },
     {
       title: "Product Division",
@@ -46,14 +44,14 @@ export const landingPageData = {
         "RevenueHub+ - Revenue Collection",
       ],
       href: "/services/products",
-      icon: Cpu,
+      icon: "Cpu",
     },
     {
       title: "Media Company",
       description: "Strategic digital marketing and content creation services to amplify your brand's online presence.",
       features: ["Social Media Management", "Content Creation", "Brand Strategy", "Digital Campaigns"],
       href: "/services/media",
-      icon: Megaphone,
+      icon: "Megaphone",
     },
     {
       title: "Academy",
@@ -67,14 +65,14 @@ export const landingPageData = {
         "Mobile App Development",
       ],
       href: "/services/education",
-      icon: GraduationCap,
+      icon: "GraduationCap",
     },
     {
       title: "Hardware Division",
       description: "Cutting-edge IoT devices and networking solutions for modern business infrastructure needs.",
       features: ["IoT Device Development", "Networking Services", "Ubuxa-IoT-Pro Protection Device"],
       href: "/services/hardware",
-      icon: HardDrive,
+      icon: "HardDrive",
     },
   ],
 

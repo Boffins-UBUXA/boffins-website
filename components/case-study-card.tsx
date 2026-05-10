@@ -9,9 +9,12 @@ import type { CaseStudy } from "@/lib/data/case-studies"
 interface CaseStudyCardProps {
   study: CaseStudy
   featured?: boolean
+  ctaLabel?: string
 }
 
-export function CaseStudyCard({ study, featured = false }: CaseStudyCardProps) {
+export function CaseStudyCard({ study, featured = false, ctaLabel }: CaseStudyCardProps) {
+  const label = ctaLabel || (featured ? "View Case Study" : "Learn More")
+
   if (featured) {
     return (
       <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
@@ -36,7 +39,7 @@ export function CaseStudyCard({ study, featured = false }: CaseStudyCardProps) {
             <p className="text-foreground line-clamp-3">{study.intro}</p>
             <Button asChild size="lg" className="w-fit">
               <Link href={`/case-studies/${study.slug}`} className="flex items-center space-x-2">
-                <span>View Case Study</span>
+                <span>{label}</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -67,7 +70,7 @@ export function CaseStudyCard({ study, featured = false }: CaseStudyCardProps) {
         <p className="text-sm text-foreground/80 line-clamp-3">{study.intro}</p>
         <Button asChild variant="outline" className="w-full bg-transparent">
           <Link href={`/case-studies/${study.slug}`} className="flex items-center justify-center space-x-2">
-            <span>Learn More</span>
+            <span>{label}</span>
             <ArrowRight className="h-3 w-3" />
           </Link>
         </Button>

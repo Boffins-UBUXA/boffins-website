@@ -1,10 +1,17 @@
 import type React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { sectionStyles, responsive } from "@/lib/style-utils"
-import type { LucideIcon } from "lucide-react"
+import { Clock, Mail, MapPin, Phone, type LucideIcon } from "lucide-react"
+
+const iconMap = {
+  Clock,
+  Mail,
+  MapPin,
+  Phone,
+}
 
 interface ContactInfo {
-  icon: React.ReactElement<LucideIcon>
+  icon?: React.ReactElement<LucideIcon> | keyof typeof iconMap | string
   title: string
   details: string[]
   color: string
@@ -27,27 +34,32 @@ export function ContactInfoSection({ contactInfo = [], className }: ContactInfoS
     >
       <div className={responsive.container}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {contactInfo.map((info, index) => (
-            <Card key={index} className="text-center hover:shadow-lg transition-all duration-300">
-              <CardHeader className="space-y-4">
-                <div
-                  className={`w-16 h-16 rounded-full bg-gradient-to-r ${info.color} flex items-center justify-center text-white mx-auto`}
-                >
-                  {info.icon}
-                </div>
-                <CardTitle className="text-lg">{info.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {info.details.map((detail, detailIndex) => (
-                    <p key={detailIndex} className="text-muted-foreground text-sm">
-                      {detail}
-                    </p>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+          {contactInfo.map((info, index) => {
+            const Icon = typeof info.icon === "string" ? iconMap[info.icon as keyof typeof iconMap] : null
+            const icon = Icon ? <Icon className="h-6 w-6" /> : info.icon || <MapPin className="h-6 w-6" />
+
+            return (
+              <Card key={index} className="text-center hover:shadow-lg transition-all duration-300">
+                <CardHeader className="space-y-4">
+                  <div
+                    className={`w-16 h-16 rounded-full bg-gradient-to-r ${info.color} flex items-center justify-center text-white mx-auto`}
+                  >
+                    {icon}
+                  </div>
+                  <CardTitle className="text-lg">{info.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {info.details.map((detail, detailIndex) => (
+                      <p key={detailIndex} className="text-muted-foreground text-sm">
+                        {detail}
+                      </p>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </section>

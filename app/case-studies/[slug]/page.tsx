@@ -6,9 +6,11 @@ import { Footer } from "@/components/footer"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { getCaseStudyBySlug } from "@/lib/data/case-studies"
+import { getCaseStudyBySlug as getStaticCaseStudyBySlug } from "@/lib/data/case-studies"
+import { getCaseStudyDetailData, getStaticCaseStudiesPageData } from "@/lib/api/case-studies"
 import { ChevronLeft, ExternalLink } from "lucide-react"
 import type { Metadata } from "next"
+import type { CaseStudy, CaseStudySection } from "@/lib/data/case-studies"
 
 interface PageProps {
   params: {
@@ -17,11 +19,21 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const caseStudy = getCaseStudyBySlug(params.slug)
+  let caseStudy: CaseStudy | null | undefined;
+  let settings;
+
+  try {
+    const data = await getCaseStudyDetailData(params.slug);
+    caseStudy = data.caseStudy;
+    settings = data.settings;
+  } catch (error) {
+    caseStudy = getStaticCaseStudyBySlug(params.slug);
+    settings = getStaticCaseStudiesPageData();
+  }
 
   if (!caseStudy) {
     return {
-      title: "Case Study Not Found | Boffins Technology",
+      title: settings.notFoundTitle,
     }
   }
 
@@ -31,8 +43,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default function CaseStudyPage({ params }: PageProps) {
-  const caseStudy = getCaseStudyBySlug(params.slug)
+export default async function CaseStudyPage({ params }: PageProps) {
+  let caseStudy: CaseStudy | null | undefined;
+  let settings;
+
+  try {
+    const data = await getCaseStudyDetailData(params.slug);
+    caseStudy = data.caseStudy;
+    settings = data.settings;
+  } catch (error) {
+    console.error('Failed to fetch case study:', error);
+    caseStudy = getStaticCaseStudyBySlug(params.slug);
+    settings = getStaticCaseStudiesPageData();
+  }
 
   if (!caseStudy) {
     notFound()
@@ -51,7 +74,7 @@ export default function CaseStudyPage({ params }: PageProps) {
                 <Button variant="ghost" size="sm" asChild className="hover:bg-transparent pl-0 -ml-4">
                   <Link href="/case-studies" className="flex items-center text-muted-foreground hover:text-primary transition-colors">
                     <ChevronLeft className="h-4 w-4 mr-1" />
-                    Back to Case Studies
+                    {settings.detailBackLabel}
                   </Link>
                 </Button>
                 <div className="flex-grow" />
@@ -73,7 +96,7 @@ export default function CaseStudyPage({ params }: PageProps) {
                 <div className="pt-4">
                   <Button asChild>
                     <a href={caseStudy.ctaUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                      {caseStudy.ctaText || "Visit Project"}
+                      {caseStudy.ctaText || settings.detailVisitProjectFallbackLabel}
                       <ExternalLink className="h-4 w-4" />
                     </a>
                   </Button>
@@ -103,7 +126,7 @@ export default function CaseStudyPage({ params }: PageProps) {
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto space-y-20">
-              {caseStudy.sections.map((section, index) => (
+              {caseStudy.sections.map((section: CaseStudySection, index: number) => (
                 <div key={section.id} className="space-y-6">
                   <div className="space-y-3">
                     <h2 className="text-3xl lg:text-4xl font-bold">{section.title}</h2>
@@ -114,7 +137,7 @@ export default function CaseStudyPage({ params }: PageProps) {
 
                   {section.items && section.items.length > 0 && (
                     <ul className="space-y-3">
-                      {section.items.map((item, itemIndex) => (
+                      {section.items.map((item: string, itemIndex: number) => (
                         <li key={itemIndex} className="flex gap-3">
                           <div className="h-2 w-2 rounded-full bg-primary mt-3 flex-shrink-0" />
                           <span className="text-foreground/90 leading-relaxed">{item}</span>
@@ -136,19 +159,19 @@ export default function CaseStudyPage({ params }: PageProps) {
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <div className="space-y-4">
                 <h2 className="text-3xl lg:text-4xl font-bold text-balance">
-                  Ready to Build Something Amazing?
+                  {settings.detailCtaTitle}
                 </h2>
                 <p className="text-lg text-muted-foreground">
-                  Let us help you solve your complex technology challenges. Get in touch with our team today.
+                  {settings.detailCtaDescription}
                 </p>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg">
-                  <Link href="/contact">Start a Project</Link>
+                  <Link href={settings.detailCtaPrimaryUrl}>{settings.detailCtaPrimaryLabel}</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link href="/case-studies">View More Case Studies</Link>
+                  <Link href={settings.detailCtaSecondaryUrl}>{settings.detailCtaSecondaryLabel}</Link>
                 </Button>
               </div>
             </div>

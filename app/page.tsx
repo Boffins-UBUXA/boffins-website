@@ -4,42 +4,50 @@ import { HeroSection } from "@/components/sections/hero-section"
 import { StatsSection } from "@/components/sections/stats-section"
 import { DivisionsSection } from "@/components/sections/divisions-section"
 import { FeaturesSection } from "@/components/sections/features-section"
-import { BlogPreview } from "@/components/blog-preview"
+import BlogPreview from "@/components/blog-preview"
 import { CTASection } from "@/components/sections/cta-section"
+import { getHomepageData } from "@/lib/api/homepage"
 import { landingPageData } from "@/lib/data/landing-page"
+import type { HomepageData } from "@/lib/api/homepage"
 
-export default function HomePage() {
-  // Transform icon functions to React elements for stats
-  const statsWithIcons = landingPageData.stats.map((stat) => ({
-    ...stat,
-    icon: <stat.icon className="h-8 w-8" />,
-  }))
+type HomePageViewData = HomepageData
 
-  // Transform icon functions to React elements for divisions
-  const divisionsWithIcons = landingPageData.divisions.map((division) => ({
-    ...division,
-    icon: <division.icon className="h-6 w-6" />,
-  }))
+export default async function HomePage() {
+  let homepageData: HomePageViewData
+
+  try {
+    homepageData = await getHomepageData()
+  } catch (error) {
+    console.error("Failed to fetch homepage data:", error)
+    // Fallback to static data
+    homepageData = {
+      ...landingPageData,
+      divisionsTitle: "Our Specialized Divisions",
+      divisionsSubtitle:
+        "Each division operates semi-independently while collaborating within the Boffins ecosystem to deliver comprehensive technology solutions.",
+      blogPosts: [],
+    }
+  }
 
   return (
     <div className="min-h-screen">
       <Header />
 
-      <HeroSection {...landingPageData.hero} />
+      <HeroSection {...homepageData.hero} />
 
-      <StatsSection stats={statsWithIcons} />
+      <StatsSection stats={homepageData.stats} />
 
       <DivisionsSection
-        divisions={divisionsWithIcons}
-        title="Our Specialized Divisions"
-        subtitle="Each division operates semi-independently while collaborating within the Boffins ecosystem to deliver comprehensive technology solutions."
+        divisions={homepageData.divisions}
+        title={homepageData.divisionsTitle}
+        subtitle={homepageData.divisionsSubtitle}
       />
 
-      <FeaturesSection {...landingPageData.features} />
+      <FeaturesSection {...homepageData.features} />
 
-      <BlogPreview />
+      <BlogPreview initialPosts={homepageData.blogPosts} />
 
-      <CTASection {...landingPageData.cta} background="gradient" />
+      <CTASection {...homepageData.cta} background="gradient" />
 
       <Footer />
     </div>
