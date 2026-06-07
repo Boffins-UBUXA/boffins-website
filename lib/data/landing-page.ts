@@ -105,7 +105,7 @@ export const landingPageData = {
       "Let's discuss how our specialized divisions can work together to deliver the perfect solution for your unique challenges.",
     primaryCTA: {
       text: "Start Your Project",
-      href: "https://wa.me/2348061286691?text=I%20want%20to%20know%20more%20about%20the%20project",
+      href: "https://wa.me/23480156653196?text=I%20want%20to%20know%20more%20about%20the%20project",
       external: true,
     },
     secondaryCTA: {
