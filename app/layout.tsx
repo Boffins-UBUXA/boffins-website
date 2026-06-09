@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AnalyticsProvider } from "@/components/analytics-provider"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -87,6 +88,7 @@ export default function RootLayout({
           <Suspense fallback={null}>{children}</Suspense>
           <ScrollToTop />
           <Analytics />
+          <AnalyticsProvider />
         </ThemeProvider>
       </body>
     </html>
