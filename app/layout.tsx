@@ -7,6 +7,7 @@ import { Suspense } from "react"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AnalyticsProvider } from "@/components/analytics-provider"
+import { AnalyticsPixels } from "@/components/analytics-pixels"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -87,6 +88,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Suspense fallback={null}>{children}</Suspense>
           <ScrollToTop />
+          <AnalyticsPixels />
           <Analytics />
           <AnalyticsProvider />
         </ThemeProvider>

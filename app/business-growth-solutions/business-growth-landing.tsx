@@ -65,22 +65,22 @@ const initialFormState: FormState = {
 const websiteValueCards = [
   {
     title: "Explain Your Business Fast",
-    description: "One link. Clear offer. Less repeating yourself on WhatsApp.",
+    description: "One clear link that tells customers what you do, who it is for, and how to start.",
     icon: FileText,
   },
   {
     title: "Filter Serious Buyers",
-    description: "Ask for need, budget, and timeline before the chat starts.",
+    description: "Collect need, budget, and timeline before your team spends time on WhatsApp.",
     icon: Filter,
   },
   {
     title: "Build Trust Before the Chat",
-    description: "Show services, proof, prices, and contact details clearly.",
+    description: "Show services, proof, pricing direction, and contact details in one place.",
     icon: ShieldCheck,
   },
   {
     title: "Support Your Ads",
-    description: "Send ad clicks to a page built for action, not confusion.",
+    description: "Send Instagram, Facebook, TikTok, LinkedIn, and referral clicks to a page built for action.",
     icon: Megaphone,
   },
 ]
@@ -88,22 +88,22 @@ const websiteValueCards = [
 const problemCards = [
   {
     title: "People Keep Asking What You Do",
-    description: "You keep typing the same explanation again and again.",
+    description: "You repeat the same explanation on calls and WhatsApp because there is no clear page to send.",
     icon: MessageCircle,
   },
   {
-    title: "Your Ads Bring Messages, But Many Are Not Serious",
-    description: "Too many chats. Too few ready buyers.",
+    title: "Ads Bring Messages, Not Buyers",
+    description: "Your ads get attention, but many people are not ready, not clear, or not qualified.",
     icon: MousePointerClick,
   },
   {
-    title: "Customers Do Not Understand Your Offer Quickly",
-    description: "When your offer is unclear, customers delay or move on.",
+    title: "Customers Do Not Understand Your Offer",
+    description: "When your offer is confusing, people delay, compare randomly, or move on.",
     icon: UsersRound,
   },
   {
-    title: "Your Business Is Scattered",
-    description: "Leads, payments, stock, and follow-ups live everywhere.",
+    title: "Your Business Process Is Scattered",
+    description: "Leads, payments, stock, customer records, follow-up, and reports live in different places.",
     icon: LayoutDashboard,
   },
 ]
@@ -111,22 +111,22 @@ const problemCards = [
 const outcomeCards = [
   {
     title: "More Serious Enquiries",
-    description: "Attract people who already understand what they need.",
+    description: "People arrive knowing what you offer, what it may cost, and why it matters.",
     icon: BadgeCheck,
   },
   {
     title: "Better Lead Conversion",
-    description: "Turn ad clicks and referrals into structured enquiries.",
+    description: "Turn social media traffic and referrals into structured enquiries that are easier to close.",
     icon: TrendingUp,
   },
   {
     title: "Improved Business Operations",
-    description: "Reduce manual tracking and organize your process.",
+    description: "Replace repeated manual work with forms, dashboards, workflows, reminders, and reports.",
     icon: Workflow,
   },
   {
     title: "Custom Digital Products",
-    description: "Build apps, portals, dashboards, and SaaS products.",
+    description: "Build apps, portals, dashboards, SaaS platforms, and systems made for your business model.",
     icon: PackageCheck,
   },
 ]
@@ -134,50 +134,50 @@ const outcomeCards = [
 const serviceCards = [
   {
     title: "Website Development",
-    description: "A professional online presence customers can trust.",
+    description: "Professional business websites that explain your brand, services, proof, and contact flow.",
     bestFor: "Trust and clarity",
     icon: PanelTop,
   },
   {
     title: "Sales / Lead Funnel Pages",
-    description: "Pages for ads, offers, launches, and lead collection.",
+    description: "Focused pages for ads, offers, launches, consultation requests, and lead qualification.",
     bestFor: "Ads and campaigns",
     icon: Rocket,
   },
   {
     title: "Web Applications",
-    description: "Dashboards, portals, CRMs, booking, and admin tools.",
+    description: "Customer portals, admin dashboards, CRMs, booking systems, inventory, and internal tools.",
     bestFor: "Operations online",
     icon: Code2,
   },
   {
     title: "Mobile Applications",
-    description: "Customer, staff, agent, and field operations apps.",
-    bestFor: "Customer and staff apps",
+    description: "Customer apps, staff apps, agent apps, and field operation apps for Android and iOS.",
+    bestFor: "Mobile workflows",
     icon: Smartphone,
   },
   {
     title: "Business Automation",
-    description: "Automate follow-up, reports, reminders, and operations.",
+    description: "Automate follow-up, approvals, reports, reminders, records, onboarding, and repetitive tasks.",
     bestFor: "Less manual work",
     icon: Bot,
   },
   {
     title: "SaaS Platforms",
-    description: "For founders building subscription-based digital products.",
+    description: "Subscription products, multi-user platforms, dashboards, billing flows, and product MVPs.",
     bestFor: "Digital product founders",
     icon: Building2,
   },
   {
     title: "Custom Software",
-    description: "Systems for business processes normal tools cannot handle.",
-    bestFor: "Unique business process",
+    description: "Systems for unique business processes that normal off-the-shelf tools cannot handle well.",
+    bestFor: "Special workflows",
     icon: BriefcaseBusiness,
   },
   {
     title: "Digital Business Setup",
-    description: "Website, WhatsApp flow, Google presence, and forms.",
-    bestFor: "First digital structure",
+    description: "Website, WhatsApp flow, Google presence, lead forms, analytics, and basic digital structure.",
+    bestFor: "First digital setup",
     icon: Globe2,
   },
 ]
@@ -187,25 +187,25 @@ const pricingCards = [
     title: "Website Development",
     oldPrice: "₦250,000",
     newPrice: "₦150,000",
-    detail: "Website, service pages, trust signals, contact flow.",
+    detail: "Business website, service pages, trust signals, contact flow, and mobile-friendly structure.",
   },
   {
     title: "Sales / Lead Funnel Page",
     oldPrice: "₦300,000",
     newPrice: "₦180,000",
-    detail: "Ad-ready page with offer, proof, pricing, and CTA.",
+    detail: "Ad-ready page with offer, proof, pricing direction, qualification form, and WhatsApp CTA.",
   },
   {
     title: "Business Automation / Internal System",
     oldPrice: "₦5,000,000",
     newPrice: "₦3,500,000",
-    detail: "Dashboards, records, workflows, and reports.",
+    detail: "Dashboards, records, workflows, approvals, notifications, reports, and team access.",
   },
   {
     title: "Web / Mobile App Development",
     oldPrice: "₦15,000,000",
     newPrice: "₦10,000,000",
-    detail: "Apps, portals, SaaS products, and platforms.",
+    detail: "Apps, portals, SaaS products, marketplaces, MVPs, and customer-facing platforms.",
   },
 ]
 
@@ -219,23 +219,23 @@ const objectionCards = [
 const proofItems = [
   {
     title: "Ubuxa",
-    label: "Ubuxa — A Boffins-built product for renewable energy operations.",
+    label: "A product Boffins helped build",
     description:
-      "A Boffins-built digital operations platform for renewable energy businesses, supporting CRM, sales, inventory, agents, installers, and operational visibility.",
+      "A digital product direction for renewable energy operations, designed around business visibility, records, agents, customers, sales, and operational control.",
     image: "/images/case-studies/ubuxa.jpg",
   },
   {
     title: "Bokana Electronics",
     label: "Product visibility and brand presentation",
     description:
-      "Digital and business support for product visibility, online positioning, and customer-facing brand presentation.",
+      "Digital business support for product visibility, customer-facing presentation, online positioning, and clearer enquiry flow.",
     image: "/digital-transformation-small-business.jpg",
   },
   {
     title: "Tims Auto",
     label: "Service visibility and customer trust",
     description:
-      "Business-facing digital support example for service visibility, customer trust, and online presence.",
+      "Business-facing digital support for a service brand that needs customers to understand services, trust the business, and make enquiries.",
     image: "/automotive-service-website-booking.jpg",
   },
 ]
@@ -275,22 +275,15 @@ const problemToSolveOptions = [
   "Other",
 ]
 
-const budgetRangeOptions = [
-  "₦150k – ₦300k",
-  "₦300k – ₦1m",
-  "₦1m – ₦5m",
-  "₦5m – ₦10m",
-  "₦10m+",
-  "Not sure yet",
-]
+const budgetRangeOptions = ["₦150k - ₦300k", "₦300k - ₦1m", "₦1m - ₦5m", "₦5m - ₦10m", "₦10m+", "Not sure yet"]
 
-const timelineOptions = ["Immediately", "This month", "Next month", "Still planning"]
+const timelineOptions = ["Immediately", "This month", "Next month", "1 - 3 months", "Still planning"]
 
 const faqItems = [
   {
     question: "How much does it cost to build a website?",
     answer:
-      "Website development currently starts from ₦150,000. Final pricing depends on the number of pages, design needs, features, integrations, timeline, and business requirements.",
+      "Website development currently starts from ₦150,000. Final pricing depends on pages, content, design, features, integrations, timeline, and business requirements.",
   },
   {
     question: "Will a website automatically bring customers?",
@@ -299,13 +292,12 @@ const faqItems = [
   },
   {
     question: "Can I pay in phases?",
-    answer:
-      "Yes. Payment phases can be discussed based on the project type, scope, and timeline.",
+    answer: "Yes. Payment phases can be discussed based on the project type, scope, milestone plan, and timeline.",
   },
   {
     question: "How long does it take?",
     answer:
-      "Simple websites and landing pages can be completed faster. Web apps, mobile apps, automation, and custom systems require more planning, design, development, testing, and review.",
+      "Simple websites and landing pages can be completed faster. Apps, automation, SaaS platforms, and custom systems need planning, design, development, testing, and review.",
   },
   {
     question: "Do I need a mobile app immediately?",
@@ -315,7 +307,7 @@ const faqItems = [
   {
     question: "Can Boffins build a custom system for my business?",
     answer:
-      "Yes. Boffins builds custom software, dashboards, portals, automation tools, SaaS platforms, and internal systems based on business needs.",
+      "Yes. Boffins builds custom software, dashboards, portals, automation tools, SaaS platforms, internal systems, and web/mobile applications based on business needs.",
   },
   {
     question: "Do you work with businesses outside Abuja or Nigeria?",
@@ -325,11 +317,11 @@ const faqItems = [
   {
     question: "Do you provide maintenance after launch?",
     answer:
-      "Yes. Maintenance, updates, hosting support, content updates, and technical support can be discussed based on the project.",
+      "Yes. Maintenance, updates, hosting support, backups, content updates, and technical support can be arranged based on the project.",
   },
 ]
 
-const trackEvent = (eventName: string, payload?: Record<string, unknown>) => {
+function trackLeadEvent(eventName: string, payload: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return
 
   console.log("[Analytics Placeholder]", eventName, payload)
@@ -341,6 +333,7 @@ const trackEvent = (eventName: string, payload?: Record<string, unknown>) => {
   const win = window as Window & {
     fbq?: (action: string, event: string, payload?: Record<string, unknown>) => void
     gtag?: (...args: unknown[]) => void
+    fbq?: (action: string, event: string, payload?: Record<string, unknown>) => void
     ttq?: { track?: (event: string, payload?: Record<string, unknown>) => void }
   }
 
@@ -356,18 +349,20 @@ export function BusinessGrowthLanding() {
   const qualificationStartedRef = useRef(false)
   const qualificationCompletedRef = useRef(false)
 
-  const isFormComplete = Object.values(form).every((value) => value.length > 0)
+  const isFormComplete = Object.values(form).every((value) => value.trim().length > 0)
 
   const whatsappUrl = useMemo(() => {
-    const message = `Hello Boffins Technology, I am interested in your business growth solution.
-
-Service needed: ${form.serviceType}
-Business type: ${form.businessType}
-Problem I want to solve: ${form.problemToSolve}
-Budget range: ${form.budgetRange}
-Timeline: ${form.timeline}
-
-I would like to discuss how Boffins can help my business.`
+    const message = [
+      "Hello Boffins Technology, I came from the Business Growth Solutions page.",
+      "",
+      `Service needed: ${form.serviceType}`,
+      `Business type: ${form.businessType}`,
+      `Problem I want to solve: ${form.problemToSolve}`,
+      `Budget range: ${form.budgetRange}`,
+      `Timeline: ${form.timeline}`,
+      "",
+      "Please advise on the best solution, estimated scope, and next steps.",
+    ].join("\n")
 
     return `https://wa.me/${BOFFINS_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
   }, [form])
@@ -378,7 +373,7 @@ I would like to discuss how Boffins can help my business.`
     if (!pricingSection || typeof IntersectionObserver === "undefined") {
       if (!pricingTrackedRef.current) {
         pricingTrackedRef.current = true
-        trackEvent("pricing_view")
+        trackLeadEvent("pricing_view")
       }
       return
     }
@@ -387,7 +382,7 @@ I would like to discuss how Boffins can help my business.`
       ([entry]) => {
         if (entry.isIntersecting && !pricingTrackedRef.current) {
           pricingTrackedRef.current = true
-          trackEvent("pricing_view")
+          trackLeadEvent("pricing_view")
           observer.disconnect()
         }
       },
@@ -395,48 +390,30 @@ I would like to discuss how Boffins can help my business.`
     )
 
     observer.observe(pricingSection)
-
     return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
     if (isFormComplete && !qualificationCompletedRef.current) {
       qualificationCompletedRef.current = true
-      trackEvent("qualification_completion", {
-        serviceType: form.serviceType,
-        businessType: form.businessType,
-        problemToSolve: form.problemToSolve,
-        budgetRange: form.budgetRange,
-        timeline: form.timeline,
-      })
+      trackLeadEvent("qualification_completion", form)
     }
   }, [form, isFormComplete])
 
   function updateField(field: keyof FormState, value: string) {
     if (value && !qualificationStartedRef.current) {
       qualificationStartedRef.current = true
-      trackEvent("qualification_start")
+      trackLeadEvent("qualification_start")
     }
 
-    if (field === "serviceType" && value) {
-      trackEvent("selected_service", { serviceType: value })
-    }
-
-    if (field === "budgetRange" && value) {
-      trackEvent("selected_budget", { budgetRange: value })
-    }
+    if (field === "serviceType" && value) trackLeadEvent("selected_service", { serviceType: value })
+    if (field === "budgetRange" && value) trackLeadEvent("selected_budget", { budgetRange: value })
 
     setForm((current) => ({ ...current, [field]: value }))
   }
 
   function trackWhatsappClick() {
-    trackEvent("whatsapp_click", {
-      serviceType: form.serviceType,
-      businessType: form.businessType,
-      problemToSolve: form.problemToSolve,
-      budgetRange: form.budgetRange,
-      timeline: form.timeline,
-    })
+    trackLeadEvent("whatsapp_click", form)
   }
 
   return (
@@ -476,27 +453,27 @@ function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-[#061923] text-white">
       <Image
-        src="/business-growth/hero-business-growth.png"
+        src="/modern-technology-workspace-with-multiple-screens.jpg"
         alt=""
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[62%_center]"
+        className="object-cover object-center opacity-35"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,25,35,0.96)_0%,rgba(6,25,35,0.82)_38%,rgba(6,25,35,0.3)_76%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(6,25,35,0.98)_0%,rgba(7,68,82,0.88)_54%,rgba(246,118,39,0.42)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
 
-      <div className="container relative mx-auto px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <div className="container relative mx-auto px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="max-w-4xl">
           <Badge className="mb-5 max-w-full justify-start whitespace-normal border-white/15 bg-white/10 text-left leading-5 text-white hover:bg-white/10">
-            For Nigerian businesses using ads, referrals, and WhatsApp
+            For Nigerian businesses using ads, referrals, social media, and WhatsApp
           </Badge>
           <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-            Turn Your Business Into a Link Customers Can Trust
+            Turn your business into a digital system customers can trust.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-white/90 sm:text-lg">
-            Build a website, landing page, app, or automation system that explains
-            your offer fast and sends serious buyers to WhatsApp.
+            Boffins Technology builds websites, landing pages, apps, automation, SaaS platforms, and custom software
+            that explain your offer, qualify leads, improve operations, and help your business grow.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -521,11 +498,7 @@ function HeroSection() {
         </div>
 
         <div className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-3">
-          {[
-            "Ad click",
-            "Trusted page",
-            "Serious WhatsApp chat",
-          ].map((item, index) => (
+          {["Ad or referral click", "Clear trusted page", "Qualified WhatsApp chat"].map((item, index) => (
             <div
               key={item}
               className="flex items-center gap-3 rounded-lg border border-white/15 bg-white/10 p-4 text-sm font-semibold backdrop-blur"
@@ -545,14 +518,15 @@ function HeroSection() {
 function WebsiteValueSection() {
   return (
     <SectionShell
-      eyebrow="Website value"
-      title="Your Website Should Do More Than Look Fine"
-      intro="The job is simple: make customers understand, trust, and take action."
+      eyebrow="Why this matters"
+      title="Your website should do more than look fine"
+      intro="The job is simple: make customers understand, trust, and take action without asking too many basic questions."
     >
       <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <VisualImage
-          src="/business-growth/funnel-journey.png"
-          alt="Visual flow from social media to website to qualified WhatsApp chat"
+          src="/boffins-bespoke-hero-image.png"
+          alt="Boffins digital business growth services"
+          objectPosition="center"
         />
         <div className="grid gap-3 sm:grid-cols-2">
           {websiteValueCards.map((item) => (
@@ -566,11 +540,7 @@ function WebsiteValueSection() {
 
 function ProblemCardsSection() {
   return (
-    <SectionShell
-      eyebrow="Business problems"
-      title="Common Problems We Fix"
-      muted
-    >
+    <SectionShell eyebrow="Business problems" title="Common problems Boffins helps you fix" muted>
       <CardGrid>
         {problemCards.map((item) => (
           <IconCard key={item.title} {...item} />
@@ -582,17 +552,18 @@ function ProblemCardsSection() {
 
 function OutcomeCardsSection() {
   return (
-    <SectionShell eyebrow="Growth outcomes" title="What You Can Achieve">
+    <SectionShell
+      eyebrow="Growth outcomes"
+      title="What your business can achieve"
+      intro="We focus on business results first, then choose the right technology to support the result."
+    >
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div className="grid gap-3 sm:grid-cols-2">
           {outcomeCards.map((item) => (
             <IconCard key={item.title} compact {...item} />
           ))}
         </div>
-        <VisualImage
-          src="/business-growth/operations-dashboard.png"
-          alt="Nigerian business team using an organized digital operations dashboard"
-        />
+        <VisualImage src="/financial-dashboard-revenue-analytics-billing-syst.jpg" alt="Business dashboard analytics" />
       </div>
     </SectionShell>
   )
@@ -603,8 +574,8 @@ function ServicesSection() {
     <SectionShell
       id="services"
       eyebrow="Services"
-      title="What Boffins Can Build for Your Business"
-      intro="Pick the right starting point. We help you choose if you are not sure."
+      title="What Boffins can build for your business"
+      intro="Pick the right starting point. If you are not sure, the qualification form helps us recommend one."
       muted
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -615,10 +586,8 @@ function ServicesSection() {
                 <Icon className="h-6 w-6" />
               </div>
               <h3 className="text-base font-semibold leading-snug">{title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-6 text-muted-foreground">
-                {description}
-              </p>
-              <Badge variant="outline" className="mt-4">
+              <p className="mt-2 flex-1 text-sm leading-6 text-muted-foreground">{description}</p>
+              <Badge variant="outline" className="mt-4 max-w-full whitespace-normal text-left">
                 Best for: {bestFor}
               </Badge>
             </CardContent>
@@ -629,24 +598,18 @@ function ServicesSection() {
   )
 }
 
-function PricingSection({
-  pricingRef,
-}: {
-  pricingRef: MutableRefObject<HTMLElement | null>
-}) {
+function PricingSection({ pricingRef }: { pricingRef: MutableRefObject<HTMLElement | null> }) {
   return (
     <section id="pricing" ref={pricingRef} className="bg-[#061923] py-14 text-white sm:py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-secondary">
-            Starting prices
-          </p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-secondary">Starting prices</p>
           <h2 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">
-            Starting Offers for Serious Business Owners
+            Starting offers for serious business owners
           </h2>
           <p className="mt-3 text-sm leading-6 text-white/80 sm:text-base">
-            All prices are starting prices. Final pricing depends on scope, features,
-            timeline, integrations, design needs, and business requirements.
+            All prices are starting prices. Final pricing depends on scope, features, timeline, integrations, design
+            needs, content, and business requirements.
           </p>
         </div>
 
@@ -659,15 +622,10 @@ function PricingSection({
               <CardContent className="space-y-4 p-5 pt-0">
                 <div className="space-y-1">
                   <p className="text-sm text-muted-foreground">
-                    Old starting price:{" "}
-                    <span className="line-through">{item.oldPrice}</span>
+                    Old starting price: <span className="line-through">{item.oldPrice}</span>
                   </p>
-                  <p className="text-sm font-medium text-foreground">
-                    Current starting offer:
-                  </p>
-                  <p className="text-3xl font-bold leading-tight text-primary">
-                    Starting from {item.newPrice}
-                  </p>
+                  <p className="text-sm font-medium text-foreground">Current starting offer:</p>
+                  <p className="text-3xl font-bold leading-tight text-primary">Starting from {item.newPrice}</p>
                 </div>
                 <p className="text-sm leading-6 text-muted-foreground">{item.detail}</p>
               </CardContent>
@@ -694,20 +652,16 @@ function PricingSection({
 
 function ObjectionHandlingSection() {
   return (
-    <SectionShell
-      eyebrow="A common concern"
-      title="“I Built a Website Before and It Did Not Bring Sales”"
-    >
+    <SectionShell eyebrow="A common concern" title="I built a website before and it did not bring sales">
       <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className="space-y-4 text-base leading-7 text-muted-foreground">
           <p>
-            That happens when a website is only an online flyer. A proper sales page
-            explains your offer, shows proof, collects useful details, and sends serious
-            people to WhatsApp.
+            That usually happens when a website is only an online flyer. A useful sales page explains your offer, shows
+            proof, gives pricing direction, collects useful details, and sends serious people to WhatsApp.
           </p>
           <p>
-            Boffins helps you shape the journey from social media click to enquiry,
-            qualification, follow-up, and conversion.
+            Boffins helps shape the full journey from social media click to enquiry, qualification, follow-up, and
+            conversion.
           </p>
         </div>
 
@@ -728,8 +682,8 @@ function ProofSection() {
   return (
     <SectionShell
       eyebrow="Proof"
-      title="Work & Product Examples"
-      intro="Examples of digital products, visibility, trust, and operations thinking."
+      title="Work and product examples"
+      intro="Examples of digital product thinking, visibility, trust, and business operations support."
       muted
     >
       <div className="grid gap-5 md:grid-cols-3">
@@ -745,18 +699,13 @@ function ProofSection() {
               />
             </div>
             <CardHeader className="p-5 pb-2">
-              <Badge
-                variant="secondary"
-                className="mb-2 max-w-full justify-start whitespace-normal text-left leading-5"
-              >
+              <Badge variant="secondary" className="mb-2 max-w-full justify-start whitespace-normal text-left leading-5">
                 {item.label}
               </Badge>
               <CardTitle className="text-xl">{item.title}</CardTitle>
             </CardHeader>
             <CardContent className="p-5 pt-0">
-              <p className="text-sm leading-6 text-muted-foreground">
-                {item.description}
-              </p>
+              <p className="text-sm leading-6 text-muted-foreground">{item.description}</p>
             </CardContent>
           </Card>
         ))}
@@ -785,24 +734,21 @@ function QualificationFormSection({
           <Badge variant="secondary">Quick qualification</Badge>
           <div>
             <h2 className="text-3xl font-bold leading-tight sm:text-4xl">
-              Before You Chat With Us, Tell Us What You Need
+              Before you chat with us, tell us what you need
             </h2>
             <p className="mt-3 max-w-xl text-base leading-7 text-muted-foreground">
-              Answer a few quick questions so we can understand your business before the
-              WhatsApp conversation starts.
+              Answer a few quick questions so we can understand your business before the WhatsApp conversation starts.
             </p>
           </div>
           <div className="grid gap-3">
-            {[
-              "No long proposal form",
-              "WhatsApp message is prepared automatically",
-              "Faster recommendation from Boffins",
-            ].map((item) => (
-              <div key={item} className="flex items-center gap-3 text-sm font-medium">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-                {item}
-              </div>
-            ))}
+            {["No long proposal form", "WhatsApp message is prepared automatically", "Faster recommendation from Boffins"].map(
+              (item) => (
+                <div key={item} className="flex items-center gap-3 text-sm font-medium">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  {item}
+                </div>
+              ),
+            )}
           </div>
         </div>
 
@@ -870,16 +816,12 @@ function QualificationFormSection({
 
 function FAQSection() {
   return (
-    <SectionShell eyebrow="FAQ" title="Quick Answers Before You Start" muted>
+    <SectionShell eyebrow="FAQ" title="Quick answers before you start" muted>
       <Accordion type="single" collapsible className="mx-auto max-w-3xl rounded-lg border bg-background px-4">
         {faqItems.map((item, index) => (
           <AccordionItem key={item.question} value={`faq-${index}`}>
-            <AccordionTrigger className="text-left text-base">
-              {item.question}
-            </AccordionTrigger>
-            <AccordionContent className="leading-6 text-muted-foreground">
-              {item.answer}
-            </AccordionContent>
+            <AccordionTrigger className="text-left text-base">{item.question}</AccordionTrigger>
+            <AccordionContent className="leading-6 text-muted-foreground">{item.answer}</AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
@@ -902,12 +844,11 @@ function FinalCTASection({
         <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <h2 className="text-2xl font-bold leading-tight sm:text-3xl">
-              Ready to Build a Digital System That Helps Your Business Grow?
+              Ready to build a digital system that helps your business grow?
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-primary-foreground/80 sm:text-base">
-              Answer the quick questions above and continue to WhatsApp with your
-              project details. This helps us understand your business faster and
-              recommend the right solution.
+              Answer the quick questions above and continue to WhatsApp with your project details. This helps us
+              understand your business faster and recommend the right solution.
             </p>
           </div>
 
@@ -962,15 +903,9 @@ function SectionShell({
     <section id={id} className={muted ? "bg-muted/60 py-14 sm:py-16" : "py-14 sm:py-16"}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-secondary">
-            {eyebrow}
-          </p>
-          <h2 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">
-            {title}
-          </h2>
-          {intro ? (
-            <p className="mt-3 text-base leading-7 text-muted-foreground">{intro}</p>
-          ) : null}
+          <p className="text-sm font-semibold uppercase tracking-wide text-secondary">{eyebrow}</p>
+          <h2 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">{title}</h2>
+          {intro ? <p className="mt-3 text-base leading-7 text-muted-foreground">{intro}</p> : null}
         </div>
         {children}
       </div>
@@ -978,7 +913,15 @@ function SectionShell({
   )
 }
 
-function VisualImage({ src, alt }: { src: string; alt: string }) {
+function VisualImage({
+  src,
+  alt,
+  objectPosition = "center",
+}: {
+  src: string
+  alt: string
+  objectPosition?: string
+}) {
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border bg-muted shadow-sm sm:aspect-[16/9]">
       <Image
@@ -987,6 +930,7 @@ function VisualImage({ src, alt }: { src: string; alt: string }) {
         fill
         sizes="(min-width: 1024px) 50vw, 100vw"
         className="object-cover"
+        style={{ objectPosition }}
       />
     </div>
   )
@@ -1022,7 +966,11 @@ function IconCard({
         <h3 className={compact ? "text-base font-semibold leading-tight" : "text-lg font-semibold leading-tight"}>
           {title}
         </h3>
-        <p className={compact ? "mt-2 text-sm leading-5 text-muted-foreground" : "mt-3 text-sm leading-6 text-muted-foreground"}>
+        <p
+          className={
+            compact ? "mt-2 text-sm leading-5 text-muted-foreground" : "mt-3 text-sm leading-6 text-muted-foreground"
+          }
+        >
           {description}
         </p>
       </CardContent>
@@ -1046,11 +994,7 @@ function ChoiceField({
   return (
     <div className="grid min-w-0 gap-3">
       <Label id={id}>{label}</Label>
-      <div
-        role="radiogroup"
-        aria-labelledby={id}
-        className="grid gap-2 sm:grid-cols-2"
-      >
+      <div role="radiogroup" aria-labelledby={id} className="grid gap-2 sm:grid-cols-2">
         {options.map((option) => (
           <button
             key={option}
