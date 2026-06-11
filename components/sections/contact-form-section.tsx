@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Send, Loader2, CheckCircle, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react"
 import { sectionStyles, responsive } from "@/lib/style-utils"
+import { trackEvent } from "@/lib/analytics"
 
 interface SocialMedia {
   facebook?: string
@@ -143,6 +144,11 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
     }
 
     setIsSubmitting(true)
+    
+    // Track form submission start
+    trackEvent("contact_form_submit_start", {
+      service: formData.service || "general",
+    })
 
     try {
       // Send email to info@boffinstechnology.com.ng
@@ -169,6 +175,11 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
       }
 
       // Success
+      trackEvent("Contact", {
+        service: formData.service || "general",
+        company: formData.company || "",
+      })
+
       setToast({
         show: true,
         title: "Message Sent Successfully!",
@@ -187,6 +198,11 @@ export function ContactFormSection({ divisions = [], className }: ContactFormSec
         message: "",
       })
     } catch (error) {
+      trackEvent("contact_form_submit_error", {
+        error: error instanceof Error ? error.message : "Unknown error",
+        service: formData.service || "general",
+      })
+
       setToast({
         show: true,
         title: "Failed to Send Message",

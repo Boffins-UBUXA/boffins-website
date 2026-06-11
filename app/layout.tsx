@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AnalyticsProvider } from "@/components/analytics-provider"
 import { AnalyticsPixels } from "@/components/analytics-pixels"
 import "./globals.css"
 
@@ -89,6 +90,7 @@ export default function RootLayout({
           <ScrollToTop />
           <AnalyticsPixels />
           <Analytics />
+          <AnalyticsProvider />
         </ThemeProvider>
       </body>
     </html>
