@@ -322,23 +322,13 @@ function trackLeadEvent(eventName: string, payload: Record<string, unknown> = {}
   console.info("[analytics-placeholder]", eventName, payload)
 
   const win = window as Window & {
-<<<<<<< Updated upstream
     gtag?: (...args: unknown[]) => void
-=======
-    // fbq?: (action: string, event: string, payload?: Record<string, unknown>) => void
-    // gtag?: (...args: unknown[]) => void
->>>>>>> Stashed changes
     fbq?: (action: string, event: string, payload?: Record<string, unknown>) => void
     ttq?: { track?: (event: string, payload?: Record<string, unknown>) => void }
   }
 
-<<<<<<< Updated upstream
   win.gtag?.("event", eventName, payload)
   win.fbq?.("trackCustom", eventName, payload)
-=======
-  win.fbq?.("trackCustom", eventName, payload)
-  // win.gtag?.("event", eventName, payload)
->>>>>>> Stashed changes
   win.ttq?.track?.(eventName, payload)
 }
 
