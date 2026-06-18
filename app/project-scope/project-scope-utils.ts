@@ -1,46 +1,74 @@
 import type { ProjectRoute, ProjectScopeAnswers } from "./project-scope-flow"
 
-const BOFFINS_WHATSAPP_NUMBER = "23480156653196"
+const BOFFINS_WHATSAPP_NUMBER = "2348156653196"
 
-export function getTrafficSource(searchParams: URLSearchParams) {
-  return (
-    searchParams.get("utm_source") ||
-    searchParams.get("source") ||
-    searchParams.get("ref") ||
-    "Direct / unknown"
-  )
+const sourceLabels: Record<string, string> = {
+  facebook: "Facebook",
+  instagram: "Instagram",
+  tiktok: "TikTok",
+  linkedin: "LinkedIn",
+  whatsapp: "WhatsApp",
+  referral: "Referral",
+}
+
+type SearchParamsLike = {
+  get: (name: string) => string | null
+}
+
+function answer(answers: ProjectScopeAnswers, key: string) {
+  return answers[key] || "Not selected"
+}
+
+export function getTrafficSource(searchParams: SearchParamsLike | null) {
+  const source = searchParams?.get("source")?.toLowerCase()
+
+  if (!source) {
+    return "Website"
+  }
+
+  return sourceLabels[source] || "Website"
+}
+
+export function buildWhatsAppMessage(route: ProjectRoute, answers: ProjectScopeAnswers, source: string) {
+  const sourceLine = `Source: ${source}`
+
+  if (route === "software") {
+    return `Hi Boffins Technology, I saw your ad and used the project scope page.
+
+I am interested in building software for my business.
+
+Here is my selection:
+- Main goal: ${answer(answers, "main_goal")}
+- Software for: ${answer(answers, "software_users")}
+- Main problem: ${answer(answers, "software_problem")}
+- Preferred platform: ${answer(answers, "preferred_platform")}
+- Budget: ${answer(answers, "budget")}
+- Timeline: ${answer(answers, "timeline")}
+
+Please I would like to discuss the best next step.
+
+${sourceLine}`
+  }
+
+  return `Hi Boffins Technology, I saw your ad and used the project scope page.
+
+I am looking to build a website / landing page.
+
+Here is my selection:
+- Main goal: ${answer(answers, "main_goal")}
+- Current issue: ${answer(answers, "trust_problem")}
+- What I want the page to do: ${answer(answers, "website_goal")}
+- Content readiness: ${answer(answers, "content_readiness")}
+- Budget: ${answer(answers, "budget")}
+- Timeline: ${answer(answers, "timeline")}
+
+Please I would like to discuss the best next step.
+
+${sourceLine}`
 }
 
 export function buildWhatsAppUrl(route: ProjectRoute, answers: ProjectScopeAnswers, source: string) {
-  const projectType = route === "software" ? "Software / Business System" : "Website / Landing Page"
-  const lines = [
-    "Hi Boffins Technology, I saw your ad and used the project scope page.",
-    "",
-    `Project type: ${projectType}`,
-    `Main goal: ${answers.main_goal || "Not selected"}`,
-  ]
+  const encodedMessage = encodeURIComponent(buildWhatsAppMessage(route, answers, source))
 
-  if (route === "software") {
-    lines.push(
-      `Software for: ${answers.software_users || "Not selected"}`,
-      `Main problem: ${answers.software_problem || "Not selected"}`,
-      `Preferred platform: ${answers.preferred_platform || "Not selected"}`,
-    )
-  } else {
-    lines.push(
-      `Current issue: ${answers.trust_problem || "Not selected"}`,
-      `Page goal: ${answers.website_goal || "Not selected"}`,
-      `Content readiness: ${answers.content_readiness || "Not selected"}`,
-    )
-  }
-
-  lines.push(
-    `Budget: ${answers.budget || "Not selected"}`,
-    `Timeline: ${answers.timeline || "Not selected"}`,
-    `Source: ${source}`,
-    "",
-    "Please advise on the best solution, estimated scope, and next steps.",
-  )
-
-  return `https://wa.me/${BOFFINS_WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`
+  return `https://wa.me/${BOFFINS_WHATSAPP_NUMBER}?text=${encodedMessage}`
 }

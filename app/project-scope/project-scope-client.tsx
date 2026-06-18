@@ -29,12 +29,12 @@ import { buildWhatsAppUrl, getTrafficSource } from "./project-scope-utils"
 const SWIPE_THRESHOLD = 80
 
 const cardTheme = {
-  orange: "from-[#0f766e] via-[#0ea5e9] to-[#ea580c]",
-  purple: "from-[#0f766e] via-[#0284c7] to-[#ea580c]",
-  green: "from-[#0d9488] via-[#0ea5e9] to-[#f97316]",
-  blue: "from-[#0369a1] via-[#0f766e] to-[#ea580c]",
-  pink: "from-[#0f766e] via-[#0891b2] to-[#f97316]",
-  dark: "from-[#061923] via-[#0f766e] to-[#7c2d12]",
+  orange: "from-orange-500 via-amber-500 to-rose-500",
+  purple: "from-violet-600 via-fuchsia-600 to-pink-600",
+  green: "from-emerald-500 via-teal-500 to-cyan-500",
+  blue: "from-blue-600 via-sky-500 to-cyan-400",
+  pink: "from-pink-600 via-rose-500 to-orange-500",
+  dark: "from-slate-950 via-teal-950 to-orange-950",
 } satisfies Record<ProjectScopeCard["accent"], string>
 
 const visualImages = {
@@ -175,8 +175,8 @@ export function ProjectScopeClient() {
   }
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#061923] text-white">
-      <div className="min-h-screen bg-[linear-gradient(135deg,#061923_0%,#0f766e_38%,#0ea5e9_68%,#ea580c_100%)]">
+    <main className="min-h-screen overflow-hidden bg-[#101828] text-white">
+      <div className="min-h-screen bg-[linear-gradient(135deg,#101828_0%,#0f766e_28%,#7c2d12_55%,#581c87_78%,#111827_100%)]">
         <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-5 sm:px-6 lg:px-8">
           <header className="flex items-center justify-between gap-4">
             <div className="min-w-0">
@@ -402,7 +402,7 @@ function SummaryScreen({
 
   return (
     <div className="overflow-hidden rounded-[2rem] bg-white text-slate-950 shadow-2xl">
-      <div className="bg-gradient-to-br from-[#0f766e] via-[#0ea5e9] to-[#ea580c] p-5 text-white sm:p-6">
+      <div className="bg-gradient-to-br from-emerald-500 via-sky-500 to-fuchsia-600 p-5 text-white sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-black uppercase tracking-[0.18em]">

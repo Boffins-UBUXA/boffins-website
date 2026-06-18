@@ -1,27 +1,32 @@
 import type { Metadata } from "next"
-import { Suspense } from "react"
 
 import { ProjectScopeClient } from "./project-scope-client"
 
 export const metadata: Metadata = {
   title: "Project Scope | Boffins Technology",
-  description: "Scope your website, landing page, software, or business system project before chatting with Boffins.",
+  description:
+    "Answer 6 quick questions and let Boffins Technology recommend the right website, app, software, or automation starting point for your business.",
   alternates: {
     canonical: "/project-scope",
   },
   openGraph: {
     title: "Project Scope | Boffins Technology",
-    description: "Answer a few quick cards so Boffins can understand your project direction faster.",
+    description:
+      "Answer 6 quick questions and let Boffins Technology recommend the right website, app, software, or automation starting point for your business.",
     url: "https://boffinstechnology.com.ng/project-scope",
     siteName: "Boffins Technology",
+    images: [
+      {
+        url: "/professional-business-manager.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Boffins Technology project scope funnel",
+      },
+    ],
     type: "website",
   },
 }
 
 export default function ProjectScopePage() {
-  return (
-    <Suspense fallback={null}>
-      <ProjectScopeClient />
-    </Suspense>
-  )
+  return <ProjectScopeClient />
 }

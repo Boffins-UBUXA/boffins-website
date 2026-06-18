@@ -33,7 +33,12 @@ import {
 
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -319,16 +324,21 @@ const faqItems = [
 function trackLeadEvent(eventName: string, payload: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return
 
-  console.info("[analytics-placeholder]", eventName, payload)
+  console.log("[Analytics Placeholder]", eventName, payload)
 
+  // Future integrations:
+  // Meta Pixel
+  // Google Analytics
+  // TikTok Pixel
   const win = window as Window & {
+    fbq?: (action: string, event: string, payload?: Record<string, unknown>) => void
     gtag?: (...args: unknown[]) => void
     fbq?: (action: string, event: string, payload?: Record<string, unknown>) => void
     ttq?: { track?: (event: string, payload?: Record<string, unknown>) => void }
   }
 
-  win.gtag?.("event", eventName, payload)
   win.fbq?.("trackCustom", eventName, payload)
+  win.gtag?.("event", eventName, payload)
   win.ttq?.track?.(eventName, payload)
 }
 

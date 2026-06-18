@@ -1,7 +1,5 @@
 export type ProjectRoute = "website" | "software" | null
 
-export type ProjectScopeAnswers = Record<string, string>
-
 export type AnswerOption = {
   id: "left" | "right"
   label: string
@@ -12,31 +10,35 @@ export type AnswerOption = {
 export type ProjectScopeCard = {
   id: string
   key: string
+  route: "shared" | Exclude<ProjectRoute, null>
   question: string
   helperText: string
-  accent: "orange" | "purple" | "green" | "blue" | "pink" | "dark"
   visualType: "trust" | "ads" | "content" | "budget" | "timeline" | "software" | "team" | "mobile"
-  options: [AnswerOption, AnswerOption]
+  accent: "orange" | "purple" | "green" | "blue" | "pink" | "dark"
+  options: AnswerOption[]
 }
 
+export type ProjectScopeAnswers = Record<string, string>
+
 export const sharedStartCard: ProjectScopeCard = {
-  id: "project-type",
+  id: "start",
   key: "main_goal",
-  question: "What do you want Boffins to help you build?",
-  helperText: "Start with the closest direction. We will use your answers to shape the WhatsApp brief.",
-  accent: "dark",
+  route: "shared",
+  question: "What do you want Boffins to help you fix first?",
+  helperText: "Let's know the kind of business problem you want to solve.",
   visualType: "trust",
+  accent: "orange",
   options: [
     {
       id: "left",
-      label: "Website or landing page",
-      value: "Website / Landing Page",
+      label: "I need more customers to trust me online.",
+      value: "Need more customers to trust the business online",
       route: "website",
     },
     {
       id: "right",
-      label: "Software or business system",
-      value: "Software / Business System",
+      label: "I need software to manage or grow my business.",
+      value: "Need software to manage or grow the business",
       route: "software",
     },
   ],
@@ -46,100 +48,105 @@ export const websiteCards: ProjectScopeCard[] = [
   {
     id: "trust-problem",
     key: "trust_problem",
-    question: "What is making customers hesitate right now?",
-    helperText: "This helps us know whether the page needs more clarity, proof, speed, or conversion focus.",
-    accent: "blue",
-    visualType: "ads",
+    route: "website",
+    question: "Do people still ask too many questions before they trust your business?",
+    helperText: "A good website should explain your business before the WhatsApp chat starts.",
+    visualType: "trust",
+    accent: "purple",
     options: [
       {
         id: "left",
-        label: "They do not understand my offer",
-        value: "Customers do not understand the offer clearly",
+        label: "Yes, I explain my business too much.",
+        value: "Explains business too much",
       },
       {
         id: "right",
-        label: "They ask many questions before buying",
-        value: "Customers need more trust and explanation before buying",
+        label: "No, they understand, but they don't buy fast.",
+        value: "People understand but do not buy fast",
       },
     ],
   },
   {
     id: "website-goal",
     key: "website_goal",
-    question: "What should the page do first?",
-    helperText: "A page can inform, qualify, sell, or collect leads. Picking the main job keeps it focused.",
+    route: "website",
+    question: "What should your page help you do first?",
+    helperText: "Your website should not just look fine. It should help customers take action.",
+    visualType: "ads",
     accent: "green",
-    visualType: "content",
     options: [
       {
         id: "left",
-        label: "Explain my business clearly",
-        value: "Explain the business clearly",
+        label: "Make my business look trusted.",
+        value: "Build trust and credibility",
       },
       {
         id: "right",
-        label: "Bring serious enquiries",
-        value: "Generate serious enquiries",
+        label: "Help me get better leads from ads.",
+        value: "Improve ad lead conversion",
       },
     ],
   },
   {
     id: "content-readiness",
     key: "content_readiness",
-    question: "How ready is your content?",
-    helperText: "Your answer tells us whether to plan mostly design/build work or content support too.",
-    accent: "orange",
+    route: "website",
+    question: "Do you already have your business content ready?",
+    helperText: "Logo, pictures, service details, pricing idea, and write-up help us move faster.",
     visualType: "content",
+    accent: "blue",
     options: [
       {
         id: "left",
-        label: "I have text, images, and details",
-        value: "Content is mostly ready",
+        label: "Yes, I have logo, pictures, and write-up.",
+        value: "Content is ready",
       },
       {
         id: "right",
-        label: "I need help shaping the content",
-        value: "Needs help with content and structure",
+        label: "No, I need help packaging everything.",
+        value: "Needs content packaging support",
       },
     ],
   },
   {
-    id: "budget",
+    id: "website-budget",
     key: "budget",
-    question: "What budget range should we plan around?",
-    helperText: "This keeps the recommendation realistic from the first conversation.",
-    accent: "pink",
+    route: "website",
+    question: "What budget range are you working with?",
+    helperText: "Websites start from ₦150k. Sales funnel pages start from ₦180k.",
     visualType: "budget",
+    accent: "pink",
     options: [
       {
         id: "left",
-        label: "Starter or lean budget",
-        value: "Starter / lean budget",
+        label: "Under ₦500k",
+        value: "Under ₦500k",
       },
       {
         id: "right",
-        label: "I can invest for stronger results",
-        value: "Growth / results-focused budget",
+        label: "₦500k and above",
+        value: "₦500k and above",
       },
     ],
   },
   {
-    id: "timeline",
+    id: "website-timeline",
     key: "timeline",
+    route: "website",
     question: "When do you want to start?",
     helperText: "Serious projects move faster when the scope is clear.",
-    accent: "dark",
     visualType: "timeline",
+    accent: "dark",
     options: [
       {
         id: "left",
-        label: "I want to scope it now.",
-        value: "Ready to scope now",
+        label: "I want to start this month.",
+        value: "Start this month",
       },
       {
         id: "right",
-        label: "I am planning ahead",
-        value: "Planning ahead",
+        label: "I am still planning.",
+        value: "Still planning",
       },
     ],
   },
@@ -149,90 +156,95 @@ export const softwareCards: ProjectScopeCard[] = [
   {
     id: "software-users",
     key: "software_users",
-    question: "Who will use the system most?",
-    helperText: "This helps us think about access, dashboards, approvals, and workflow complexity.",
-    accent: "blue",
-    visualType: "team",
+    route: "software",
+    question: "Who is the software mainly for?",
+    helperText: "This helps us know if you need a customer-facing product or an internal business system.",
+    visualType: "software",
+    accent: "purple",
     options: [
       {
         id: "left",
-        label: "My internal team",
-        value: "Internal team",
+        label: "My customers or end users.",
+        value: "Customers or end users",
       },
       {
         id: "right",
-        label: "Customers or external users",
-        value: "Customers / external users",
+        label: "My staff or internal team.",
+        value: "Staff or internal team",
       },
     ],
   },
   {
     id: "software-problem",
     key: "software_problem",
-    question: "What problem should the system solve first?",
-    helperText: "A clear first problem makes the first version easier to price, build, and improve.",
+    route: "software",
+    question: "What is the main wahala right now?",
+    helperText: "Software should remove stress, organize work, and help the business scale.",
+    visualType: "team",
     accent: "green",
-    visualType: "software",
     options: [
       {
         id: "left",
-        label: "Organize records and workflow",
-        value: "Organize records and workflow",
+        label: "Manual work, scattered records, and poor follow-up.",
+        value: "Manual work, scattered records, and poor follow-up",
       },
       {
         id: "right",
-        label: "Automate tasks and reporting",
-        value: "Automate tasks and reporting",
+        label: "I have a software/app idea I want to build.",
+        value: "New software or app idea",
       },
     ],
   },
   {
     id: "preferred-platform",
     key: "preferred_platform",
-    question: "Where should people use it?",
-    helperText: "Platform choice affects design, development time, and rollout plan.",
-    accent: "purple",
+    route: "software",
+    question: "Where do you want it to work first?",
+    helperText: "Start with the platform that solves the biggest problem first.",
     visualType: "mobile",
+    accent: "blue",
     options: [
       {
         id: "left",
-        label: "Web dashboard or portal",
-        value: "Web dashboard / portal",
+        label: "Web dashboard or portal.",
+        value: "Web dashboard or portal",
       },
       {
         id: "right",
-        label: "Mobile app or mobile-first system",
-        value: "Mobile app / mobile-first system",
+        label: "Mobile app.",
+        value: "Mobile app",
       },
     ],
   },
   {
-    id: "budget",
+    id: "software-budget",
     key: "budget",
-    question: "What budget range should we plan around?",
-    helperText: "This keeps the recommendation realistic from the first conversation.",
-    accent: "pink",
+    route: "software",
+    question: "What budget range are you working with?",
+    helperText: "Custom internal systems start from ₦3.5m. Web/mobile app projects start from ₦10m.",
     visualType: "budget",
+    accent: "pink",
     options: [
       {
         id: "left",
-        label: "Start with an MVP",
-        value: "MVP / phased budget",
+        label: "Under ₦15m",
+        value: "Under ₦15m",
       },
       {
         id: "right",
-        label: "Build a more complete version",
-        value: "Fuller product budget",
+        label: "₦15m and above",
+        value: "₦15m and above",
       },
     ],
   },
   {
-    id: "timeline",
+    id: "software-timeline",
     key: "timeline",
+    route: "software",
     question: "When do you want to start?",
-    helperText: "Serious projects move faster when the scope is clear.",
-    accent: "dark",
+    helperText: "Good software starts with proper scoping before development.",
     visualType: "timeline",
+    accent: "dark",
     options: [
       {
         id: "left",
@@ -241,8 +253,8 @@ export const softwareCards: ProjectScopeCard[] = [
       },
       {
         id: "right",
-        label: "I am planning ahead",
-        value: "Planning ahead",
+        label: "I am still planning.",
+        value: "Still planning",
       },
     ],
   },
