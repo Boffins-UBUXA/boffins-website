@@ -29,12 +29,12 @@ import { buildWhatsAppUrl, getTrafficSource } from "./project-scope-utils"
 const SWIPE_THRESHOLD = 80
 
 const cardTheme = {
-  orange: "from-orange-500 via-amber-500 to-rose-500",
-  purple: "from-violet-600 via-fuchsia-600 to-pink-600",
-  green: "from-emerald-500 via-teal-500 to-cyan-500",
-  blue: "from-blue-600 via-sky-500 to-cyan-400",
-  pink: "from-pink-600 via-rose-500 to-orange-500",
-  dark: "from-slate-950 via-teal-950 to-orange-950",
+  orange: "from-[#f67627]/30 via-[#0f766e]/20 to-white",
+  purple: "from-[#f67627]/30 via-[#0f766e]/20 to-white",
+  green: "from-[#f67627]/30 via-[#0f766e]/20 to-white",
+  blue: "from-[#f67627]/30 via-[#0f766e]/20 to-white",
+  pink: "from-[#f67627]/30 via-[#0f766e]/20 to-white",
+  dark: "from-[#f67627]/30 via-[#0f766e]/20 to-white",
 } satisfies Record<ProjectScopeCard["accent"], string>
 
 const visualImages = {
@@ -175,29 +175,35 @@ export function ProjectScopeClient() {
   }
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#101828] text-white">
-      <div className="min-h-screen bg-[linear-gradient(135deg,#101828_0%,#0f766e_28%,#7c2d12_55%,#581c87_78%,#111827_100%)]">
+    <main className="min-h-screen overflow-hidden bg-slate-50 text-slate-950">
+      <div
+        className="min-h-screen bg-slate-50"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at top left, rgba(7, 68, 82, 0.08), transparent 28%), radial-gradient(circle at bottom right, rgba(246, 118, 39, 0.08), transparent 36%)",
+        }}
+      >
         <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-5 sm:px-6 lg:px-8">
           <header className="flex items-center justify-between gap-4">
             <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/65">Boffins Technology</p>
-              <h1 className="mt-1 text-2xl font-black leading-tight sm:text-4xl">Project Scope</h1>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Boffins Technology</p>
+              <h1 className="mt-1 text-2xl font-black leading-tight text-slate-950 sm:text-4xl">Project Scope</h1>
             </div>
-            <div className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold shadow-sm backdrop-blur">
+            <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-950 shadow-sm">
               {showSummary ? "Done" : `${currentIndex + 1} of ${totalProjectScopeCards}`}
             </div>
           </header>
 
           <div className="grid flex-1 items-center gap-8 py-8 lg:grid-cols-[0.9fr_1.1fr]">
             <section className="hidden max-w-md lg:block">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white/85 shadow-sm backdrop-blur">
-                <Sparkles className="h-4 w-4" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm">
+                <Sparkles className="h-4 w-4 text-[#0f766e]" />
                 6 quick cards
               </div>
-              <h2 className="mt-5 text-5xl font-black leading-[0.98]">
+              <h2 className="mt-5 text-5xl font-black leading-[0.98] text-slate-950">
                 Scope your next move before the WhatsApp chat.
               </h2>
-              <p className="mt-5 max-w-sm text-base leading-7 text-white/75">
+              <p className="mt-5 max-w-sm text-base leading-7 text-slate-600">
                 Pick what fits. Swipe or tap. Boffins gets a clean message with your project direction.
               </p>
             </section>
@@ -328,8 +334,8 @@ function SwipeCard({
           </div>
 
           <div className="mt-4 flex-1">
-            <h2 className="text-2xl font-black leading-[1.04] text-white sm:text-3xl">{card.question}</h2>
-            <p className="mt-2 text-sm font-semibold leading-6 text-white/85 sm:text-base">{card.helperText}</p>
+            <h2 className="text-2xl font-black leading-[1.04] text-primary sm:text-3xl">{card.question}</h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-primary/85 sm:text-base">{card.helperText}</p>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
@@ -355,7 +361,9 @@ function AnswerButton({
     <button
       type="button"
       onClick={onClick}
-      className="flex min-h-16 w-full items-center justify-between gap-3 rounded-2xl bg-white px-4 py-3 text-left text-sm font-black leading-snug text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-white/95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+      onPointerDown={(e) => e.stopPropagation()}
+      onMouseDown={(e) => e.stopPropagation()}
+      className="flex min-h-16 w-full items-center justify-between gap-3 rounded-2xl bg-white px-4 py-3 text-left text-sm font-black leading-snug text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-[#0f766e]/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#0f766e]/30"
       aria-label={option.label}
     >
       {direction === "left" ? <ArrowLeft className="h-5 w-5 shrink-0 text-slate-500" /> : null}
@@ -372,7 +380,7 @@ function ProgressDots({ currentIndex }: { currentIndex: number }) {
         <span
           key={index}
           className={`h-2 rounded-full transition ${
-            index <= currentIndex ? "bg-white shadow-sm" : "bg-white/25"
+            index <= currentIndex ? "bg-primary shadow-sm" : "bg-white/25"
           }`}
         />
       ))}
@@ -401,8 +409,8 @@ function SummaryScreen({
   const projectType = route === "software" ? "Software / Business System" : "Website / Landing Page"
 
   return (
-    <div className="overflow-hidden rounded-[2rem] bg-white text-slate-950 shadow-2xl">
-      <div className="bg-gradient-to-br from-emerald-500 via-sky-500 to-fuchsia-600 p-5 text-white sm:p-6">
+    <div className="overflow-hidden rounded-[2rem] bg-white text-slate-950 shadow-2xl ring-1 ring-slate-200">
+      <div className="bg-gradient-to-br from-[#0f766e] via-[#074452]-85 p-5 text-white sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-black uppercase tracking-[0.18em]">
@@ -426,21 +434,21 @@ function SummaryScreen({
       </div>
 
       <div className="space-y-5 p-5 sm:p-6">
-        <div className="rounded-2xl bg-slate-100 p-4">
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Project type</p>
-          <p className="mt-1 text-xl font-black">{projectType}</p>
+        <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-400">Project type</p>
+          <p className="mt-1 text-xl font-black text-slate-950">{projectType}</p>
         </div>
 
         <div className="grid gap-3">
           {rows.map((row) => (
-            <div key={row.label} className="rounded-2xl border border-slate-200 p-4">
+            <div key={row.label} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">{row.label}</p>
-              <p className="mt-1 text-base font-bold leading-6">{row.value}</p>
+              <p className="mt-1 text-base font-bold leading-6 text-slate-950">{row.value}</p>
             </div>
           ))}
-          <div className="rounded-2xl border border-slate-200 p-4">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Source</p>
-            <p className="mt-1 text-base font-bold leading-6">{source}</p>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">Source</p>
+            <p className="mt-1 text-base font-bold leading-6 text-slate-950">{source}</p>
           </div>
         </div>
 
@@ -458,7 +466,7 @@ function SummaryScreen({
           <button
             type="button"
             onClick={onEditAnswers}
-            className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-slate-300 px-5 py-3 text-base font-black transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-slate-300"
+            className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-5 py-3 text-base font-black text-slate-950 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#0f766e]/20"
           >
             Edit my answers
           </button>

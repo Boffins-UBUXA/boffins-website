@@ -331,14 +331,14 @@ function trackLeadEvent(eventName: string, payload: Record<string, unknown> = {}
   // Google Analytics
   // TikTok Pixel
   const win = window as Window & {
-    fbq?: (action: string, event: string, payload?: Record<string, unknown>) => void
-    gtag?: (...args: unknown[]) => void
+    // fbq?: (action: string, event: string, payload?: Record<string, unknown>) => void
+    // gtag?: (...args: unknown[]) => void
     fbq?: (action: string, event: string, payload?: Record<string, unknown>) => void
     ttq?: { track?: (event: string, payload?: Record<string, unknown>) => void }
   }
 
   win.fbq?.("trackCustom", eventName, payload)
-  win.gtag?.("event", eventName, payload)
+  // win.gtag?.("event", eventName, payload)
   win.ttq?.track?.(eventName, payload)
 }
 
