@@ -11,6 +11,7 @@ import {
   MousePointerClick,
   RotateCcw,
   Sparkles,
+  ChevronRight,
 } from "lucide-react"
 
 import { trackEvent } from "@/lib/analytics"
@@ -180,9 +181,20 @@ export function ProjectScopeClient() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,var(--color-primary)_0%,transparent_28%),radial-gradient(circle_at_bottom_right,var(--color-secondary)_0%,transparent_36%)] opacity-10 pointer-events-none" />
         <div className="mx-auto flex h-full w-full max-w-6xl flex-col px-4 sm:px-6 lg:px-8 relative z-10">
           <header className="flex items-center justify-between gap-4">
-            <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">Boffins Technology</p>
-              <h1 className="mt-1 text-2xl font-black leading-tight text-foreground sm:text-4xl">Project Scope</h1>
+            <div className="flex items-center gap-3">
+              <a href="/" className="shrink-0">
+                <Image
+                  src="/images/logo.png"
+                  alt="Boffins Technology Logo"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 object-contain"
+                />
+              </a>
+              <div className="min-w-0">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground hidden sm:block">Boffins Technology</p>
+                <h1 className="mt-1 text-2xl font-black leading-tight text-foreground sm:text-4xl">Project Scope</h1>
+              </div>
             </div>
             <div className="rounded-full border border-border bg-card px-4 py-2 text-sm font-bold text-card-foreground shadow-sm">
               {showSummary ? "Done" : `${currentIndex + 1} of ${totalProjectScopeCards}`}
@@ -270,13 +282,13 @@ function SwipeCard({
   }
 
   return (
-    <div className="relative min-h-[560px] sm:min-h-[590px]">
+    <div className="relative h-[560px] sm:h-[590px]">
       <div className="absolute inset-x-4 top-6 h-[510px] rotate-3 rounded-[2rem] bg-primary/10 shadow-2xl sm:h-[540px]" />
       <div className="absolute inset-x-2 top-3 h-[530px] -rotate-2 rounded-[2rem] bg-secondary/10 shadow-2xl sm:h-[560px]" />
 
       <article
         key={card.id}
-        className={`relative min-h-[550px] touch-pan-y overflow-hidden rounded-[2rem] bg-gradient-to-br ${cardTheme[card.accent]} p-4 shadow-2xl border border-border sm:min-h-[580px] sm:p-5`}
+        className={`relative h-[550px] touch-pan-y overflow-hidden flex flex-col rounded-[2rem] bg-gradient-to-br ${cardTheme[card.accent]} p-4 shadow-2xl border border-border sm:h-[580px] sm:p-5`}
         onPointerDown={(event) => {
           startXRef.current = event.clientX
           activePointerRef.current = event.pointerId
@@ -304,7 +316,7 @@ function SwipeCard({
         }}
       >
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.28)_0%,rgba(255,255,255,0.04)_42%,rgba(0,0,0,0.18)_100%)] dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.1)_0%,rgba(0,0,0,0.2)_42%,rgba(0,0,0,0.6)_100%)]" />
-        <div className="relative z-10 flex min-h-[520px] flex-col sm:min-h-[540px]">
+        <div className="relative z-10 flex h-full flex-col">
           <div className="flex items-center justify-between gap-3">
             <span className="rounded-full bg-black/20 dark:bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-white/85 dark:text-foreground/80">
               Card {currentIndex + 1}
@@ -358,12 +370,13 @@ function AnswerButton({
       onClick={onClick}
       onPointerDown={(e) => e.stopPropagation()}
       onMouseDown={(e) => e.stopPropagation()}
-      className="flex min-h-16 w-full items-center justify-between gap-3 rounded-2xl bg-card px-4 py-3 text-left text-sm font-black leading-snug text-card-foreground shadow-lg transition hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 border border-border"
+      className="group flex min-h-16 w-full items-center justify-between gap-3 rounded-2xl bg-card px-4 py-3 text-left text-sm font-black leading-snug text-card-foreground shadow-lg transition hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 border border-border"
       aria-label={option.label}
     >
-      {direction === "left" ? <ArrowLeft className="h-5 w-5 shrink-0 text-muted-foreground" /> : null}
       <span className="min-w-0 flex-1">{option.label}</span>
-      {direction === "right" ? <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground" /> : null}
+      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-muted-foreground/30 text-transparent transition-colors group-hover:border-primary group-hover:text-primary">
+        <CheckCircle2 className="h-4 w-4" />
+      </div>
     </button>
   )
 }
@@ -404,68 +417,59 @@ function SummaryScreen({
   const projectType = route === "software" ? "Software / Business System" : "Website / Landing Page"
 
   return (
-    <div className="overflow-hidden rounded-[2rem] bg-card text-card-foreground shadow-2xl ring-1 ring-border">
-      <div className="bg-gradient-to-br from-primary via-primary/80 to-primary/60 p-5 text-primary-foreground sm:p-6">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-background/20 px-3 py-1 text-xs font-black uppercase tracking-[0.18em]">
-              <CheckCircle2 className="h-4 w-4" />
-              Ready
-            </div>
-            <h2 className="mt-4 text-3xl font-black leading-tight sm:text-4xl">Your project direction is ready.</h2>
-            <p className="mt-3 max-w-md text-base font-semibold leading-7 text-primary-foreground/85">
-              We have prepared your answers so Boffins can understand your request faster.
-            </p>
+    <div className="flex flex-col gap-5 overflow-hidden rounded-[2rem] bg-card p-5 text-card-foreground shadow-2xl ring-1 ring-border sm:p-6">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <div className="inline-flex items-center gap-2 text-sm font-bold text-primary">
+            <CheckCircle2 className="h-5 w-5" />
+            Project Scope Ready
           </div>
-          <button
-            type="button"
-            onClick={onRestart}
-            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-background/20 transition hover:bg-background/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background"
-            aria-label="Restart project scope"
-          >
-            <RotateCcw className="h-5 w-5" />
-          </button>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Review your answers before chatting with us.
+          </p>
         </div>
+        <button
+          type="button"
+          onClick={onRestart}
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground transition hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          aria-label="Restart project scope"
+        >
+          <RotateCcw className="h-4 w-4" />
+        </button>
       </div>
 
-      <div className="space-y-5 p-5 sm:p-6">
-        <div className="rounded-2xl bg-muted p-4 ring-1 ring-border">
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-muted-foreground">Project type</p>
-          <p className="mt-1 text-xl font-black text-foreground">{projectType}</p>
+      <div className="grid grid-cols-2 gap-3">
+        <div className="col-span-2 rounded-xl bg-primary/5 p-3 ring-1 ring-primary/20">
+          <p className="text-[10px] font-black uppercase tracking-[0.1em] text-primary/70">Project type</p>
+          <p className="mt-0.5 text-sm font-bold text-primary">{projectType}</p>
         </div>
 
-        <div className="grid gap-3">
-          {rows.map((row) => (
-            <div key={row.label} className="rounded-2xl border border-border bg-muted/50 p-4">
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-muted-foreground">{row.label}</p>
-              <p className="mt-1 text-base font-bold leading-6 text-foreground">{row.value}</p>
-            </div>
-          ))}
-          <div className="rounded-2xl border border-border bg-muted/50 p-4">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-muted-foreground">Source</p>
-            <p className="mt-1 text-base font-bold leading-6 text-foreground">{source}</p>
+        {rows.map((row) => (
+          <div key={row.label} className="rounded-xl border border-border bg-muted/30 p-3">
+            <p className="text-[10px] font-black uppercase tracking-[0.1em] text-muted-foreground">{row.label}</p>
+            <p className="mt-0.5 text-sm font-bold leading-tight text-foreground">{row.value}</p>
           </div>
-        </div>
+        ))}
+      </div>
 
-        <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={onWhatsappClick}
-            className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-5 py-3 text-center text-base font-black text-white shadow-lg transition hover:bg-[#1fb457] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/30"
-          >
-            <MessageCircle className="h-5 w-5" />
-            Chat with Boffins on WhatsApp
-          </a>
-          <button
-            type="button"
-            onClick={onEditAnswers}
-            className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-border bg-card px-5 py-3 text-base font-black text-foreground transition hover:bg-muted focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/20"
-          >
-            Edit my answers
-          </button>
-        </div>
+      <div className="grid gap-3 pt-2">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={onWhatsappClick}
+          className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-5 py-3 text-center text-base font-black text-white shadow-lg transition hover:bg-[#1fb457] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/30"
+        >
+          <MessageCircle className="h-5 w-5" />
+          Chat with Boffins on WhatsApp
+        </a>
+        <button
+          type="button"
+          onClick={onEditAnswers}
+          className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-border bg-transparent px-5 py-2 text-sm font-bold text-foreground transition hover:bg-muted focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/20"
+        >
+          Edit my answers
+        </button>
       </div>
     </div>
   )
