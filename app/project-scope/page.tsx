@@ -28,5 +28,9 @@ export const metadata: Metadata = {
 }
 
 export default function ProjectScopePage() {
-  return <ProjectScopeClient />
+  return (
+    <div className="flex min-h-screen flex-col bg-background">
+      <ProjectScopeClient />
+    </div>
+  )
 }
