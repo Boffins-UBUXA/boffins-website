@@ -40,35 +40,35 @@ const cardTheme = {
 
 const visualImages = {
   trust: {
-    src: "/professional-business-manager.jpg",
+    src: "/question1.png",
     alt: "Business owner reviewing project direction",
   },
   ads: {
-    src: "/professional-woman-content-creator.jpg",
+    src: "/question2.png",
     alt: "Business owner planning online leads",
   },
   content: {
-    src: "/social-media-content-creation-photography-studio.jpg",
+    src: "/question2.png",
     alt: "Business team preparing brand content",
   },
   budget: {
-    src: "/cfo-finance-officer-professional.jpg",
+    src: "/question4.png",
     alt: "Finance professional reviewing project budget",
   },
   timeline: {
-    src: "/professional-man-tech-ceo.jpg",
+    src: "/question5.png",
     alt: "Founder planning the next business step",
   },
   software: {
-    src: "/professional-woman-developer.jpg",
+    src: "/question6.png",
     alt: "Software professional building a business system",
   },
   team: {
-    src: "/hr-manager-human-resources-professional.jpg",
+    src: "/question3.png",
     alt: "Internal team planning a better workflow",
   },
   mobile: {
-    src: "/professional-man-designer.jpg",
+    src: "/question2.png",
     alt: "Product designer planning a digital platform",
   },
 } satisfies Record<ProjectScopeCard["visualType"], { src: string; alt: string }>
